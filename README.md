@@ -18,7 +18,7 @@
 - GitHub
 - Docker
 - node.js
-- VS Code（拡張機能含む）
+- おこのみのエディター（私はVSCodeを使っています）
 
 ## 使ってるもの
 
@@ -41,6 +41,10 @@
 Firebase likeにPostgresのRDBを置けて便利。ローカルに環境を作れるのと、Vercelと仲がいいっぽいのもいい感じなので採用。
 
 今回は認証も任せることにしました。
+
+### [Prisma](https://www.prisma.io/)
+
+TypeScriptからDBを扱うためのORM。
 
 ## これを作るまでにやったこと
 
@@ -83,6 +87,8 @@ yarnがいいのでpackage-lock.jsonはここで消しました（宗派によ�
 `MantineProvider`は`Server Component`で使っちゃいけないらしいので、[公式のissue](https://github.com/mantinedev/mantine/issues/2815#issuecomment-1293214788)にあった[サンプル](https://github.com/mantinedev/mantine-next-template/tree/next-13-app/app)を参考に変更
 
 ### supabaseの導入
+
+[該当コミット](https://github.com/HIRO15254/next-app-template/commit/18e3e5627d241e8abebb7420d355ae8eeced1baa)
 
 [公式ドキュメント](https://supabase.com/docs/guides/getting-started/local-development)を参考に進めていきます
 
@@ -157,7 +163,7 @@ service_role key: -(長い文字列)-
 
 ```
 
-多分こんな感じの出力が得られるので、`.env.local`ファイルを作ってこんな感じに書いておく。（`[]`内は先ほどの出力で置き換える。以降も同じ。）
+多分こんな感じの出力が得られるので、`.env`ファイルを作ってこんな感じに書いておく。（`[]`内は先ほどの出力で置き換える。以降も同じ。）
 
 ```env
 # DBの接続文字列 Prismaが見る
@@ -179,3 +185,61 @@ NEXT_PUBLIC_SUPABASE_KEY="[anon key]"
 ```
 
 ### Prismaの導入
+
+#### インストール
+
+```bash
+> yarn add --dev prisma
+> yarn add @prisma/client
+```
+
+#### セットアップ
+
+```bash
+> npx prisma init
+✔ Your Prisma schema was created at prisma/schema.prisma
+  You can now open it in your favorite editor.
+
+warn You already have a .gitignore file. Dont forget to add `.env` in it to not commit any private information.
+
+Next steps:
+1. Set the DATABASE_URL in the .env file to point to your existing database. If your database has no tables yet, read https://pris.ly/d/getting-started
+2. Set the provider of the datasource block in schema.prisma to match your database: postgresql, mysql, sqlite, sqlserver, mongodb or cockroachdb.
+3. Run prisma db pull to turn your database schema into a Prisma schema.
+4. Run prisma generate to generate the Prisma Client. You can then start querying your database.
+
+More information in our documentation:
+https://pris.ly/d/getting-started
+```
+
+おそらく1.と2.についてはデフォルトのままで問題なく、3.についてはDBが空なので不要。
+
+ということで適当なスキーマを追加してマイグレーションしてみる。
+
+schema.prisma(追加)
+
+```prisma
+model User {
+  userId   String   @id @default(cuid())
+  name     String?
+}
+```
+
+```bash
+> npx prisma migrate dev
+
+nter a name for the new migration: ... init
+Applying migration `20230526041753_init`
+
+The following migration(s) have been created and applied from new schema changes:
+
+migrations/
+  └─ 20230526041753_init/
+    └─ migration.sql
+
+Your database is now in sync with your schema.
+
+✔ Generated Prisma Client (4.14.1 | library) to .\node_modules\@prisma\client in 45ms
+```
+
+デフォルトなら`localhost:54323`でsupabaseの管理画面が開けるので、Tableタブからテーブルが作成できていることを確認する。
