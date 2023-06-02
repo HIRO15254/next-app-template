@@ -1,6 +1,7 @@
 'use client';
 
-import { createStyles, Select, TextInput } from '@mantine/core';
+import { Anchor, createStyles, Header, Text, Title } from '@mantine/core';
+import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -28,15 +29,8 @@ export const Test = () => {
 
   return (
     <div>
-      <TextInput label="Shipping address" placeholder="15329 Huston 21st" classNames={classes} />
-
-      <Select
-        style={{ marginTop: 20, zIndex: 2 }}
-        data={['React', 'Angular', 'Svelte', 'Vue']}
-        placeholder="Pick one"
-        label="Your favorite library/framework"
-        classNames={classes}
-      />
+      <Title>This is a Main Page</Title>
+      <Anchor href="/login">Login Page</Anchor>
     </div>
   );
 }

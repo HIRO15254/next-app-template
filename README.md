@@ -171,7 +171,7 @@ DATABASE_URL="[DB URL]"
 
 # APIのURLとKey Supabase Clientが見る
 NEXT_PUBLIC_SUPABASE_URL="[API URL]"
-NEXT_PUBLIC_SUPABASE_KEY="[anon key]"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="[anon key]"
 ```
 
 ちなみにクライアント側で使う環境変数は`NEXT_PUBLIC_`から始めないと読み込まれないので注意（結構忘れてハマりがち）
@@ -186,14 +186,14 @@ NEXT_PUBLIC_SUPABASE_KEY="[anon key]"
 
 ### Prismaの導入
 
-#### インストール
+#### Prismaのインストール
 
 ```bash
 > yarn add --dev prisma
 > yarn add @prisma/client
 ```
 
-#### セットアップ
+#### Prismaのセットアップ
 
 ```bash
 > npx prisma init
@@ -243,3 +243,43 @@ Your database is now in sync with your schema.
 ```
 
 デフォルトなら`localhost:54323`でsupabaseの管理画面が開けるので、Tableタブからテーブルが作成できていることを確認する。
+
+### supabaseによる認証のセットアップ
+
+とりあえずGoogleログインだけ実装する。OAuthなら他のプロバイダーでも大体同じ感じ。
+
+メールアドレス認証とかがしたい場合はまた別で記事を書くかもしれませんが、探せば多分たくさんあります。
+
+#### バックエンド側の設定
+
+[Google Cloud Platform](https://cloud.google.com/)にアクセスして、サインインして、右上「コンソール」 > 左上「プロジェクトの選択」 > 「新しいプロジェクト」からプロジェクトを作成する。プロジェクト名や場所はよしなに。
+
+プロジェクトを作成して、プロジェクト画面を開いたら、「APIとサービス」 > 「OAuth同意画面」から、「外部」を選択して作成ボタンを押す。必要情報を入力してとりあえず保存。
+
+左側「認証情報」> 上部「認証情報の作成」 > 「OAuth クライアント ID」から「ウェブアプリケーション」を選択し、名前を入力。
+
+次に、新しいタブでsupabaseのサイトにアクセスし、管理画面のAuthentication > Providers > GoogleのRedirect URLをコピーしておく。
+
+Google Cloud Platformのタブに戻ってきて、「承認済みのリダイレクト URI」にコピーした文字列をそのまま貼り付ける。
+
+ローカル開発用に`http://localhost:54321/auth/v1/callback`も追加する。
+
+「保存」をクリックすると`Client ID`と`Client Secret`が表示されるので、これらをsupabaseのタブにある対応するテキストボックスにペーストする。
+
+ローカルで認証を走らせるため、`supabase/config.toml`に以下を追加。
+
+```toml
+[auth.external.google]
+enabled = true
+client_id = "..."
+secret = "..."
+```
+
+ローカル環境のsupabaseを再起動する。
+
+```bash
+> supabase stop
+> supabase start
+```
+
+#### フロントエンド側の設定
