@@ -4,7 +4,7 @@ import { CacheProvider } from '@emotion/react';
 import { useEmotionCache, MantineProvider } from '@mantine/core';
 import { useServerInsertedHTML } from 'next/navigation';
 
-export default function StyleProvider({ children }: { children: React.ReactNode }) {
+export const StyleProvider = ({ children }: { children: React.ReactNode }) => {
   const cache = useEmotionCache();
   cache.compat = true;
 

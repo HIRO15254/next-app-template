@@ -1,5 +1,5 @@
-import StyleProvider from '@/components/Providers/Style'
-import { MainAppShell } from './_components/MainAppShell'
+import { StyleProvider } from '@/components/Providers/Style'
+import { AuthProvider } from '@/components/Providers/Auth'
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,9 +15,9 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <StyleProvider>
-          <MainAppShell>
+          <AuthProvider>
             {children}
-          </MainAppShell>
+          </AuthProvider>
         </StyleProvider>
       </body>
     </html>

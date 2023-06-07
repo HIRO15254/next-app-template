@@ -1,8 +1,8 @@
 "use client"
 
-import { supabase } from "@/lib/supabase";
+import { clientComponentSupabase } from "@/lib/supabase";
 import { ButtonProps } from "@mantine/core";
-import GoogleLoginButton from "../GoogleLoginButton";
+import GoogleLoginButton from "@/app/(other)/auth/login/_components/GoogleLoginButton";
 
 interface Props extends ButtonProps {
   provider: "google",
@@ -13,7 +13,7 @@ export const LoginButton = (props: Props) => {
   const { provider, callback, ...rest } = props;
 
   const handleLogin = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
+    const { error } = await clientComponentSupabase.auth.signInWithOAuth({
       provider: provider,
       options: {
         redirectTo: callback || undefined,

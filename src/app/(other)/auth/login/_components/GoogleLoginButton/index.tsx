@@ -3,7 +3,7 @@
 import { Button, ButtonProps } from '@mantine/core';
 import React from 'react';
 
-import GoogleIcon from '@/app/login/_components/GoogleIcon';
+import GoogleIcon from '@/app/(other)/auth/login/_components/GoogleIcon';
 
 interface Props extends ButtonProps {
   onClick: () => void;

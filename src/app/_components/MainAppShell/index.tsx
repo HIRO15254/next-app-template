@@ -17,10 +17,12 @@ import { MainNavBar } from '../MainNavBar';
 
 interface Props {
   children: React.ReactNode;
+  noHeader?: boolean;
+  noNavbar?: boolean;
 }
 
-export const MainAppShell = (props: Props) => {
-  const { children } = props;
+export const MainAppShell = (props: Props ) => {
+  const { children, noHeader, noNavbar } = props;
 
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
@@ -34,13 +36,14 @@ export const MainAppShell = (props: Props) => {
       }}
       navbarOffsetBreakpoint="sm"
       navbar={
-        <MainNavBar opened={opened} />
+        !noNavbar ? <MainNavBar opened={opened} /> : undefined
       }
       header={
-        <MainHeader
+        !noHeader ? <MainHeader
           opened={opened}
+          noBurger={noNavbar}
           onBurgerClick={() => setOpened((o) => !o)}
-        />
+        /> : undefined
       }
     >
       {children}

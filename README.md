@@ -283,3 +283,43 @@ secret = "..."
 ```
 
 #### フロントエンド側の設定
+
+### GraphQLの導入
+
+GraphQLのでは、サーバーにapollo server、Typescriptを用いたスキーマ記述にpothos、クライアント側のライブラリにapollo client、型生成にGraphQL Code Generatorを使う。
+
+とりあえず一通り入れる。
+
+```bash
+> yarn add @apollo/server graphql @as-integrations/next
+> yarn add @pothos/core @pothos/plugin-prisma graphql-scalars
+> yarn add --dev @graphql-codegen/cli
+```
+
+```bash
+> yarn graphql-code-generator init
+yarn run v1.22.19
+$ C:\Users\hi089\Documents\next-app-template\node_modules\.bin\graphql-code-generator init
+
+    Welcome to GraphQL Code Generator!
+    Answer few questions and we will setup everything for you.
+
+? What type of application are you building? Application built with React
+? Where is your schema?: (path or url) http://localhost:4000
+? Where are your operations and fragments?: src/**/*.tsx
+? Where to write the output: src/gql/
+? Do you want to generate an introspection file? Yes
+? How to name the config file? codegen.ts
+? What script in package.json should run the codegen? codegen
+Fetching latest versions of selected plugins...
+
+    Config file generated at codegen.ts
+
+      $ npm install
+
+    To install the plugins.
+
+      $ npm run codegen
+
+    To run GraphQL Code Generator.
+```

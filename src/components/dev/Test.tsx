@@ -1,36 +1,18 @@
 'use client';
 
-import { Anchor, createStyles, Header, Text, Title } from '@mantine/core';
-import Link from 'next/link';
-
-const useStyles = createStyles((theme) => ({
-  root: {
-    position: 'relative',
-  },
-
-  input: {
-    height: 'auto',
-    paddingTop: 18,
-  },
-
-  label: {
-    position: 'absolute',
-    pointerEvents: 'none',
-    fontSize: theme.fontSizes.xs,
-    paddingLeft: theme.spacing.sm,
-    paddingTop: theme.spacing.sm,
-    zIndex: 1,
-  },
-}));
+import { Anchor, Title, Text } from '@mantine/core';
+import { useAuth } from '../Providers/Auth';
 
 export const Test = () => {
-  // You can add these classes as classNames to any Mantine input, it will work the same
-  const { classes } = useStyles();
+  const auth = useAuth();
 
   return (
     <div>
+      <Text>
+        {auth?.email || "Not Logged In"}
+      </Text>
       <Title>This is a Main Page</Title>
-      <Anchor href="/login">Login Page</Anchor>
+      <Anchor href="/auth/login">Login Page</Anchor>
     </div>
   );
 }
