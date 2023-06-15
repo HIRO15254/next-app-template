@@ -1,5 +1,5 @@
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
-import { server } from "../../backend/lib/apollo"
+import { server } from "../../../backend/lib/apollo"
 
 const handler =  startServerAndCreateNextHandler(server);
 

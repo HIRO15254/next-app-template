@@ -5,14 +5,18 @@ import { printSchema } from 'graphql';
 
 const config: CodegenConfig = {
   overwrite: true,
+  watch: true,
   schema: printSchema(schema),
-  documents: ["src/**/*.tsx", "src/**/*.gql"],
+  documents: ['src/**/*.gql'],
   generates: {
-    "src/gql/": {
-      preset: "client",
-      plugins: []
+    './src/gql/index.ts': {
+      plugins: [
+        'typescript',
+        'typescript-operations',
+        'typescript-react-apollo',
+      ],
     },
-  }
+  },
 };
 
 export default config;

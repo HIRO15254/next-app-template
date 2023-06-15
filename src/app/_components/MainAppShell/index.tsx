@@ -14,15 +14,17 @@ import {
 } from '@mantine/core';
 import { MainHeader } from '../MainHeader';
 import { MainNavBar } from '../MainNavBar';
+import { Session } from 'next-auth';
 
 interface Props {
   children: React.ReactNode;
   noHeader?: boolean;
   noNavbar?: boolean;
+  session?: Session
 }
 
 export const MainAppShell = (props: Props ) => {
-  const { children, noHeader, noNavbar } = props;
+  const { children, noHeader, noNavbar, session } = props;
 
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
@@ -42,6 +44,7 @@ export const MainAppShell = (props: Props ) => {
         !noHeader ? <MainHeader
           opened={opened}
           noBurger={noNavbar}
+          session={session}
           onBurgerClick={() => setOpened((o) => !o)}
         /> : undefined
       }

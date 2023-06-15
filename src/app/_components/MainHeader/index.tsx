@@ -1,23 +1,27 @@
 "use client";
 
-import { Text, Header, MediaQuery, Burger, useMantineTheme } from "@mantine/core";
+import { Text, Header, MediaQuery, Burger, useMantineTheme, Group } from "@mantine/core";
+import type { Session } from "next-auth";
+import { UserButton } from "../UserButton";
 
 interface Props {
   opened: boolean;
   onBurgerClick: () => void;
   noBurger?: boolean;
+  session?: Session;
 }
 
 export const MainHeader = (props: Props) => {
   const {
     opened,
     onBurgerClick,
+    session,
   } = props;
   const theme = useMantineTheme();
 
   return (
-    <Header height={{ base: 50, md: 70 }} p="md">
-      <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+    <Header height={70} p="md">
+      <Group position="apart">
         {!props.noBurger &&
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
             <Burger
@@ -30,7 +34,8 @@ export const MainHeader = (props: Props) => {
           </MediaQuery>
         }
         <Text>Application header</Text>
-      </div>
+        <UserButton user={session?.user}/>
+      </Group>
     </Header>
   );
 }
