@@ -7,7 +7,7 @@ const config: CodegenConfig = {
   overwrite: true,
   watch: true,
   schema: printSchema(schema),
-  documents: ['src/**/*.gql'],
+  // documents: ['src/**/*.gql'],
   generates: {
     './src/gql/index.ts': {
       plugins: [

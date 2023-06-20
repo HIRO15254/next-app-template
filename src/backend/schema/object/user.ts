@@ -1,9 +1,8 @@
 import { builder } from '../builder'
 
 export const User = builder.prismaNode('User', {
-  id: { field: 'userId' },
+  id: { field: 'id' },
   fields: (t) => ({
-    userId: t.exposeString('userId'),
-    name: t.exposeString('name'),
+    name: t.exposeString('name', { nullable: true }),
   }),
 })

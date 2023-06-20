@@ -1,7 +1,8 @@
 "use client"
 
 import { Avatar, Button, Group, Menu, UnstyledButton, rem, Text, Anchor } from "@mantine/core";
-import { IconChevronDown, IconLogout, IconPlayerPause, IconSettings, IconSwitchHorizontal, IconTrash } from "@tabler/icons-react";
+import { IconChevronDown, IconLogout, IconSettings } from "@tabler/icons-react";
+import { signOut } from "next-auth/react";
 
 interface Props {
   user?: {
@@ -34,10 +35,16 @@ export const UserButton = (props: Props) => {
           </Menu.Target>
           <Menu.Dropdown>
             <Menu.Label>Account</Menu.Label>
-            <Menu.Item icon={<IconSettings size="0.9rem" stroke={1.5} />}>
+            <Menu.Item 
+              icon={<IconSettings size="0.9rem" stroke={1.5} />}
+            >
               Account settings
             </Menu.Item>
-            <Menu.Item color="red" icon={<IconLogout size="0.9rem" stroke={1.5} />}>
+            <Menu.Item
+              color="red"
+              icon={<IconLogout size="0.9rem" stroke={1.5} />}
+              onClick={() => {signOut({ callbackUrl: "/" })}}
+            >
               Logout
             </Menu.Item>
           </Menu.Dropdown>

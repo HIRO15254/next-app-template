@@ -12,7 +12,7 @@ interface Props extends ButtonProps {
 export const LoginButton = (props: Props) => {
   const { provider, callback, ...rest } = props;
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     signIn(provider, { callbackUrl: callback });
   };
 

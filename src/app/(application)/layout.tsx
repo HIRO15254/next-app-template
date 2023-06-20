@@ -1,6 +1,4 @@
 import { MainAppShell } from '@/app/_components/MainAppShell'
-import { authOptions } from '@/lib/nextAuth';
-import { getServerSession } from 'next-auth/next';
 
 export const metadata = {
   title: 'Create Next App',

@@ -1,12 +1,24 @@
-"use client";
+import { showNotification } from '@mantine/notifications';
+import LoginForm from './_components/LoginForm';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 
-import { LoginButton } from '@/app/(other)/auth/login/_components/LoginButton';
-import { useSession } from 'next-auth/react';
+const Login = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined }
+}) => {
+  const callback = searchParams.callbackUrl?.toString();
 
-export default function Login() {
+  const session = await getServerSession()
+  // ログイン済みなら戻す
+  if (session) {
+    console.log(session)
+    redirect(callback ?? "/");
+  }
   return (
-    <LoginButton provider='google' callback='/'>
-      Googleでログイン
-    </LoginButton>
+    <LoginForm callbackUrl={callback} />
   )
 }
+
+export default Login;
