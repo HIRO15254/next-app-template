@@ -5,8 +5,8 @@ import {
   AppShell,
   useMantineTheme,
 } from '@mantine/core';
-import { MainHeader } from '../MainHeader';
-import { MainNavBar } from '../MainNavBar';
+import { MainHeader } from 'app/_components/MainHeader';
+import { MainNavBar } from 'app/_components/MainNavBar';
 import { Session } from 'next-auth';
 
 interface Props {

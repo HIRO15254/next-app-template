@@ -1,7 +1,7 @@
 "use client"
 
 import { Paper, Stack, Title } from "@mantine/core"
-import { LoginButton } from "../LoginButton"
+import { LoginButton } from "app/(other)/auth/login/_components/LoginButton"
 
 interface Props {
   callbackUrl?: string;

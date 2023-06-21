@@ -2,7 +2,7 @@
 
 import { Text, Header, MediaQuery, Burger, useMantineTheme, Group } from "@mantine/core";
 import type { Session } from "next-auth";
-import { UserButton } from "../UserButton";
+import { UserButton } from "app/_components/UserButton";
 
 interface Props {
   opened: boolean;

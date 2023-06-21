@@ -1,4 +1,3 @@
-import { showNotification } from '@mantine/notifications';
 import LoginForm from './_components/LoginForm';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';

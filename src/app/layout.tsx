@@ -1,6 +1,6 @@
-import { StyleProvider } from '@/components/providers/Style'
-import { AuthProvider } from '@/components/providers/AuthProvider'
-import { GqlProvider } from '@/components/providers/GqlProvider'
+import { StyleProvider } from 'components/providers/Style'
+import { AuthProvider } from 'components/providers/AuthProvider'
+import { GqlProvider } from 'components/providers/GqlProvider'
 
 interface Props {
   children: React.ReactNode

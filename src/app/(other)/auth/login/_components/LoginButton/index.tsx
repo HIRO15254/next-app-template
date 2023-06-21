@@ -1,7 +1,7 @@
 "use client"
 
 import { ButtonProps } from "@mantine/core";
-import GoogleLoginButton from "@/app/(other)/auth/login/_components/GoogleLoginButton";
+import GoogleLoginButton from "app/(other)/auth/login/_components/GoogleLoginButton";
 import { signIn } from "next-auth/react";
 
 interface Props extends ButtonProps {

@@ -1,6 +1,6 @@
 'use client';
 
-import { Anchor, Title, Text } from '@mantine/core';
+import { Title } from '@mantine/core';
 
 export const Test = () => {
   return (

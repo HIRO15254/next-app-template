@@ -1,4 +1,4 @@
-import { MainAppShell } from '@/app/_components/MainAppShell'
+import { MainAppShell } from 'app/_components/MainAppShell'
 
 export const metadata = {
   title: 'Create Next App',
