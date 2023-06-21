@@ -9,12 +9,12 @@ const Login = async ({
 }) => {
   const callback = searchParams.callbackUrl?.toString();
 
-  const session = await getServerSession()
+  const session = await getServerSession();
   // ログイン済みなら戻す
   if (session) {
-    console.log(session)
     redirect(callback ?? "/");
   }
+
   return (
     <LoginForm callbackUrl={callback} />
   )

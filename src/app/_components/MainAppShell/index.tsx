@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import {
   AppShell,
+  Group,
+  Paper,
   useMantineTheme,
 } from '@mantine/core';
 import { MainHeader } from 'app/_components/MainHeader';
@@ -42,7 +44,11 @@ export const MainAppShell = (props: Props ) => {
         /> : undefined
       }
     >
-      {children}
+      <Group position="center" pb="sm">
+        <Paper w="100%" maw={800} p="md" shadow='xs'>
+          {children}
+        </Paper>
+      </Group>
     </AppShell>
   );
 }

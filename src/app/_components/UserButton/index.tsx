@@ -38,7 +38,9 @@ export const UserButton = (props: Props) => {
             <Menu.Item 
               icon={<IconSettings size="0.9rem" stroke={1.5} />}
             >
-              Account settings
+              <Anchor unstyled href="/settings">
+                Account settings
+              </Anchor>
             </Menu.Item>
             <Menu.Item
               color="red"
