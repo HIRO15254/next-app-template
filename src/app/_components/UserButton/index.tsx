@@ -8,6 +8,7 @@ interface Props {
   user?: {
     name?: string | null;
     image?: string | null;
+    userId?: string | null;
   }
 }
 
@@ -34,7 +35,7 @@ export const UserButton = (props: Props) => {
             </UnstyledButton>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Label>Account</Menu.Label>
+            <Menu.Label>Account (@{user.userId})</Menu.Label>
             <Menu.Item 
               icon={<IconSettings size="0.9rem" stroke={1.5} />}
             >

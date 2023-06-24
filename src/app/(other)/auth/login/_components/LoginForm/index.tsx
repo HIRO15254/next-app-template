@@ -10,7 +10,7 @@ interface Props {
 const LoginForm = (props: Props) => {
   const { callbackUrl } = props;
   return (
-    <Paper radius="md" shadow="sm" p="lg" m="auto" withBorder style={{ maxWidth: '480px' }}>
+    <Paper unstyled pb="sm" m="auto" style={{ maxWidth: '480px' }}>
       <Title order={2} pt="sm">
         ログイン
       </Title>
