@@ -9,6 +9,11 @@ interface Props {
   children: React.ReactNode
 }
 
+export const metadata = {
+  title: 'next-app-template',
+  description: 'template for next.js app',
+};
+
 const RootLayout = async(props: Props) => {
   const { children } = props;
   return (
