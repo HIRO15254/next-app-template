@@ -36,13 +36,13 @@ export const UserButton = (props: Props) => {
           </Menu.Target>
           <Menu.Dropdown>
             <Menu.Label>Account (@{user.userId})</Menu.Label>
-            <Menu.Item 
-              icon={<IconSettings size="0.9rem" stroke={1.5} />}
-            >
-              <Anchor unstyled href="/settings">
-                Account settings
-              </Anchor>
-            </Menu.Item>
+            <Anchor unstyled href="/settings/user">
+              <Menu.Item 
+                icon={<IconSettings size="0.9rem" stroke={1.5} />}
+              >
+                  Account settings
+              </Menu.Item>
+            </Anchor>
             <Menu.Item
               color="red"
               icon={<IconLogout size="0.9rem" stroke={1.5} />}

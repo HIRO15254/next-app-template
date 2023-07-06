@@ -36,11 +36,18 @@ model Account {
 
 model User {
   id String @id @default(cuid())
+  role UserRole @default(USER)
   userId String? @unique
   name String?
-  email String? @unique
+  email String @unique
   emailVerified DateTime?
+  trueEmail String?
   image String?
   isDarkMode Boolean @default(false)
   accounts Account[]
+}
+
+enum UserRole {
+  ADMIN
+  USER
 }

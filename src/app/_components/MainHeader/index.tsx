@@ -1,6 +1,6 @@
 "use client";
 
-import {Text, Code , Header, MediaQuery, Burger, useMantineTheme, Group } from "@mantine/core";
+import {Code , Header, MediaQuery, Burger, useMantineTheme, Group, Title } from "@mantine/core";
 import type { Session } from "next-auth";
 import { UserButton } from "app/_components/UserButton";
 
@@ -34,7 +34,7 @@ export const MainHeader = (props: Props) => {
           </MediaQuery>
         }
         <Group position="apart">
-          <Text>App Name</Text>
+          <Title order={3}>App Name</Title>
           <Code sx={{ fontWeight: 700 }}>v0.1.0</Code>
         </Group>
         <UserButton user={session?.user}/>

@@ -7,6 +7,7 @@ declare module 'next-auth' {
       isDarkMode: boolean;
       name: string
       email: string
+      email: string
       image: string
     }
   } 
