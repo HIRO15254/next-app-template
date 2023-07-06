@@ -33,7 +33,7 @@ export const MainAppShell = (props: Props ) => {
           background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
         },
       }}
-      navbarOffsetBreakpoint="sm"
+      navbarOffsetBreakpoint={noNavbar ? 100000 : "sm"}
       navbar={
         !noNavbar ? <MainNavBar opened={opened} /> : undefined
       }
