@@ -1,7 +1,9 @@
-"use client"
+"use client";
 
-import { Paper, Stack, Title } from "@mantine/core"
-import { LoginButton } from "app/(other)/auth/login/_components/LoginButton"
+import { Paper, Stack, Title } from "@mantine/core";
+import React from "react";
+
+import { LoginButton } from "app/(other)/auth/login/_components/LoginButton";
 
 interface Props {
   callbackUrl?: string;
@@ -20,7 +22,7 @@ const LoginForm = (props: Props) => {
         </LoginButton>
       </Stack>
     </Paper>
-  )
-}
+  );
+};
 
 export default LoginForm;

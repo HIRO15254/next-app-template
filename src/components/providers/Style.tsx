@@ -1,9 +1,10 @@
 'use client';
 
 import { CacheProvider } from '@emotion/react';
-import { Notifications } from '@mantine/notifications';
 import { useEmotionCache, MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import { useServerInsertedHTML } from 'next/navigation';
+import React from 'react';
 
 export const StyleProvider = ({ children }: { children: React.ReactNode }) => {
   const cache = useEmotionCache();
@@ -12,6 +13,7 @@ export const StyleProvider = ({ children }: { children: React.ReactNode }) => {
   useServerInsertedHTML(() => (
     <style
       data-emotion={`${cache.key} ${Object.keys(cache.inserted).join(' ')}`}
+      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: Object.values(cache.inserted).join(' '),
       }}
@@ -26,4 +28,4 @@ export const StyleProvider = ({ children }: { children: React.ReactNode }) => {
       </MantineProvider>
     </CacheProvider>
   );
-}
+};

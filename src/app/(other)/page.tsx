@@ -1,7 +1,9 @@
-import { Test } from 'components/dev/Test'
+import React from 'react';
 
-export default function Home() {
-  return (
-    <Test />
-  )
-}
+import { Test } from 'components/dev/Test';
+
+const Home = () => (
+  <Test />
+);
+
+export default Home;

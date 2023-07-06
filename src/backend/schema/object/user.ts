@@ -1,5 +1,5 @@
-import { UserRoleEnum } from '../enum/userRole'
-import { builder } from '../builder'
+import { builder } from '../builder';
+import { UserRoleEnum } from '../enum/userRole';
 
 export const User = builder.prismaNode('User', {
   id: { field: 'id' },
@@ -10,4 +10,4 @@ export const User = builder.prismaNode('User', {
     image: t.exposeString('image', { nullable: true }),
     role: t.expose('role', { type: UserRoleEnum } )
   }),
-})
+});

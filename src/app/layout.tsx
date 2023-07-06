@@ -1,6 +1,9 @@
-import { StyleProvider } from 'components/providers/Style'
-import { AuthProvider } from 'components/providers/AuthProvider'
-import { GqlProvider } from 'components/providers/GqlProvider'
+import React from 'react';
+
+import { AuthProvider } from 'components/providers/AuthProvider';
+import { GqlProvider } from 'components/providers/GqlProvider';
+import { StyleProvider } from 'components/providers/Style';
+
 
 interface Props {
   children: React.ReactNode
@@ -21,7 +24,7 @@ const RootLayout = async(props: Props) => {
         </GqlProvider>
       </body>
     </html>
-  )
-}
+  );
+};
 
-export default RootLayout
+export default RootLayout;

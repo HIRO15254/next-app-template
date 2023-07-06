@@ -1,11 +1,12 @@
-"use client"
+"use client";
 
-import { Group, Paper, Tabs } from "@mantine/core"
-import { BasicUserSettingForm } from "./BasicUserSettingForm"
-import { AvatarSettingForm } from "./AvatarSettingForm"
+import { Group, Paper, Tabs } from "@mantine/core";
+import React from "react";
 
-export const UserSettingForm = () => {
-  return (
+import { AvatarSettingForm } from "./AvatarSettingForm";
+import { BasicUserSettingForm } from "./BasicUserSettingForm";
+
+export const UserSettingForm = () => (
     <Group position="center">
       <Paper  maw={600} w="100%">
         <Tabs defaultValue="basic">
@@ -24,5 +25,4 @@ export const UserSettingForm = () => {
         </Tabs>
       </Paper>
     </Group>
-  )
-}
+  );

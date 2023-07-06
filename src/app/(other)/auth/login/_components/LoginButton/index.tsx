@@ -1,8 +1,10 @@
-"use client"
+"use client";
 
 import { ButtonProps } from "@mantine/core";
-import GoogleLoginButton from "app/(other)/auth/login/_components/GoogleLoginButton";
 import { signIn } from "next-auth/react";
+import React from "react";
+
+import GoogleLoginButton from "app/(other)/auth/login/_components/GoogleLoginButton";
 
 interface Props extends ButtonProps {
   provider: "google",
@@ -17,10 +19,11 @@ export const LoginButton = (props: Props) => {
   };
 
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {provider == "google" && (
+      {provider === "google" && (
         <GoogleLoginButton onClick={handleLogin} {...rest} />
       )}
     </>
   );
-}
+};

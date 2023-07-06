@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Group,
   Box,
@@ -11,6 +10,7 @@ import {
   Anchor,
 } from '@mantine/core';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
+import React, { useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
   control: {
@@ -52,26 +52,27 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface Props {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon: React.FC<any>;
   label: string;
   initiallyOpened?: boolean;
   link?: { label: string; link: string }[] | string;
 }
 
-export function NavBarLinksGroup({ icon: Icon, label, initiallyOpened, link }: Props) {
+export const NavBarLinksGroup = ({ icon: Icon, label, initiallyOpened, link }: Props) => {
   const { classes, theme } = useStyles();
   const hasLinks = Array.isArray(link);
   const [opened, setOpened] = useState(initiallyOpened || false);
   const ChevronIcon = theme.dir === 'ltr' ? IconChevronRight : IconChevronLeft;
-  const items = (hasLinks ? link : []).map((link) => (
+  const items = (hasLinks ? link : []).map((oneLink) => (
     <Text<'a'>
       component="a"
       className={classes.link}
-      href={link.link}
-      key={link.label}
+      href={oneLink.link}
+      key={oneLink.label}
       onClick={(event) => event.preventDefault()}
     >
-      {link.label}
+      {oneLink.label}
     </Text>
   ));
 
@@ -118,4 +119,4 @@ export function NavBarLinksGroup({ icon: Icon, label, initiallyOpened, link }: P
       }
     </>
   );
-}
+};

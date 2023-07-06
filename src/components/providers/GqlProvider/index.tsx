@@ -1,12 +1,12 @@
 "use client";
 
-import { apolloClient } from "lib/apolloClient";
 import { ApolloProvider } from "@apollo/client";
+import React from "react";
 
-export const GqlProvider = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <ApolloProvider client={apolloClient}>
-      {children}
-    </ApolloProvider>
-  );
-}
+import { apolloClient } from "lib/apolloClient";
+
+export const GqlProvider = ({ children }: { children: React.ReactNode }) => (
+  <ApolloProvider client={apolloClient}>
+    {children}
+  </ApolloProvider>
+);

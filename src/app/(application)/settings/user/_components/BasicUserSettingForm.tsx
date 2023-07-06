@@ -1,11 +1,13 @@
-"use client"
+"use client";
 
-import { Box, Button, Group, LoadingOverlay, TextInput, Tooltip } from "@mantine/core"
-import { useForm } from "@mantine/form"
+import { Box, Button, Group, LoadingOverlay, TextInput, Tooltip } from "@mantine/core";
+import { useForm } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import { IconAlertCircle, IconAt } from "@tabler/icons-react";
-import { GetLoginUserQuery, useGetLoginUserQuery, useUpdateLoginUserMutation } from "gql";
 import { useRouter } from "next/navigation";
+import React from "react";
+
+import { GetLoginUserQuery, useGetLoginUserQuery, useUpdateLoginUserMutation } from "gql";
 import { emailValidator, userNameValidator, userIdValidator } from "util/validators";
 
 export const BasicUserSettingForm = () => {
@@ -28,9 +30,9 @@ export const BasicUserSettingForm = () => {
         userId: data?.loginUser.userId || "",
         name: data?.loginUser.name || "",
         email: data?.loginUser.email || ""
-      })
+      });
     }
-  }
+  };
 
   const { loading } = useGetLoginUserQuery({onCompleted: initializeForm});
   const [ updateUser ] = useUpdateLoginUserMutation();
@@ -104,5 +106,5 @@ export const BasicUserSettingForm = () => {
         </Group>
       </form>
     </Box>
-  )
-}
+  );
+};

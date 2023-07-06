@@ -1,6 +1,8 @@
-import { Navbar, ScrollArea, createStyles, rem } from "@mantine/core"
-import { NavBarLinksGroup } from "../NavBarLinksGroup";
+import { Navbar, ScrollArea, createStyles, rem } from "@mantine/core";
 import { IconGauge, IconNotes, IconCalendarStats, IconPresentationAnalytics, IconFileAnalytics, IconAdjustments, IconLock } from "@tabler/icons-react";
+import React from "react";
+
+import { NavBarLinksGroup } from "../NavBarLinksGroup";
 
 interface Props {
   opened: boolean;
@@ -88,5 +90,5 @@ export const MainNavBar = (props: Props) => {
         <div className={classes.linksInner}>{links}</div>
       </Navbar.Section>
     </Navbar>
-  )
-}
+  );
+};

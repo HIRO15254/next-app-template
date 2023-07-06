@@ -1,15 +1,17 @@
 "use client";
 
-import { useState } from 'react';
 import {
   AppShell,
   Group,
   Paper,
   useMantineTheme,
 } from '@mantine/core';
+import { Session } from 'next-auth';
+import React, { useState } from 'react';
+
 import { MainHeader } from 'app/_components/MainHeader';
 import { MainNavBar } from 'app/_components/MainNavBar';
-import { Session } from 'next-auth';
+
 
 interface Props {
   children: React.ReactNode;
@@ -51,4 +53,4 @@ export const MainAppShell = (props: Props ) => {
       </Group>
     </AppShell>
   );
-}
+};

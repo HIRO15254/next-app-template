@@ -1,14 +1,15 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { AuthOptions } from 'next-auth';
+import { AdapterUser } from 'next-auth/adapters';
 import GoogleProvider from 'next-auth/providers/google';
 
 import { prisma } from 'lib/prisma';
 import { createUserID } from 'util/createUserId';
-import { AdapterUser } from 'next-auth/adapters';
 
 const prismaAdapter = {
   ...PrismaAdapter(prisma),
   getUserByEmail: () => null,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   createUser: async (data: any) => {
     const user = await prisma.user.create({ 
       data: { 
@@ -31,7 +32,7 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async session({ session, newSession }) {
+    async session({ session }) {
       const retSession = { ...session };
       const userData = await prisma.user.findUnique({
         where: {

@@ -1,3 +1,3 @@
-import "./deleteUser"
-import "./updateUser"
-import "./updateLoginUser"
+import "./deleteUser";
+import "./updateUser";
+import "./updateLoginUser";

@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
 import { Avatar, Button, Group, Menu, UnstyledButton, rem, Text, Anchor, Stack } from "@mantine/core";
 import { IconChevronDown, IconLogout, IconSettings } from "@tabler/icons-react";
 import { signOut, useSession } from "next-auth/react";
+import React from "react";
 
 interface Props {
   user?: {
@@ -13,9 +14,11 @@ interface Props {
 }
 
 export const UserButton = (props: Props) => {
+  const { user: propUser } = props;
   const { data: session } = useSession();
-  const user = session?.user || props.user;
+  const user = session?.user || propUser;
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {user ? (
         <Menu
@@ -32,7 +35,7 @@ export const UserButton = (props: Props) => {
                   <Text weight={500} size="md" sx={{ lineHeight: 1 }} mr={3}>
                     {user.name}
                   </Text>
-                  <Text size="xs" color={"gray"} sx={{ lineHeight: 1 }} mr={3}>
+                  <Text size="xs" color="gray" sx={{ lineHeight: 1 }} mr={3}>
                     {`@${user.userId}`}
                   </Text>
                 </Stack>
@@ -52,7 +55,7 @@ export const UserButton = (props: Props) => {
             <Menu.Item
               color="red"
               icon={<IconLogout size="0.9rem" stroke={1.5} />}
-              onClick={() => {signOut({ callbackUrl: "/" })}}
+              onClick={() => {signOut({ callbackUrl: "/" });}}
             >
               ログアウト
             </Menu.Item>
@@ -65,4 +68,4 @@ export const UserButton = (props: Props) => {
       )}
     </>
   );
-}
+};

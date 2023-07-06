@@ -1,5 +1,5 @@
-import { builder } from '../builder'
-import { prisma } from "../../../lib/prisma"
+import { prisma } from "../../../lib/prisma";
+import { builder } from '../builder';
 import { User } from '../object/user';
 
 builder.queryField('loginUser', (t) => t.prismaField({

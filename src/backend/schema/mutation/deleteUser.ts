@@ -1,5 +1,5 @@
+import { prisma } from "../../../lib/prisma";
 import { builder } from "../builder";
-import { prisma } from "../../../lib/prisma"
 
 const DeleteUserInput = builder.inputType("DeleteUserInput", {
   fields: (t) => ({
@@ -13,10 +13,11 @@ builder.mutationFields((t) => ({
     args: {
       input: t.arg({ type: DeleteUserInput, required: true }),
     },
-    resolve: (_query, _root, args, _ctx, _info) => {
-      return prisma.user.delete({
+    resolve: async(_query, _root, args, _ctx, _info) => {
+      const ret =  await prisma.user.delete({
         where: { userId: args.input?.userId ?? "" },
       });
+      return ret;
     },
   }),
 }));
