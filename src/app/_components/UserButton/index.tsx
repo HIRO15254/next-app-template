@@ -1,8 +1,8 @@
 "use client"
 
-import { Avatar, Button, Group, Menu, UnstyledButton, rem, Text, Anchor } from "@mantine/core";
+import { Avatar, Button, Group, Menu, UnstyledButton, rem, Text, Anchor, Stack } from "@mantine/core";
 import { IconChevronDown, IconLogout, IconSettings } from "@tabler/icons-react";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 interface Props {
   user?: {
@@ -13,7 +13,8 @@ interface Props {
 }
 
 export const UserButton = (props: Props) => {
-  const { user } = props;
+  const { data: session } = useSession();
+  const user = session?.user || props.user;
   return (
     <>
       {user ? (
@@ -27,20 +28,25 @@ export const UserButton = (props: Props) => {
             <UnstyledButton>
               <Group spacing={7}>
                 <Avatar src={user.image} alt={user.name ?? ""} radius="xl" size="md" />
-                <Text weight={500} size="md" sx={{ lineHeight: 1 }} mr={3}>
-                  {user.name}
-                </Text>
+                <Stack spacing="xs">
+                  <Text weight={500} size="md" sx={{ lineHeight: 1 }} mr={3}>
+                    {user.name}
+                  </Text>
+                  <Text size="xs" color={"gray"} sx={{ lineHeight: 1 }} mr={3}>
+                    {`@${user.userId}`}
+                  </Text>
+                </Stack>
                 <IconChevronDown size={rem(20)} stroke={1.5} />
               </Group>
             </UnstyledButton>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Label>Account (@{user.userId})</Menu.Label>
+            <Menu.Label>アカウント</Menu.Label>
             <Anchor unstyled href="/settings/user">
               <Menu.Item 
                 icon={<IconSettings size="0.9rem" stroke={1.5} />}
               >
-                  Account settings
+                  アカウント設定
               </Menu.Item>
             </Anchor>
             <Menu.Item
@@ -48,7 +54,7 @@ export const UserButton = (props: Props) => {
               icon={<IconLogout size="0.9rem" stroke={1.5} />}
               onClick={() => {signOut({ callbackUrl: "/" })}}
             >
-              Logout
+              ログアウト
             </Menu.Item>
           </Menu.Dropdown>
         </Menu>

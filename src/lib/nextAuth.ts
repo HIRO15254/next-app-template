@@ -31,17 +31,19 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async session({ session }) {
-      const newsession = { ...session };
+    async session({ session, newSession }) {
+      const retSession = { ...session };
       const userData = await prisma.user.findUnique({
         where: {
           email: session.user.email ?? '',
         },
       });
-      newsession.user.userId = userData?.userId ?? '';
-      newsession.user.isDarkMode = userData?.isDarkMode ?? false;
-      newsession.user.email = userData?.email ?? '';
-      return newsession;
+      retSession.user.userId = userData?.userId ?? '';
+      retSession.user.isDarkMode = userData?.isDarkMode ?? false;
+      retSession.user.email = userData?.email ?? '';
+      retSession.user.name = userData?.name ?? '';
+      retSession.user.image = userData?.image ?? '';
+      return retSession;
     }
   },
   session: {

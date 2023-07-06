@@ -1,6 +1,6 @@
 import { MainAppShell } from 'app/_components/MainAppShell'
 import { getServerSession } from 'next-auth';
-import { redirect, usePathname } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { headers } from 'next/headers';
 
 export const metadata = {
