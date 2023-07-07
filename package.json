@@ -44,6 +44,7 @@
     "@types/pica": "^9.0.1",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
+    "cookies-next": "^2.1.2",
     "dayjs": "^1.11.7",
     "graphql": "^16.6.0",
     "graphql-scalars": "^1.22.1",
@@ -73,9 +74,9 @@
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-next": "12.1.5",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "4.3.0",
     "prisma": "^4.14.1",
     "supabase": "^1.75.3"
