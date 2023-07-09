@@ -51,7 +51,7 @@ const AvatarEditModal = (props: AvatarEditModalProps) => {
           scale={scale}
           width={USER_ICON_SIZE}
           height={USER_ICON_SIZE}
-          borderRadius={USER_ICON_SIZE / 10}
+          borderRadius={USER_ICON_SIZE}
           border={0}
         />
         <Text>拡大率</Text>

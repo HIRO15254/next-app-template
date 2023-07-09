@@ -77,12 +77,22 @@ export const AvatarSettingForm = () => {
     });
   };
 
+  const onClose = () => {
+    setImage(null);
+    close();
+  };
+
   return (
     <Input.Wrapper
       label="アイコン"
       description="アップロードしたアイコンは240px四方にリサイズされます。"
     >
-      <AvatarEditModal opened={opened} close={close} image={image} onImageSave={onImageSave} />
+      <AvatarEditModal 
+        opened={opened}
+        close={onClose}
+        image={image}
+        onImageSave={onImageSave}
+      />
       <Group pt="sm">
         <Avatar src={session?.user.image} size="lg" radius="xl" />
         <FileInput
@@ -90,6 +100,7 @@ export const AvatarSettingForm = () => {
           accept="image/*"
           icon={<IconUpload />}
           onChange={onImageChange}
+          value={image}
         />
       </Group>
     </Input.Wrapper>

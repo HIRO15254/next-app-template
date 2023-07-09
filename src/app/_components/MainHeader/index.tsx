@@ -1,6 +1,6 @@
 "use client";
 
-import {Code , Header, MediaQuery, Burger, useMantineTheme, Group, Title } from "@mantine/core";
+import {Code , Header, MediaQuery, Burger, useMantineTheme, Group, Title, Anchor } from "@mantine/core";
 import React from "react";
 
 import { UserButton } from "app/_components/UserButton";
@@ -38,7 +38,9 @@ export const MainHeader = (props: Props) => {
           </MediaQuery>
         }
         <Group position="apart">
-          <Title order={3}>App Name</Title>
+          <Anchor href="/" unstyled>
+            <Title order={3}>App Name</Title>
+          </Anchor>
           <Code sx={{ fontWeight: 700 }}>v0.1.0</Code>
         </Group>
         <UserButton user={session?.user}/>
