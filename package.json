@@ -44,7 +44,6 @@
     "@types/pica": "^9.0.1",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
-    "cookies-next": "^2.1.2",
     "dayjs": "^1.11.7",
     "graphql": "^16.6.0",
     "graphql-scalars": "^1.22.1",

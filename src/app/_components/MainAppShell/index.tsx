@@ -47,7 +47,7 @@ export const MainAppShell = (props: Props ) => {
       }
     >
       <Group position="center" pb="sm">
-        <Paper w="100%" maw={800} p="md" shadow='xs'>
+        <Paper w="100%" maw={800} p="lg" shadow='xs'>
           {children}
         </Paper>
       </Group>

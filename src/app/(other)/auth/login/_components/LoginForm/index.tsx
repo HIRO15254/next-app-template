@@ -1,6 +1,6 @@
 "use client";
 
-import { Paper, Stack, Title } from "@mantine/core";
+import { Stack, Title } from "@mantine/core";
 import React from "react";
 
 import { LoginButton } from "app/(other)/auth/login/_components/LoginButton";
@@ -12,16 +12,16 @@ interface Props {
 const LoginForm = (props: Props) => {
   const { callbackUrl } = props;
   return (
-    <Paper unstyled pb="sm" m="auto" style={{ maxWidth: '480px' }}>
-      <Title order={2} pt="sm">
+    <>
+      <Title order={1} p="md">
         ログイン
       </Title>
-      <Stack mt="md">
+      <Stack px="md" m="auto" style={{ maxWidth: '480px' }}>
         <LoginButton provider="google" callback={callbackUrl?.toString()}>
           Googleでログイン
         </LoginButton>
       </Stack>
-    </Paper>
+    </>
   );
 };
 

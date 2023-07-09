@@ -4,25 +4,28 @@ import { CacheProvider } from '@emotion/react';
 import { useEmotionCache, MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
 import { useHotkeys } from '@mantine/hooks';
 import { Notifications } from '@mantine/notifications';
-import { setCookie } from 'cookies-next';
 import { useServerInsertedHTML } from 'next/navigation';
 import React, { useState } from 'react';
 
 type Props = {
   children: React.ReactNode;
   colorScheme: ColorScheme;
+  setColorScheme: (value: ColorScheme) => void;
 }
 
 export const StyleProvider = (props: Props) => {
-  const { children, colorScheme: propColorScheme } = props;
+  const {
+    children,
+    colorScheme: propColorScheme,
+    setColorScheme: propSetColorScheme,
+  } = props;
 
   const [colorScheme, setColorScheme] = useState<ColorScheme>(propColorScheme);
 
   const toggleColorScheme = (value?: ColorScheme) => {
     const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
     setColorScheme(nextColorScheme);
-    // when color scheme is updated save it to cookie
-    setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 365 * 3 });
+    propSetColorScheme(nextColorScheme);
   };
 
   useHotkeys([['mod+J', () => toggleColorScheme()]]);
