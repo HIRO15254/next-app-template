@@ -3,8 +3,8 @@
 import { Group, Tabs } from "@mantine/core";
 import React from "react";
 
-import { AvatarSettingForm } from "./AvatarSettingForm";
-import { BasicUserSettingForm } from "./BasicUserSettingForm";
+import { AvatarSettingForm } from "../AvatarSettingForm";
+import { BasicUserSettingForm } from "../BasicUserSettingForm";
 
 export const UserSettingForm = () => (
   <Group position="center" px="md">

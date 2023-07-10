@@ -15,7 +15,7 @@ import { useUpdateLoginUserMutation } from 'gql';
 import { supabase } from "lib/supabase";
 import { createUserID } from 'util/createUserId';
 
-import AvatarEditModal, { OnImageSavePayload } from './AvatarEditModal';
+import AvatarEditModal, { OnImageSavePayload } from '../AvatarEditModal';
 
 
 export const AvatarSettingForm = () => {
