@@ -1,8 +1,10 @@
-"use client";
+'use client';
 
-import { Box, Button, Group, LoadingOverlay, TextInput, Tooltip } from "@mantine/core";
-import { IconAlertCircle, IconAt } from "@tabler/icons-react";
-import React from "react";
+import {
+  Box, Button, Group, LoadingOverlay, TextInput, Tooltip,
+} from '@mantine/core';
+import { IconAlertCircle, IconAt } from '@tabler/icons-react';
+import React from 'react';
 
 import { useBasicUserSetting } from '../../_hooks/useBasicUserSetting';
 
@@ -19,7 +21,7 @@ export const BasicUserSettingForm = () => {
 
   return (
     <Box pos="relative">
-      <LoadingOverlay visible={loading}/>
+      <LoadingOverlay visible={loading} />
       <form onSubmit={form.onSubmit(formOnSubmit)}>
         <TextInput
           withAsterisk

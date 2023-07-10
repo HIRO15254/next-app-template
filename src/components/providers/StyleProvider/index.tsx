@@ -1,7 +1,9 @@
 'use client';
 
 import { CacheProvider } from '@emotion/react';
-import { useEmotionCache, MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
+import {
+  useEmotionCache, MantineProvider, ColorSchemeProvider, ColorScheme,
+} from '@mantine/core';
 import { useHotkeys } from '@mantine/hooks';
 import { Notifications } from '@mantine/notifications';
 import { useServerInsertedHTML } from 'next/navigation';
@@ -11,7 +13,7 @@ type Props = {
   children: React.ReactNode;
   colorScheme: ColorScheme;
   setColorScheme: (value: ColorScheme) => void;
-}
+};
 
 export const StyleProvider = (props: Props) => {
   const {

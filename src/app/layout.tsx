@@ -14,7 +14,7 @@ export const metadata = {
   description: 'template for next.js app',
 };
 
-const RootLayout = async(props: Props) => {
+const RootLayout = async (props: Props) => {
   const { children } = props;
   const { colorScheme, setColorScheme } = useColorSchemeCookie();
 
@@ -23,7 +23,7 @@ const RootLayout = async(props: Props) => {
       <body>
         <GqlProvider>
           <AuthProvider>
-            <StyleProvider colorScheme={colorScheme} setColorScheme={setColorScheme} >
+            <StyleProvider colorScheme={colorScheme} setColorScheme={setColorScheme}>
               {children}
             </StyleProvider>
           </AuthProvider>

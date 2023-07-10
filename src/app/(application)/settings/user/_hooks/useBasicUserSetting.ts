@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useForm } from "@mantine/form";
-import { showNotification } from "@mantine/notifications";
-import { useRouter } from "next/navigation";
+import { useForm } from '@mantine/form';
+import { showNotification } from '@mantine/notifications';
+import { useRouter } from 'next/navigation';
 
-import { GetLoginUserQuery, useGetLoginUserQuery, useUpdateLoginUserMutation } from "gql";
-import { userIdValidator, userNameValidator, emailValidator } from "util/validators";
+import { GetLoginUserQuery, useGetLoginUserQuery, useUpdateLoginUserMutation } from 'gql';
+import { userIdValidator, userNameValidator, emailValidator } from 'util/validators';
 
 export type BasicUserSettingType = {
   userId: string
@@ -20,27 +20,27 @@ export const useBasicUserSetting = () => {
     initialValues: {
       userId: '',
       name: '',
-      email: ''
+      email: '',
     },
     validate: {
       userId: userIdValidator,
       name: userNameValidator,
-      email: emailValidator
-    }
+      email: emailValidator,
+    },
   });
 
   const initializeForm = (data: GetLoginUserQuery) => {
     if (data?.loginUser) {
       form.setValues({
-        userId: data?.loginUser.userId || "",
-        name: data?.loginUser.name || "",
-        email: data?.loginUser.email || ""
+        userId: data?.loginUser.userId || '',
+        name: data?.loginUser.name || '',
+        email: data?.loginUser.email || '',
       });
     }
   };
 
-  const { loading } = useGetLoginUserQuery({onCompleted: initializeForm});
-  const [ updateUser ] = useUpdateLoginUserMutation();
+  const { loading } = useGetLoginUserQuery({ onCompleted: initializeForm });
+  const [updateUser] = useUpdateLoginUserMutation();
 
   const formOnSubmit = (values: BasicUserSettingType) => {
     updateUser({
@@ -48,9 +48,9 @@ export const useBasicUserSetting = () => {
         input: {
           newUserId: values.userId,
           name: values.name,
-          email: values.email
-        }
-      }
+          email: values.email,
+        },
+      },
     }).then(() => {
       showNotification({
         color: 'teal',

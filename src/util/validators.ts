@@ -1,4 +1,4 @@
-import { isEmail } from "@mantine/form";
+import { isEmail } from '@mantine/form';
 
 const USER_ID_MIN_LENGTH = 6;
 const USER_ID_MAX_LENGTH = 24;

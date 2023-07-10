@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
 import { Title } from '@mantine/core';
 import React from 'react';
 
-import { UserSettingForm } from "./_components/UserSettingForm";
+import { UserSettingForm } from './_components/UserSettingForm';
 
 const UserSetting = () => (
   <div>

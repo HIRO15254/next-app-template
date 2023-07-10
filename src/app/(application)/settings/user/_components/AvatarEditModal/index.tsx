@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Modal, Stack, Text, Slider, Group, Button,

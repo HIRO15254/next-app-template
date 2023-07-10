@@ -1,9 +1,11 @@
-"use client";
+'use client';
 
-import { Avatar, Button, Group, Menu, UnstyledButton, rem, Text, Anchor, Stack, createStyles } from "@mantine/core";
-import { IconChevronDown, IconLogout, IconSettings } from "@tabler/icons-react";
-import { signOut, useSession } from "next-auth/react";
-import React from "react";
+import {
+  Avatar, Button, Group, Menu, UnstyledButton, rem, Text, Anchor, Stack, createStyles,
+} from '@mantine/core';
+import { IconChevronDown, IconLogout, IconSettings } from '@tabler/icons-react';
+import { signOut, useSession } from 'next-auth/react';
+import React from 'react';
 
 interface Props {
   user?: {
@@ -15,8 +17,8 @@ interface Props {
 
 const useStyles = createStyles((theme) => ({
   subText: {
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[6]
-  }
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[6],
+  },
 }));
 
 export const UserButton = (props: Props) => {
@@ -37,7 +39,7 @@ export const UserButton = (props: Props) => {
           <Menu.Target>
             <UnstyledButton>
               <Group spacing={7}>
-                <Avatar src={user.image} alt={user.name ?? ""} radius="xl" size="md" />
+                <Avatar src={user.image} alt={user.name ?? ''} radius="xl" size="md" />
                 <Stack spacing={5}>
                   <Text weight={500} size="md" sx={{ lineHeight: 1 }} mr={3}>
                     {user.name}
@@ -53,16 +55,16 @@ export const UserButton = (props: Props) => {
           <Menu.Dropdown>
             <Menu.Label>アカウント</Menu.Label>
             <Anchor unstyled href="/settings/user">
-              <Menu.Item 
+              <Menu.Item
                 icon={<IconSettings size="0.9rem" stroke={1.5} />}
               >
-                  アカウント設定
+                アカウント設定
               </Menu.Item>
             </Anchor>
             <Menu.Item
               color="red"
               icon={<IconLogout size="0.9rem" stroke={1.5} />}
-              onClick={() => {signOut({ callbackUrl: "/" });}}
+              onClick={() => { signOut({ callbackUrl: '/' }); }}
             >
               ログアウト
             </Menu.Item>

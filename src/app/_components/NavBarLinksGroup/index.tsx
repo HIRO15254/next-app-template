@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Group,
@@ -61,7 +61,9 @@ interface Props {
   link?: { label: string; link: string }[] | string;
 }
 
-export const NavBarLinksGroup = ({ icon: Icon, label, initiallyOpened, link }: Props) => {
+export const NavBarLinksGroup = ({
+  icon: Icon, label, initiallyOpened, link,
+}: Props) => {
   const { classes, theme } = useStyles();
   const hasLinks = Array.isArray(link);
   const [opened, setOpened] = useState(initiallyOpened || false);
@@ -80,7 +82,8 @@ export const NavBarLinksGroup = ({ icon: Icon, label, initiallyOpened, link }: P
 
   return (
     <>
-      {hasLinks &&
+      {hasLinks
+        && (
         <>
           <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
             <Group position="apart" spacing={0}>
@@ -102,8 +105,9 @@ export const NavBarLinksGroup = ({ icon: Icon, label, initiallyOpened, link }: P
           </UnstyledButton>
           <Collapse in={opened}>{items}</Collapse>
         </>
-      }
-      {!hasLinks &&
+        )}
+      {!hasLinks
+        && (
         <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
           <Anchor href={link} unstyled>
             <Group position="apart" spacing={0}>
@@ -112,13 +116,13 @@ export const NavBarLinksGroup = ({ icon: Icon, label, initiallyOpened, link }: P
                   <Icon size="1.1rem" />
                 </ThemeIcon>
                 <Box ml="md">
-                    {label}
+                  {label}
                 </Box>
               </Box>
             </Group>
           </Anchor>
         </UnstyledButton>
-      }
+        )}
     </>
   );
 };

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Button, ButtonProps } from '@mantine/core';
 import React from 'react';
@@ -7,7 +7,7 @@ import GoogleIcon from 'app/(other)/auth/login/_components/GoogleIcon';
 
 interface Props extends ButtonProps {
   onClick: () => void;
-};
+}
 
 /**
  * Googleアカウントを利用してのログインを行うボタン。

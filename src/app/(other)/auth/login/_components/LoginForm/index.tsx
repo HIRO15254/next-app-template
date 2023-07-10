@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Stack, Title } from "@mantine/core";
-import React from "react";
+import { Stack, Title } from '@mantine/core';
+import React from 'react';
 
-import { LoginButton } from "app/(other)/auth/login/_components/LoginButton";
+import { LoginButton } from 'app/(other)/auth/login/_components/LoginButton';
 
 interface Props {
   callbackUrl?: string;

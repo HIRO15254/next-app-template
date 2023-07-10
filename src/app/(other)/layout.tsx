@@ -8,7 +8,7 @@ interface Props {
   children: React.ReactNode
 }
 
-const RootLayout = async(props: Props) => {
+const RootLayout = async (props: Props) => {
   const { children } = props;
   const session = await getServerSession(authOptions);
   return (

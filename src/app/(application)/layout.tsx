@@ -11,10 +11,10 @@ interface Props {
 
 const RootLayout = async (props: Props) => {
   const { children } = props;
-  const url = headers().get('referer') ?? "";
+  const url = headers().get('referer') ?? '';
   const session = await getServerSession();
 
-  if (!session) { 
+  if (!session) {
     redirect(`/auth/login?callbackUrl=${url}`);
   }
   return (

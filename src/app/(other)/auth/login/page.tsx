@@ -14,7 +14,7 @@ const Login = async ({
   const session = await getServerSession();
   // ログイン済みなら戻す
   if (session) {
-    redirect(callback ?? "/");
+    redirect(callback ?? '/');
   }
 
   return (

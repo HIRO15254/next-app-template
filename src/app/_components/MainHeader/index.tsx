@@ -1,11 +1,13 @@
-"use client";
+'use client';
 
-import {Code , Header, MediaQuery, Burger, useMantineTheme, Group, Title, Anchor } from "@mantine/core";
-import React from "react";
+import {
+  Code, Header, MediaQuery, Burger, useMantineTheme, Group, Title, Anchor,
+} from '@mantine/core';
+import React from 'react';
 
-import { UserButton } from "app/_components/UserButton";
+import { UserButton } from 'app/_components/UserButton';
 
-import type { Session } from "next-auth";
+import type { Session } from 'next-auth';
 
 interface Props {
   opened: boolean;
@@ -27,7 +29,7 @@ export const MainHeader = (props: Props) => {
     <Header height={70} p="md">
       <Group position="apart">
         <Group position="apart">
-          {!noBurger &&
+          {!noBurger && (
             <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
               <Burger
                 opened={opened}
@@ -37,13 +39,13 @@ export const MainHeader = (props: Props) => {
                 mr="xl"
               />
             </MediaQuery>
-          }
+          )}
           <Anchor href="/" unstyled>
             <Title order={3}>App Name</Title>
           </Anchor>
           <Code sx={{ fontWeight: 700 }}>v0.1.0</Code>
         </Group>
-        <UserButton user={session?.user}/>
+        <UserButton user={session?.user} />
       </Group>
     </Header>
   );

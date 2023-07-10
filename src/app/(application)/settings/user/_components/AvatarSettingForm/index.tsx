@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Avatar, Group, FileInput, Input,
@@ -9,15 +9,14 @@ import React from 'react';
 import { useAvatarSetting } from '../../_hooks/useAvatarSetting';
 import AvatarEditModal from '../AvatarEditModal';
 
-
 export const AvatarSettingForm = () => {
   const {
     opened: openedModal,
     image,
     imageUrl,
     onImageChange,
-    onCloseModal, 
-    onImageSave
+    onCloseModal,
+    onImageSave,
   } = useAvatarSetting();
 
   return (
@@ -25,7 +24,7 @@ export const AvatarSettingForm = () => {
       label="アイコン"
       description="アップロードしたアイコンは240px四方にリサイズされます。"
     >
-      <AvatarEditModal 
+      <AvatarEditModal
         opened={openedModal}
         close={onCloseModal}
         image={image}

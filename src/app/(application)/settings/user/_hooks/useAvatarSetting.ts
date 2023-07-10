@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { useDisclosure } from "@mantine/hooks";
-import { showNotification } from "@mantine/notifications";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import pica from "pica";
-import React from "react";
+import { useDisclosure } from '@mantine/hooks';
+import { showNotification } from '@mantine/notifications';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import pica from 'pica';
+import React from 'react';
 
-import { useUpdateLoginUserMutation } from "gql";
-import { supabase } from "lib/supabase";
-import { createRandomID } from "util/createUserId";
+import { useUpdateLoginUserMutation } from 'gql';
+import { supabase } from 'lib/supabase';
+import { createRandomID } from 'util/createUserId';
 
-import { OnImageSavePayload } from "../_components/AvatarEditModal";
+import { OnImageSavePayload } from '../_components/AvatarEditModal';
 
 export const useAvatarSetting = () => {
   const { data: session, update: updateSession } = useSession();
@@ -34,7 +34,7 @@ export const useAvatarSetting = () => {
 
   const saveImageToSupabase = async (file: File, fileName: string) => {
     const avatarStorage = supabase.storage.from('avatar');
-    if ((session?.user?.image ?? "").includes('object/public/avatar/')) {
+    if ((session?.user?.image ?? '').includes('object/public/avatar/')) {
       await avatarStorage.remove([session?.user.image.split('/').slice(-1)[0] || 'none']);
     }
     await avatarStorage.upload(fileName, file, { upsert: true });
@@ -59,7 +59,7 @@ export const useAvatarSetting = () => {
               },
             },
           });
-          await updateSession({ user: { ...session?.user, image: newUrl }});
+          await updateSession({ user: { ...session?.user, image: newUrl } });
           router.refresh();
           showNotification({
             color: 'teal',
@@ -77,7 +77,9 @@ export const useAvatarSetting = () => {
     });
   };
 
-  const imageUrl = session?.user?.image ?? "";
+  const imageUrl = session?.user?.image ?? '';
 
-  return { opened, image, onImageChange, onCloseModal, onImageSave, imageUrl};
+  return {
+    opened, image, onImageChange, onCloseModal, onImageSave, imageUrl,
+  };
 };

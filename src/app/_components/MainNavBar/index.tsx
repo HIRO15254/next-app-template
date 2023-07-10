@@ -1,10 +1,20 @@
-"use client";
+'use client';
 
-import { Navbar, ScrollArea, Transition, createStyles, rem } from "@mantine/core";
-import { IconGauge, IconNotes, IconCalendarStats, IconPresentationAnalytics, IconFileAnalytics, IconAdjustments, IconLock } from "@tabler/icons-react";
-import React from "react";
+import {
+  Navbar, ScrollArea, Transition, createStyles, rem,
+} from '@mantine/core';
+import {
+  IconGauge,
+  IconNotes,
+  IconCalendarStats,
+  IconPresentationAnalytics,
+  IconFileAnalytics,
+  IconAdjustments,
+  IconLock,
+} from '@tabler/icons-react';
+import React from 'react';
 
-import { NavBarLinksGroup } from "../NavBarLinksGroup";
+import { NavBarLinksGroup } from '../NavBarLinksGroup';
 
 interface Props {
   opened: boolean;
@@ -67,7 +77,7 @@ const mockData = [
       { label: 'Releases schedule', link: '/' },
     ],
   },
-  { label: 'Analytics', icon: IconPresentationAnalytics, link: '/'},
+  { label: 'Analytics', icon: IconPresentationAnalytics, link: '/' },
   { label: 'Contracts', icon: IconFileAnalytics },
   { label: 'Settings', icon: IconAdjustments },
   {

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   AppShell,
@@ -12,7 +12,6 @@ import React, { useState } from 'react';
 import { MainHeader } from 'app/_components/MainHeader';
 import { MainNavBar } from 'app/_components/MainNavBar';
 
-
 interface Props {
   children: React.ReactNode;
   noHeader?: boolean;
@@ -20,8 +19,10 @@ interface Props {
   session?: Session
 }
 
-export const MainAppShell = (props: Props ) => {
-  const { children, noHeader, noNavbar, session } = props;
+export const MainAppShell = (props: Props) => {
+  const {
+    children, noHeader, noNavbar, session,
+  } = props;
 
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
@@ -33,21 +34,23 @@ export const MainAppShell = (props: Props ) => {
           background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
         },
       }}
-      navbarOffsetBreakpoint={noNavbar ? 100000 : "sm"}
+      navbarOffsetBreakpoint={noNavbar ? 100000 : 'sm'}
       navbar={
         !noNavbar ? <MainNavBar opened={opened} /> : undefined
       }
       header={
-        !noHeader ? <MainHeader
-          opened={opened}
-          noBurger={noNavbar}
-          session={session}
-          onBurgerClick={() => setOpened((o) => !o)}
-        /> : undefined
+        !noHeader ? (
+          <MainHeader
+            opened={opened}
+            noBurger={noNavbar}
+            session={session}
+            onBurgerClick={() => setOpened((o) => !o)}
+          />
+        ) : undefined
       }
     >
       <Group position="center" pb="sm">
-        <Paper w="100%" maw={800} p="lg" shadow='xs'>
+        <Paper w="100%" maw={800} p="lg" shadow="xs">
           {children}
         </Paper>
       </Group>
