@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar, ScrollArea, createStyles, rem } from "@mantine/core";
+import { Navbar, ScrollArea, Transition, createStyles, rem } from "@mantine/core";
 import { IconGauge, IconNotes, IconCalendarStats, IconPresentationAnalytics, IconFileAnalytics, IconAdjustments, IconLock } from "@tabler/icons-react";
 import React from "react";
 
@@ -87,10 +87,14 @@ export const MainNavBar = (props: Props) => {
   const links = mockData.map((item) => <NavBarLinksGroup {...item} key={item.label} />);
 
   return (
-    <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-      <Navbar.Section grow className={classes.links} component={ScrollArea}>
-        <div className={classes.linksInner}>{links}</div>
-      </Navbar.Section>
-    </Navbar>
+    <Transition mounted={opened} transition="scale-x" duration={200}>
+      {(styles) => (
+        <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }} style={{ ...styles }}>
+          <Navbar.Section grow className={classes.links} component={ScrollArea}>
+            <div className={classes.linksInner}>{links}</div>
+          </Navbar.Section>
+        </Navbar>
+      )}
+    </Transition>
   );
 };

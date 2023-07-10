@@ -26,18 +26,18 @@ export const MainHeader = (props: Props) => {
   return (
     <Header height={70} p="md">
       <Group position="apart">
-        {!noBurger &&
-          <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-            <Burger
-              opened={opened}
-              onClick={onBurgerClick}
-              size="sm"
-              color={theme.colors.gray[6]}
-              mr="xl"
-            />
-          </MediaQuery>
-        }
         <Group position="apart">
+          {!noBurger &&
+            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+              <Burger
+                opened={opened}
+                onClick={onBurgerClick}
+                size="sm"
+                color={theme.colors.gray[6]}
+                mr="xl"
+              />
+            </MediaQuery>
+          }
           <Anchor href="/" unstyled>
             <Title order={3}>App Name</Title>
           </Anchor>
