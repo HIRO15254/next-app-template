@@ -4,7 +4,7 @@ import { AdapterUser } from 'next-auth/adapters';
 import GoogleProvider from 'next-auth/providers/google';
 
 import { prisma } from 'lib/prisma';
-import { createUserID } from 'util/createUserId';
+import { createRandomID } from 'util/createUserId';
 
 const prismaAdapter = {
   ...PrismaAdapter(prisma),
@@ -15,8 +15,8 @@ const prismaAdapter = {
       data: { 
         ...data,
         trueEmail: data.email,
-        email:createUserID(12), 
-        userId: createUserID(8) 
+        email:createRandomID(12), 
+        userId: createRandomID(8) 
       } 
     });
     return user as AdapterUser;

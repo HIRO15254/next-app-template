@@ -9,7 +9,7 @@ import React from "react";
 
 import { useUpdateLoginUserMutation } from "gql";
 import { supabase } from "lib/supabase";
-import { createUserID } from "util/createUserId";
+import { createRandomID } from "util/createUserId";
 
 import { OnImageSavePayload } from "../_components/AvatarEditModal";
 
@@ -49,7 +49,7 @@ export const useAvatarSetting = () => {
     picaCanvas.toBlob(async (blob: any) => {
       if (blob) {
         try {
-          const fileName = `${session?.user.userId}_${createUserID(12)}.png`;
+          const fileName = `${session?.user.userId}_${createRandomID(12)}.png`;
           const file = new File([blob], fileName, { type: 'image/png' });
           const newUrl = await saveImageToSupabase(file, fileName);
           await updateLoginUserMutation({

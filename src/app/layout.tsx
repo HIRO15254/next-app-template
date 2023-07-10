@@ -2,7 +2,7 @@ import React from 'react';
 
 import { AuthProvider } from 'components/providers/AuthProvider';
 import { GqlProvider } from 'components/providers/GqlProvider';
-import { StyleProvider } from 'components/providers/Style';
+import { StyleProvider } from 'components/providers/StyleProvider';
 import useColorSchemeCookie from 'hooks/useColorSchemeCookie';
 
 interface Props {
@@ -20,7 +20,6 @@ const RootLayout = async(props: Props) => {
 
   return (
     <html lang="ja">
-
       <body>
         <GqlProvider>
           <AuthProvider>
