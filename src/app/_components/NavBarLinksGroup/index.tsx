@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
 import {
   Group,
   Box,
   Collapse,
   ThemeIcon,
-  Text,
   UnstyledButton,
   createStyles,
   rem,
@@ -14,18 +13,20 @@ import {
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
 import React, { useState } from 'react';
 
+import { colors } from 'styles/colors';
+
 const useStyles = createStyles((theme) => ({
   control: {
     fontWeight: 500,
     display: 'block',
     width: '100%',
     padding: `${theme.spacing.xs} ${theme.spacing.md}`,
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+    color: colors.text(theme),
     fontSize: theme.fontSizes.sm,
 
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
-      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      backgroundColor: colors.backgroundHover(theme),
+      color: colors.textHover(theme),
     },
   },
 
@@ -38,13 +39,11 @@ const useStyles = createStyles((theme) => ({
     marginLeft: rem(30),
     fontSize: theme.fontSizes.sm,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
-    borderLeft: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
+    borderLeft: `${rem(1)} solid ${colors.border(theme)}`,
 
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
-      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      backgroundColor: colors.backgroundHover(theme),
+      color: colors.textHover(theme),
     },
   },
 
@@ -61,26 +60,28 @@ interface Props {
   link?: { label: string; link: string }[] | string;
 }
 
-export const NavBarLinksGroup = ({ icon: Icon, label, initiallyOpened, link }: Props) => {
+export const NavBarLinksGroup = ({
+  icon: Icon, label, initiallyOpened, link,
+}: Props) => {
   const { classes, theme } = useStyles();
   const hasLinks = Array.isArray(link);
   const [opened, setOpened] = useState(initiallyOpened || false);
   const ChevronIcon = theme.dir === 'ltr' ? IconChevronRight : IconChevronLeft;
   const items = (hasLinks ? link : []).map((oneLink) => (
-    <Text<'a'>
-      component="a"
+    <Anchor
+      unstyled
       className={classes.link}
       href={oneLink.link}
       key={oneLink.label}
-      onClick={(event) => event.preventDefault()}
     >
       {oneLink.label}
-    </Text>
+    </Anchor>
   ));
 
   return (
     <>
-      {hasLinks &&
+      {hasLinks
+        && (
         <>
           <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
             <Group position="apart" spacing={0}>
@@ -102,8 +103,9 @@ export const NavBarLinksGroup = ({ icon: Icon, label, initiallyOpened, link }: P
           </UnstyledButton>
           <Collapse in={opened}>{items}</Collapse>
         </>
-      }
-      {!hasLinks &&
+        )}
+      {!hasLinks
+        && (
         <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
           <Anchor href={link} unstyled>
             <Group position="apart" spacing={0}>
@@ -112,13 +114,13 @@ export const NavBarLinksGroup = ({ icon: Icon, label, initiallyOpened, link }: P
                   <Icon size="1.1rem" />
                 </ThemeIcon>
                 <Box ml="md">
-                    {label}
+                  {label}
                 </Box>
               </Box>
             </Group>
           </Anchor>
         </UnstyledButton>
-      }
+        )}
     </>
   );
 };

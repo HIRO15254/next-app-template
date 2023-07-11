@@ -1,29 +1,29 @@
-"use client";
+'use client';
 
-import { ButtonProps } from "@mantine/core";
-import { signIn } from "next-auth/react";
-import React from "react";
+import { ButtonProps } from '@mantine/core';
+import { signIn } from 'next-auth/react';
+import React from 'react';
 
-import GoogleLoginButton from "app/(other)/auth/login/_components/GoogleLoginButton";
+import GoogleLoginButton from 'app/(other)/auth/login/_components/GoogleLoginButton';
 
-interface Props extends ButtonProps {
-  provider: "google",
+interface LoginButtonProps extends ButtonProps {
+  provider: 'google',
   callback?: string;
 }
 
-export const LoginButton = (props: Props) => {
+/**
+ * プロバイダーを指定してログインを行うボタン
+ * @param props mantineのButtonPropsを継承 + provider: プロバイダー名 + callback: コールバックURL
+ */
+export const LoginButton: React.FC<LoginButtonProps> = (props) => {
   const { provider, callback, ...rest } = props;
 
   const handleLogin = () => {
     signIn(provider, { callbackUrl: callback });
   };
 
-  return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>
-      {provider === "google" && (
-        <GoogleLoginButton onClick={handleLogin} {...rest} />
-      )}
-    </>
-  );
+  if (provider === 'google') {
+    return <GoogleLoginButton onClick={handleLogin} {...rest} />;
+  }
+  return null;
 };

@@ -1,49 +1,63 @@
-"use client";
+'use client';
 
-import {Code , Header, MediaQuery, Burger, useMantineTheme, Group, Title, Anchor } from "@mantine/core";
-import React from "react";
+import {
+  Code, Header, Burger, useMantineTheme, Group, Title, Anchor,
+} from '@mantine/core';
+import { useSession } from 'next-auth/react';
+import React from 'react';
 
-import { UserButton } from "app/_components/UserButton";
+import { MainHeaderUserMenu } from 'app/_components/MainHeaderUserMenu';
+import { Responsive } from 'components/layout/Responsive';
+import { colors } from 'styles/colors';
 
-import type { Session } from "next-auth";
+import packageJson from '../../../../package.json';
+import { MainHeaderLoginButton } from '../MainHeaderLoginButton';
 
-interface Props {
+interface MainHeaderProps {
   opened: boolean;
   onBurgerClick: () => void;
   noBurger?: boolean;
-  session?: Session;
 }
 
-export const MainHeader = (props: Props) => {
+/**
+ * 全てのページで表示されるヘッダー
+ */
+export const MainHeader: React.FC<MainHeaderProps> = (props) => {
   const {
     opened,
     onBurgerClick,
-    session,
     noBurger,
   } = props;
+
   const theme = useMantineTheme();
+  const { data: session } = useSession();
 
   return (
     <Header height={70} p="md">
       <Group position="apart">
-        {!noBurger &&
-          <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-            <Burger
-              opened={opened}
-              onClick={onBurgerClick}
-              size="sm"
-              color={theme.colors.gray[6]}
-              mr="xl"
-            />
-          </MediaQuery>
-        }
         <Group position="apart">
+          {!noBurger && (
+            <Responsive.SmartPhone>
+              <Burger
+                opened={opened}
+                onClick={onBurgerClick}
+                size="sm"
+                color={theme.colors.gray[6]}
+                mr="xl"
+              />
+            </Responsive.SmartPhone>
+          )}
           <Anchor href="/" unstyled>
-            <Title order={3}>App Name</Title>
+            <Title order={3} color={colors.text(theme)}>{packageJson.name}</Title>
           </Anchor>
-          <Code sx={{ fontWeight: 700 }}>v0.1.0</Code>
+          <Code sx={{ fontWeight: 700 }}>{`v${packageJson.version}`}</Code>
         </Group>
-        <UserButton user={session?.user}/>
+        {!session && (
+          <MainHeaderLoginButton />
+        )}
+        {session && (
+          <MainHeaderUserMenu session={session} />
+        )}
       </Group>
     </Header>
   );

@@ -1,15 +1,18 @@
-"use client";
+'use client';
 
-import { Stack, Title } from "@mantine/core";
-import React from "react";
+import { Stack, Title } from '@mantine/core';
+import React from 'react';
 
-import { LoginButton } from "app/(other)/auth/login/_components/LoginButton";
+import { LoginButton } from 'app/(other)/auth/login/_components/LoginButton';
 
-interface Props {
+interface LoginFormProps {
   callbackUrl?: string;
 }
 
-const LoginForm = (props: Props) => {
+/**
+ * ログインを行うためのフォーム
+ */
+const LoginForm: React.FC<LoginFormProps> = (props) => {
   const { callbackUrl } = props;
   return (
     <>
@@ -17,7 +20,7 @@ const LoginForm = (props: Props) => {
         ログイン
       </Title>
       <Stack px="md" m="auto" style={{ maxWidth: '480px' }}>
-        <LoginButton provider="google" callback={callbackUrl?.toString()}>
+        <LoginButton provider="google" callback={callbackUrl}>
           Googleでログイン
         </LoginButton>
       </Stack>

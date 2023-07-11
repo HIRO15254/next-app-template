@@ -1,10 +1,12 @@
-"use client";
+'use client';
 
 import {
   Modal, Stack, Text, Slider, Group, Button,
 } from '@mantine/core';
 import React from 'react';
 import AvatarEditor from 'react-avatar-editor';
+
+import { USER_ICON_SIZE } from 'config/userConfig';
 
 export type OnImageSavePayload = {
   canvas: HTMLCanvasElement;
@@ -18,12 +20,14 @@ type AvatarEditModalProps = {
   onImageSave: (payload: OnImageSavePayload) => void;
 };
 
-const USER_ICON_SIZE = 240;
-
-const AvatarEditModal = (props: AvatarEditModalProps) => {
+/**
+ * ユーザーアイコンの編集(拡大・中心の変更)を行うためのモーダル
+ */
+const AvatarEditModal: React.FC<AvatarEditModalProps> = (props) => {
   const {
     opened, close, image, onImageSave,
   } = props;
+
   const [scale, setScale] = React.useState(1.0);
   const editorRef = React.useRef<AvatarEditor>(null);
 

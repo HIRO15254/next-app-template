@@ -1,8 +1,6 @@
-import { isEmail } from "@mantine/form";
+import { isEmail } from '@mantine/form';
 
-const USER_ID_MIN_LENGTH = 6;
-const USER_ID_MAX_LENGTH = 24;
-const USER_NAME_MAX_LENGTH = 24;
+import { USER_ID_MAX_LENGTH, USER_ID_MIN_LENGTH, USER_NAME_MAX_LENGTH } from 'config/userConfig';
 
 export const emailValidator = (value: string) => {
   if (value && !isEmail(value)) {

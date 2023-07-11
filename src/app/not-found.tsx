@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { Anchor } from "@mantine/core";
-import React from "react";
+import { Anchor } from '@mantine/core';
+import React from 'react';
 
 const NotFoundPage = () => (
   <div>

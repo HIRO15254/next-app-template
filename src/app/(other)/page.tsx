@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Test } from 'components/dev/Test';
+import { MainPageContents } from './_components/MainPageContents';
 
-const Home = () => (
-  <Test />
+const Home: React.FC = () => (
+  <MainPageContents />
 );
 
 export default Home;

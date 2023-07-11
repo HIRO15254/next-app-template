@@ -1,15 +1,9 @@
-"use client";
-
-import { Title } from '@mantine/core';
 import React from 'react';
 
-import { UserSettingForm } from "./_components/UserSettingForm";
+import { UserSettingForm } from './_components/UserSettingForm';
 
-const UserSetting = () => (
-  <div>
-    <Title order={1} p="md">ユーザー設定</Title>
-    <UserSettingForm />
-  </div>
+const UserSetting: React.FC = () => (
+  <UserSettingForm />
 );
 
 export default UserSetting;

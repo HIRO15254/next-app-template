@@ -19,8 +19,7 @@
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
         "airbnb",
-        "airbnb-typescript",
-        "prettier"
+        "airbnb-typescript"
     ],
     "overrides": [],
     "plugins": [
@@ -39,7 +38,6 @@
                 ]
             }
         ],
-        "@typescript-eslint/no-namespace": "off",
         "react/require-default-props": "off",
         "import/prefer-default-export": "off",
         "import/order": [

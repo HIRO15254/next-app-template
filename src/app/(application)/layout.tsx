@@ -5,20 +5,24 @@ import React from 'react';
 
 import { MainAppShell } from 'app/_components/MainAppShell';
 
-interface Props {
+interface ApplicationLayoutProps {
   children: React.ReactNode
 }
 
-const RootLayout = async (props: Props) => {
+/**
+ * アプリケーション内のページに共通するレイアウト
+ */
+const RootLayout: React.FC<ApplicationLayoutProps> = async (props) => {
   const { children } = props;
-  const url = headers().get('referer') ?? "";
+
+  const url = headers().get('referer') ?? '';
   const session = await getServerSession();
 
-  if (!session) { 
+  if (!session) {
     redirect(`/auth/login?callbackUrl=${url}`);
   }
   return (
-    <MainAppShell session={session}>
+    <MainAppShell>
       {children}
     </MainAppShell>
   );

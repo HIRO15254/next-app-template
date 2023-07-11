@@ -4,17 +4,22 @@ import React from 'react';
 
 import LoginForm from './_components/LoginForm';
 
-const Login = async ({
-  searchParams,
-}: {
+interface LoginPageProps {
   searchParams: { [key: string]: string | string[] | undefined }
-}) => {
-  const callback = searchParams.callbackUrl?.toString();
+}
+
+/**
+ * ログイン用のページ ログイン時のアクセスは禁止
+ */
+const LoginPage: React.FC<LoginPageProps> = async (props) => {
+  const { searchParams } = props;
 
   const session = await getServerSession();
-  // ログイン済みなら戻す
+  const callback = searchParams.callbackUrl?.toString();
+
+  // ログイン済みならコールバック先へリダイレクト
   if (session) {
-    redirect(callback ?? "/");
+    redirect(callback ?? '/');
   }
 
   return (
@@ -22,4 +27,4 @@ const Login = async ({
   );
 };
 
-export default Login;
+export default LoginPage;

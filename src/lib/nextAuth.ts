@@ -4,20 +4,20 @@ import { AdapterUser } from 'next-auth/adapters';
 import GoogleProvider from 'next-auth/providers/google';
 
 import { prisma } from 'lib/prisma';
-import { createUserID } from 'util/createUserId';
+import { createRandomID } from 'util/createUserId';
 
 const prismaAdapter = {
   ...PrismaAdapter(prisma),
   getUserByEmail: () => null,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   createUser: async (data: any) => {
-    const user = await prisma.user.create({ 
-      data: { 
+    const user = await prisma.user.create({
+      data: {
         ...data,
         trueEmail: data.email,
-        email:createUserID(12), 
-        userId: createUserID(8) 
-      } 
+        email: createRandomID(12),
+        userId: createRandomID(8),
+      },
     });
     return user as AdapterUser;
   },
@@ -45,7 +45,7 @@ export const authOptions: AuthOptions = {
       retSession.user.name = userData?.name ?? '';
       retSession.user.image = userData?.image ?? '';
       return retSession;
-    }
+    },
   },
   session: {
     strategy: 'jwt',

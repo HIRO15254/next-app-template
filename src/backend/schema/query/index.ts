@@ -1,2 +1,2 @@
-import "./getUser";
-import "./loginUser";
+import './getUser';
+import './loginUser';
