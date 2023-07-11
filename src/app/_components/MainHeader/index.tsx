@@ -3,13 +3,15 @@
 import {
   Code, Header, Burger, useMantineTheme, Group, Title, Anchor,
 } from '@mantine/core';
+import { useSession } from 'next-auth/react';
 import React from 'react';
 
-import { UserButton } from 'app/_components/UserButton';
+import { MainHeaderUserMenu } from 'app/_components/MainHeaderUserMenu';
 import { Responsive } from 'components/layout/Responsive';
 import { colors } from 'styles/colors';
 
 import packageJson from '../../../../package.json';
+import { MainHeaderLoginButton } from '../MainHeaderLoginButton';
 
 interface MainHeaderProps {
   opened: boolean;
@@ -28,6 +30,7 @@ export const MainHeader: React.FC<MainHeaderProps> = (props) => {
   } = props;
 
   const theme = useMantineTheme();
+  const { data: session } = useSession();
 
   return (
     <Header height={70} p="md">
@@ -49,7 +52,12 @@ export const MainHeader: React.FC<MainHeaderProps> = (props) => {
           </Anchor>
           <Code sx={{ fontWeight: 700 }}>{`v${packageJson.version}`}</Code>
         </Group>
-        <UserButton />
+        {!session && (
+          <MainHeaderLoginButton />
+        )}
+        {session && (
+          <MainHeaderUserMenu session={session} />
+        )}
       </Group>
     </Header>
   );
