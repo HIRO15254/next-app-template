@@ -1,15 +1,21 @@
 'use client';
 
 import {
-  Avatar, Group, FileInput, Input,
+  Group, FileInput, Input,
 } from '@mantine/core';
 import { IconUpload } from '@tabler/icons-react';
 import React from 'react';
 
+import { UserAvatar } from 'components/common/UserAvatar';
+import { USER_ICON_SIZE } from 'config/userConfig';
+
 import { useAvatarSetting } from '../../_hooks/useAvatarSetting';
 import AvatarEditModal from '../AvatarEditModal';
 
-export const AvatarSettingForm = () => {
+/**
+ * ユーザーアイコンを設定するためのフォーム
+ */
+export const AvatarSettingForm: React.FC = () => {
   const {
     opened: openedModal,
     image,
@@ -22,7 +28,7 @@ export const AvatarSettingForm = () => {
   return (
     <Input.Wrapper
       label="アイコン"
-      description="アップロードしたアイコンは240px四方にリサイズされます。"
+      description={`アップロードしたアイコンは${USER_ICON_SIZE}px四方にリサイズされます。`}
     >
       <AvatarEditModal
         opened={openedModal}
@@ -31,7 +37,7 @@ export const AvatarSettingForm = () => {
         onImageSave={onImageSave}
       />
       <Group pt="sm">
-        <Avatar src={imageUrl} size="lg" radius="xl" />
+        <UserAvatar src={imageUrl} size="lg" />
         <FileInput
           placeholder="ファイルを選択…"
           accept="image/*"

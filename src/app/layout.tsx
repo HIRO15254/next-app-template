@@ -5,7 +5,7 @@ import { GqlProvider } from 'components/providers/GqlProvider';
 import { StyleProvider } from 'components/providers/StyleProvider';
 import useColorSchemeCookie from 'hooks/useColorSchemeCookie';
 
-interface Props {
+interface RootLayoutProps {
   children: React.ReactNode
 }
 
@@ -14,8 +14,9 @@ export const metadata = {
   description: 'template for next.js app',
 };
 
-const RootLayout = async (props: Props) => {
+const RootLayout: React.FC<RootLayoutProps> = async (props) => {
   const { children } = props;
+
   const { colorScheme, setColorScheme } = useColorSchemeCookie();
 
   return (

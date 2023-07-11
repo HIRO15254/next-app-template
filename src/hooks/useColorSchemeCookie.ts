@@ -1,6 +1,9 @@
 import { ColorScheme } from '@mantine/core';
 import { cookies } from 'next/headers';
 
+/**
+ * カラースキームをCookieに保存・Cookieから取得するカスタムフック
+ */
 const useColorSchemeCookie = () => {
   let tempColorScheme = cookies().get('mantine-color-scheme')?.value || '';
   if (tempColorScheme !== 'dark' && tempColorScheme !== 'light') {

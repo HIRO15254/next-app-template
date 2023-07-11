@@ -13,6 +13,9 @@ import { createRandomID } from 'util/createUserId';
 
 import { OnImageSavePayload } from '../_components/AvatarEditModal';
 
+/**
+ * アイコン設定を行うためのカスタムフック
+ */
 export const useAvatarSetting = () => {
   const { data: session, update: updateSession } = useSession();
   const [opened, { open: openModal, close: closeModal }] = useDisclosure(false);
@@ -20,6 +23,7 @@ export const useAvatarSetting = () => {
   const [updateLoginUserMutation] = useUpdateLoginUserMutation();
   const router = useRouter();
 
+  // ファイル選択時にモーダルを開く
   const onImageChange = (payload: File | null) => {
     setImage(payload);
     if (payload) {
@@ -27,11 +31,13 @@ export const useAvatarSetting = () => {
     }
   };
 
+  // モーダルを閉じたらファイルをクリアする
   const onCloseModal = () => {
     setImage(null);
     closeModal();
   };
 
+  // 画像をSupabaseに保存する
   const saveImageToSupabase = async (file: File, fileName: string) => {
     const avatarStorage = supabase.storage.from('avatar');
     if ((session?.user?.image ?? '').includes('object/public/avatar/')) {
@@ -42,6 +48,7 @@ export const useAvatarSetting = () => {
     return newUrl;
   };
 
+  // モーダルで「更新」ボタンを押したときの処理
   const onImageSave = async (payload: OnImageSavePayload) => {
     const { image: savedImage, canvas } = payload;
     const picaCanvas = await pica().resize(savedImage, canvas);
@@ -77,6 +84,7 @@ export const useAvatarSetting = () => {
     });
   };
 
+  // 今のユーザーアイコンのURL
   const imageUrl = session?.user?.image ?? '';
 
   return {

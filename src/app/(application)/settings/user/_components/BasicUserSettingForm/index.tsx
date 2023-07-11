@@ -8,14 +8,16 @@ import React from 'react';
 
 import { useBasicUserSetting } from '../../_hooks/useBasicUserSetting';
 
-export const BasicUserSettingForm = () => {
+/**
+ * ユーザーの基本情報を設定するためのフォーム
+ */
+export const BasicUserSettingForm: React.FC = () => {
   const { form, formOnSubmit, loading } = useBasicUserSetting();
 
+  // フォーム右に表示して入力値が一般公開されることを示すアイコン
   const publicTooltip = (
     <Tooltip label="一般に公開されます" position="top-end" withArrow>
-      <div>
-        <IconAlertCircle size="1rem" style={{ display: 'block', opacity: 0.5 }} />
-      </div>
+      <IconAlertCircle size="1rem" style={{ display: 'block', opacity: 0.5 }} />
     </Tooltip>
   );
 
@@ -41,7 +43,6 @@ export const BasicUserSettingForm = () => {
         />
         <TextInput
           label="メールアドレス"
-          rightSection={publicTooltip}
           {...form.getInputProps('email')}
           pb="md"
         />

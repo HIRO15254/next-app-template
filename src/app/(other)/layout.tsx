@@ -1,18 +1,18 @@
-import { getServerSession } from 'next-auth';
 import React from 'react';
 
 import { MainAppShell } from 'app/_components/MainAppShell';
-import { authOptions } from 'lib/nextAuth';
 
 interface Props {
   children: React.ReactNode
 }
 
+/**
+ * 非ログイン必須ページのレイアウト
+ */
 const RootLayout = async (props: Props) => {
   const { children } = props;
-  const session = await getServerSession(authOptions);
   return (
-    <MainAppShell noNavbar session={session ?? undefined}>
+    <MainAppShell noNavbar>
       {children}
     </MainAppShell>
   );

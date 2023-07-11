@@ -6,35 +6,40 @@ import {
   Paper,
   useMantineTheme,
 } from '@mantine/core';
-import { Session } from 'next-auth';
 import React, { useState } from 'react';
 
 import { MainHeader } from 'app/_components/MainHeader';
 import { MainNavBar } from 'app/_components/MainNavBar';
+import { MANTINE_SMARTPHONE_BREAKPOINT } from 'config/layoutConfig';
+import { colors } from 'styles/colors';
 
-interface Props {
+interface MainAppShellProps {
   children: React.ReactNode;
   noHeader?: boolean;
   noNavbar?: boolean;
-  session?: Session
 }
 
-export const MainAppShell = (props: Props) => {
+/**
+ * UIの最も起点にするコンポーネント
+ */
+export const MainAppShell: React.FC<MainAppShellProps> = (props) => {
   const {
-    children, noHeader, noNavbar, session,
+    children,
+    noHeader = false,
+    noNavbar = false,
   } = props;
 
-  const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
+  const theme = useMantineTheme();
 
   return (
     <AppShell
       styles={{
         main: {
-          background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+          background: colors.pageBackground(theme),
         },
       }}
-      navbarOffsetBreakpoint={noNavbar ? 100000 : 'sm'}
+      navbarOffsetBreakpoint={noNavbar ? 100000 : MANTINE_SMARTPHONE_BREAKPOINT}
       navbar={
         !noNavbar ? <MainNavBar opened={opened} /> : undefined
       }
@@ -43,7 +48,6 @@ export const MainAppShell = (props: Props) => {
           <MainHeader
             opened={opened}
             noBurger={noNavbar}
-            session={session}
             onBurgerClick={() => setOpened((o) => !o)}
           />
         ) : undefined

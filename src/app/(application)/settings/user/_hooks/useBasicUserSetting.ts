@@ -13,6 +13,9 @@ export type BasicUserSettingType = {
   email: string
 };
 
+/**
+ * ユーザー基本情報設定を行うためのカスタムフック
+ */
 export const useBasicUserSetting = () => {
   const router = useRouter();
 
