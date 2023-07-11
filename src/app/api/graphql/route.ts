@@ -11,9 +11,19 @@ const handler = startServerAndCreateNextHandler(
 );
 
 export async function GET(request: Request) {
-  return handler(request);
+  const res = await handler(request);
+  if (process.env.NODE_ENV === 'development') {
+    res.headers.set('Access-Control-Allow-Origin', '*');
+    res.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+  }
+  return res;
 }
 
 export async function POST(request: Request) {
-  return handler(request);
+  const res = await handler(request);
+  if (process.env.NODE_ENV === 'development') {
+    res.headers.set('Access-Control-Allow-Origin', '*');
+    res.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+  }
+  return res;
 }
