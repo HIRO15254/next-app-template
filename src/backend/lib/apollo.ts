@@ -6,5 +6,6 @@ import { Context } from './context';
 export const server = new ApolloServer<Context>(
   {
     schema,
+    introspection: true,
   },
 );
