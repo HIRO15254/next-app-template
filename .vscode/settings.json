@@ -3,6 +3,7 @@
         "codegen",
         "mantine",
         "NEXTAUTH",
-        "pothos"
+        "pothos",
+        "supergraph"
     ]
 }
