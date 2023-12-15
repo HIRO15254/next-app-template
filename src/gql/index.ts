@@ -24,24 +24,18 @@ export type DeleteUserInput = {
 };
 
 export type GetUserInput = {
-  userId: Scalars['String']['input'];
+  userId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
   deleteUser: User;
-  updateLoginUser: User;
   updateUser: User;
 };
 
 
 export type MutationDeleteUserArgs = {
   input: DeleteUserInput;
-};
-
-
-export type MutationUpdateLoginUserArgs = {
-  input: UpdateLoginUserInput;
 };
 
 
@@ -56,7 +50,6 @@ export type Node = {
 export type Query = {
   __typename?: 'Query';
   getUser: User;
-  loginUser: User;
   node?: Maybe<Node>;
   nodes: Array<Maybe<Node>>;
 };
@@ -76,29 +69,29 @@ export type QueryNodesArgs = {
   ids: Array<Scalars['ID']['input']>;
 };
 
-export type UpdateLoginUserInput = {
-  email?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  newUserId?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type UpdateUserInput = {
-  email?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  newUserId?: InputMaybe<Scalars['String']['input']>;
-  userId: Scalars['String']['input'];
+  data: UserInput;
+  userId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type User = Node & {
   __typename?: 'User';
+  createdAt: Scalars['Date']['output'];
+  databaseId: Scalars['String']['output'];
   email?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   image?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   role: UserRole;
+  updatedAt: Scalars['Date']['output'];
   userId?: Maybe<Scalars['String']['output']>;
+};
+
+export type UserInput = {
+  email: Scalars['String']['input'];
+  image?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  userId: Scalars['String']['input'];
 };
 
 export enum UserRole {
@@ -109,24 +102,23 @@ export enum UserRole {
 export type GetLoginUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLoginUserQuery = { __typename?: 'Query', loginUser: { __typename?: 'User', id: string, image?: string | null, name?: string | null, userId?: string | null, email?: string | null } };
+export type GetLoginUserQuery = { __typename?: 'Query', getUser: { __typename?: 'User', id: string, name?: string | null, email?: string | null, role: UserRole } };
 
 export type UpdateLoginUserMutationVariables = Exact<{
-  input: UpdateLoginUserInput;
+  input: UserInput;
 }>;
 
 
-export type UpdateLoginUserMutation = { __typename?: 'Mutation', updateLoginUser: { __typename?: 'User', id: string } };
+export type UpdateLoginUserMutation = { __typename?: 'Mutation', updateUser: { __typename?: 'User', id: string, name?: string | null, email?: string | null, role: UserRole } };
 
 
 export const GetLoginUserDocument = gql`
-    query getLoginUser {
-  loginUser {
+    query GetLoginUser {
+  getUser(input: {}) {
     id
-    image
     name
-    userId
     email
+    role
   }
 }
     `;
@@ -154,13 +146,21 @@ export function useGetLoginUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<GetLoginUserQuery, GetLoginUserQueryVariables>(GetLoginUserDocument, options);
         }
+export function useGetLoginUserSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetLoginUserQuery, GetLoginUserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetLoginUserQuery, GetLoginUserQueryVariables>(GetLoginUserDocument, options);
+        }
 export type GetLoginUserQueryHookResult = ReturnType<typeof useGetLoginUserQuery>;
 export type GetLoginUserLazyQueryHookResult = ReturnType<typeof useGetLoginUserLazyQuery>;
+export type GetLoginUserSuspenseQueryHookResult = ReturnType<typeof useGetLoginUserSuspenseQuery>;
 export type GetLoginUserQueryResult = Apollo.QueryResult<GetLoginUserQuery, GetLoginUserQueryVariables>;
 export const UpdateLoginUserDocument = gql`
-    mutation UpdateLoginUser($input: UpdateLoginUserInput!) {
-  updateLoginUser(input: $input) {
+    mutation updateLoginUser($input: UserInput!) {
+  updateUser(input: {data: $input}) {
     id
+    name
+    email
+    role
   }
 }
     `;

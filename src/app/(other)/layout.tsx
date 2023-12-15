@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { MainAppShell } from 'app/_components/MainAppShell';
+import { PublicAppShell } from './_components/PublicAppShell';
 
 interface Props {
   children: React.ReactNode
@@ -12,9 +12,9 @@ interface Props {
 const RootLayout = async (props: Props) => {
   const { children } = props;
   return (
-    <MainAppShell noNavbar>
+    <PublicAppShell>
       {children}
-    </MainAppShell>
+    </PublicAppShell>
   );
 };
 

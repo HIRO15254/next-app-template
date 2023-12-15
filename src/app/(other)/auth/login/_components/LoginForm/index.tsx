@@ -1,12 +1,14 @@
 'use client';
 
-import { Stack, Title } from '@mantine/core';
+import {
+  Anchor, Stack, Title, Text, Container,
+} from '@mantine/core';
 import React from 'react';
 
 import { LoginButton } from 'app/(other)/auth/login/_components/LoginButton';
 
 interface LoginFormProps {
-  callbackUrl?: string;
+  callbackUrl: string;
 }
 
 /**
@@ -15,7 +17,7 @@ interface LoginFormProps {
 const LoginForm: React.FC<LoginFormProps> = (props) => {
   const { callbackUrl } = props;
   return (
-    <>
+    <Container size="xs">
       <Title order={1} p="md">
         ログイン
       </Title>
@@ -23,8 +25,13 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
         <LoginButton provider="google" callback={callbackUrl}>
           Googleでログイン
         </LoginButton>
+        <Text size="sm">
+          ログインを行うと、
+          <Anchor href="/info/termsofservice">利用規約</Anchor>
+          に同意したものとみなします。
+        </Text>
       </Stack>
-    </>
+    </Container>
   );
 };
 

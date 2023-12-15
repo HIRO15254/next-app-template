@@ -1,0 +1,17 @@
+query GetLoginUser {
+  getUser(input: {}) {
+    id
+    name
+    email
+    role
+  }
+}
+
+mutation updateLoginUser($input: UserInput!) {
+  updateUser(input: {data: $input}) {
+    id
+    name
+    email
+    role
+  }
+}

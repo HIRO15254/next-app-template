@@ -1,6 +1,7 @@
 import SchemaBuilder from '@pothos/core';
 import PrismaPlugin from '@pothos/plugin-prisma';
 import RelayPlugin from '@pothos/plugin-relay';
+import ValidationPlugin from '@pothos/plugin-validation';
 import { DateResolver } from 'graphql-scalars';
 
 import { prisma } from '../../lib/prisma';
@@ -15,7 +16,7 @@ export const builder = new SchemaBuilder<{
   PrismaTypes: PrismaTypes
   Context: Context
 }>({
-  plugins: [PrismaPlugin, RelayPlugin],
+  plugins: [PrismaPlugin, RelayPlugin, ValidationPlugin],
   prisma: {
     client: prisma,
   },
