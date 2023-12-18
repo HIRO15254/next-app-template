@@ -8,17 +8,17 @@ import pica from 'pica';
 import React from 'react';
 
 import { useUpdateLoginUserMutation } from 'gql';
-import { supabase } from 'lib/supabase';
 import { createRandomID } from 'util/createUserId';
 
+import { deleteFile, uploadFile } from '../../../../../util/uploadFile';
 import AvatarEditModal, { OnImageSavePayload } from '../_components/AvatarEditModal';
 
 /**
  * アイコン設定を行うためのカスタムフック
  */
-export const useAvatarSetting = () => {
+export const useAvatarSettingModal = () => {
   const { data: session, update: updateSession } = useSession();
-  const [opened, { open: openModal, close: closeModal }] = useDisclosure(false);
+  const [opened, { open, close }] = useDisclosure(false);
   const [image, setImage] = React.useState<File | null>(null);
   const [updateLoginUserMutation] = useUpdateLoginUserMutation();
   const router = useRouter();
@@ -27,25 +27,14 @@ export const useAvatarSetting = () => {
   const onImageChange = (payload: File | null) => {
     setImage(payload);
     if (payload) {
-      openModal();
+      open();
     }
   };
 
   // モーダルを閉じたらファイルをクリアする
-  const onCloseModal = () => {
+  const onClose = () => {
     setImage(null);
-    closeModal();
-  };
-
-  // 画像をSupabaseに保存する
-  const saveImageToSupabase = async (file: File, fileName: string) => {
-    const avatarStorage = supabase.storage.from('avatar');
-    if ((session?.user?.image ?? '').includes('object/public/avatar/')) {
-      await avatarStorage.remove([session?.user.image.split('/').slice(-1)[0] || 'none']);
-    }
-    await avatarStorage.upload(fileName, file, { upsert: true });
-    const newUrl = avatarStorage.getPublicUrl(fileName).data.publicUrl;
-    return newUrl;
+    close();
   };
 
   // モーダルで「更新」ボタンを押したときの処理
@@ -58,7 +47,10 @@ export const useAvatarSetting = () => {
         try {
           const fileName = `${session?.user.userId}_${createRandomID(12)}.png`;
           const file = new File([blob], fileName, { type: 'image/png' });
-          const newUrl = await saveImageToSupabase(file, fileName);
+          const newUrl = await uploadFile(file, 'avatar', fileName);
+          if ((session?.user?.image ?? '').includes('object/public/avatar/')) {
+            await deleteFile('avatar', session?.user.image.split('/').slice(-1)[0] || 'none');
+          }
           await updateLoginUserMutation({
             variables: {
               input: {
@@ -87,13 +79,15 @@ export const useAvatarSetting = () => {
   const user = session?.user;
 
   const avatarEditModalProps = {
-    opened, close: onCloseModal, image, onImageSave,
+    opened,
+    close: onClose,
+    image,
+    onImageSave,
   };
 
   const avatarEditModal = <AvatarEditModal {...avatarEditModalProps} />;
 
   return {
-    opened,
     user,
     image,
     onImageChange,

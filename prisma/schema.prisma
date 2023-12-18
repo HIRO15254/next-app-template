@@ -39,7 +39,7 @@ model User {
   isActive      Boolean   @default(true)
   role          UserRole  @default(USER)
   userId        String    @unique
-  name          String?
+  name          String
   email         String    @unique
   emailVerified DateTime?
   trueEmail     String

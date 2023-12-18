@@ -49,14 +49,9 @@ export type Node = {
 
 export type Query = {
   __typename?: 'Query';
-  getUser: User;
   node?: Maybe<Node>;
   nodes: Array<Maybe<Node>>;
-};
-
-
-export type QueryGetUserArgs = {
-  input: GetUserInput;
+  user: User;
 };
 
 
@@ -69,6 +64,11 @@ export type QueryNodesArgs = {
   ids: Array<Scalars['ID']['input']>;
 };
 
+
+export type QueryUserArgs = {
+  input: GetUserInput;
+};
+
 export type UpdateUserInput = {
   data: UserInput;
   userId?: InputMaybe<Scalars['String']['input']>;
@@ -78,20 +78,20 @@ export type User = Node & {
   __typename?: 'User';
   createdAt: Scalars['Date']['output'];
   databaseId: Scalars['String']['output'];
-  email?: Maybe<Scalars['String']['output']>;
+  email: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   image?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
   role: UserRole;
   updatedAt: Scalars['Date']['output'];
-  userId?: Maybe<Scalars['String']['output']>;
+  userId: Scalars['String']['output'];
 };
 
 export type UserInput = {
-  email: Scalars['String']['input'];
+  email?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
-  name: Scalars['String']['input'];
-  userId: Scalars['String']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
+  userId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export enum UserRole {
@@ -99,29 +99,36 @@ export enum UserRole {
   User = 'USER'
 }
 
+export type UserFragmentFragment = { __typename?: 'User', id: string, userId: string, name: string, email: string, role: UserRole };
+
 export type GetLoginUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLoginUserQuery = { __typename?: 'Query', getUser: { __typename?: 'User', id: string, name?: string | null, email?: string | null, role: UserRole } };
+export type GetLoginUserQuery = { __typename?: 'Query', user: { __typename?: 'User', id: string, userId: string, name: string, email: string, role: UserRole } };
 
 export type UpdateLoginUserMutationVariables = Exact<{
   input: UserInput;
 }>;
 
 
-export type UpdateLoginUserMutation = { __typename?: 'Mutation', updateUser: { __typename?: 'User', id: string, name?: string | null, email?: string | null, role: UserRole } };
+export type UpdateLoginUserMutation = { __typename?: 'Mutation', updateUser: { __typename?: 'User', id: string, userId: string, name: string, email: string, role: UserRole } };
 
-
-export const GetLoginUserDocument = gql`
-    query GetLoginUser {
-  getUser(input: {}) {
-    id
-    name
-    email
-    role
-  }
+export const UserFragmentFragmentDoc = gql`
+    fragment UserFragment on User {
+  id
+  userId
+  name
+  email
+  role
 }
     `;
+export const GetLoginUserDocument = gql`
+    query GetLoginUser {
+  user(input: {}) {
+    ...UserFragment
+  }
+}
+    ${UserFragmentFragmentDoc}`;
 
 /**
  * __useGetLoginUserQuery__
@@ -157,13 +164,10 @@ export type GetLoginUserQueryResult = Apollo.QueryResult<GetLoginUserQuery, GetL
 export const UpdateLoginUserDocument = gql`
     mutation updateLoginUser($input: UserInput!) {
   updateUser(input: {data: $input}) {
-    id
-    name
-    email
-    role
+    ...UserFragment
   }
 }
-    `;
+    ${UserFragmentFragmentDoc}`;
 export type UpdateLoginUserMutationFn = Apollo.MutationFunction<UpdateLoginUserMutation, UpdateLoginUserMutationVariables>;
 
 /**

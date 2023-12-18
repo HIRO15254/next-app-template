@@ -1,8 +1,9 @@
 'use client';
 
-import { useForm } from '@mantine/form';
+import { useForm, zodResolver } from '@mantine/form';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { z } from 'zod';
 
 import { GetLoginUserQuery, useGetLoginUserQuery, useUpdateLoginUserMutation } from 'gql';
 import { errorNotification, successNotification } from 'util/notifications';
@@ -17,7 +18,7 @@ export type BasicUserSettingType = {
 /**
  * ユーザー基本情報設定を行うためのカスタムフック
  */
-export const useBasicUserSetting = () => {
+export const useBasicUserSettingForm = () => {
   const router = useRouter();
   const { update: updateSession } = useSession();
 
@@ -27,19 +28,21 @@ export const useBasicUserSetting = () => {
       name: '',
       email: '',
     },
-    validate: {
-      userId: userIdValidator,
-      name: userNameValidator,
-      email: emailValidator,
-    },
+    validate: zodResolver(
+      z.object({
+        userId: userIdValidator,
+        name: userNameValidator,
+        email: emailValidator,
+      }),
+    ),
   });
 
   const initializeForm = (data: GetLoginUserQuery) => {
-    if (data?.loginUser) {
+    if (data?.user) {
       form.setValues({
-        userId: data?.loginUser.userId || '',
-        name: data?.loginUser.name || '',
-        email: data?.loginUser.email || '',
+        userId: data?.user.userId || undefined,
+        name: data?.user.name || undefined,
+        email: data?.user.email || undefined,
       });
     }
   };
@@ -47,14 +50,10 @@ export const useBasicUserSetting = () => {
   const { loading } = useGetLoginUserQuery({ onCompleted: initializeForm });
   const [updateUser] = useUpdateLoginUserMutation();
 
-  const formOnSubmit = async (values: BasicUserSettingType) => {
+  const onSubmit = async (values: BasicUserSettingType) => {
     updateUser({
       variables: {
-        input: {
-          newUserId: values.userId,
-          name: values.name,
-          email: values.email,
-        },
+        input: values,
       },
     }).then(async () => {
       successNotification({
@@ -71,5 +70,9 @@ export const useBasicUserSetting = () => {
     });
   };
 
-  return { form, formOnSubmit, loading };
+  return {
+    form,
+    onSubmit,
+    loading,
+  };
 };

@@ -12498,7 +12498,7 @@ sugarss@^4.0.1:
   resolved "https://registry.yarnpkg.com/sugarss/-/sugarss-4.0.1.tgz#128a783ed71ee0fc3b489ce1f7d5a89bc1e24383"
   integrity sha512-WCjS5NfuVJjkQzK10s8WOBY+hhDxxNt/N6ZaGwxFZ+wN3/lKKFSaaKUNecULcTTvE4urLcKaZFQD8vO0mOZujw==
 
-supabase@^1.106.1:
+supabase@^1.123.4:
   version "1.123.4"
   resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.123.4.tgz#f32bbd1e8b962fb6aeb5e91345b511f0248c013b"
   integrity sha512-HFQOU+n73Ah9sYbja7tdjuqT6QNDzkKXfLCCIbD9GdggbTvGZa3D+0hJPADL4y0vAfsoB5tlx3WBXswnbWIXiw==

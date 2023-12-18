@@ -25,7 +25,10 @@ type AvatarEditModalProps = {
  */
 const AvatarEditModal: React.FC<AvatarEditModalProps> = (props) => {
   const {
-    opened, close, image, onImageSave,
+    opened,
+    close,
+    image,
+    onImageSave,
   } = props;
 
   const [scale, setScale] = React.useState(1.0);

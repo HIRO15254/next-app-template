@@ -9,7 +9,7 @@ import React from 'react';
 import { UserAvatar } from 'components/parts/UserAvatar';
 import { USER_ICON_SIZE } from 'config/userConfig';
 
-import { useAvatarSetting } from '../../_hooks/useAvatarSetting';
+import { useAvatarSettingModal } from '../../_hooks/useAvatarSettingModal';
 
 /**
  * ユーザーアイコンを設定するためのフォーム
@@ -20,7 +20,7 @@ export const AvatarSettingForm: React.FC = () => {
     onImageChange,
     image,
     avatarEditModal,
-  } = useAvatarSetting();
+  } = useAvatarSettingModal();
 
   return (
     <Input.Wrapper

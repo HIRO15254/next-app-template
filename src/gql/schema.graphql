@@ -21,9 +21,9 @@ interface Node {
 }
 
 type Query {
-  getUser(input: GetUserInput!): User!
   node(id: ID!): Node
   nodes(ids: [ID!]!): [Node]!
+  user(input: GetUserInput!): User!
 }
 
 input UpdateUserInput {
@@ -34,20 +34,20 @@ input UpdateUserInput {
 type User implements Node {
   createdAt: Date!
   databaseId: String!
-  email: String
+  email: String!
   id: ID!
   image: String
-  name: String
+  name: String!
   role: UserRole!
   updatedAt: Date!
-  userId: String
+  userId: String!
 }
 
 input UserInput {
-  email: String!
+  email: String
   image: String
-  name: String!
-  userId: String!
+  name: String
+  userId: String
 }
 
 enum UserRole {
