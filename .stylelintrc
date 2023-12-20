@@ -1,0 +1,18 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "function-no-unknown": [
+      true,
+      {
+        "ignoreFunctions": [
+          "calc",
+          "color",
+          "var",
+          "light-dark"
+        ]
+      }
+    ],
+    "media-query-no-invalid": null,
+    "at-rule-no-unknown": null
+  }
+}

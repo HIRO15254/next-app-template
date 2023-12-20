@@ -15,19 +15,19 @@ datasource db {
 }
 
 model Account {
-  id String @id @default(cuid())
-  userId String
-  type String
-  provider String
-  providerAccountId String
-  refresh_token String?
+  id                       String  @id @default(cuid())
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String?
   refresh_token_expires_in Int?
-  access_token String?
-  expires_at Int?
-  token_type String?
-  scope String?
-  id_token String?
-  session_state String?
+  access_token             String?
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String?
+  session_state            String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -35,16 +35,19 @@ model Account {
 }
 
 model User {
-  id String @id @default(cuid())
-  role UserRole @default(USER)
-  userId String? @unique
-  name String?
-  email String @unique
+  id            String    @id @default(cuid())
+  isActive      Boolean   @default(true)
+  role          UserRole  @default(USER)
+  userId        String    @unique
+  name          String
+  email         String    @unique
   emailVerified DateTime?
-  trueEmail String?
-  image String?
-  isDarkMode Boolean @default(false)
-  accounts Account[]
+  trueEmail     String
+  image         String?
+  accounts      Account[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum UserRole {

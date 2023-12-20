@@ -1,33 +1,15 @@
-import { isEmail } from '@mantine/form';
+import * as z from 'zod';
 
-import { USER_ID_MAX_LENGTH, USER_ID_MIN_LENGTH, USER_NAME_MAX_LENGTH } from 'config/userConfig';
+import { USER_ID_MAX_LENGTH, USER_ID_MIN_LENGTH, USER_NAME_MAX_LENGTH } from '../config/userConfig';
 
-export const emailValidator = (value: string) => {
-  if (value && !isEmail(value)) {
-    return 'メールアドレスの形式が正しくありません';
-  }
-  return null;
-};
+export const emailValidator = z.string()
+  .email('メールアドレスの形式が正しくありません');
 
-export const userNameValidator = (value: string) => {
-  if (!value) {
-    return 'ユーザー名を入力してください。';
-  }
-  if (value.length > USER_NAME_MAX_LENGTH) {
-    return `${USER_NAME_MAX_LENGTH}文字以下で入力してください`;
-  }
-  return null;
-};
+export const userNameValidator = z.string()
+  .min(1, 'ユーザー名を入力してください')
+  .max(USER_NAME_MAX_LENGTH, `ユーザー名は${USER_NAME_MAX_LENGTH}文字以内で入力してください`);
 
-export const userIdValidator = (value: string) => {
-  if (!value) {
-    return 'ユーザーIDを入力してください。';
-  }
-  if (value.length < USER_ID_MIN_LENGTH || value.length > USER_ID_MAX_LENGTH) {
-    return `${USER_ID_MIN_LENGTH}文字以上${USER_ID_MAX_LENGTH}文字以下で入力してください`;
-  }
-  if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
-    return '使用できない文字が含まれています';
-  }
-  return null;
-};
+export const userIdValidator = z.string()
+  .min(USER_ID_MIN_LENGTH, `ユーザーIDは${USER_ID_MIN_LENGTH}文字以上で入力してください`)
+  .max(USER_ID_MAX_LENGTH, `ユーザーIDは${USER_ID_MAX_LENGTH}文字以内で入力してください`)
+  .regex(/^[a-zA-Z0-9_-]+$/, 'ユーザーIDには半角英数字、ハイフン、アンダースコアのみ使用できます');

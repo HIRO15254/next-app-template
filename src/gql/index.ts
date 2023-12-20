@@ -24,24 +24,18 @@ export type DeleteUserInput = {
 };
 
 export type GetUserInput = {
-  userId: Scalars['String']['input'];
+  userId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
   deleteUser: User;
-  updateLoginUser: User;
   updateUser: User;
 };
 
 
 export type MutationDeleteUserArgs = {
   input: DeleteUserInput;
-};
-
-
-export type MutationUpdateLoginUserArgs = {
-  input: UpdateLoginUserInput;
 };
 
 
@@ -55,15 +49,9 @@ export type Node = {
 
 export type Query = {
   __typename?: 'Query';
-  getUser: User;
-  loginUser: User;
   node?: Maybe<Node>;
   nodes: Array<Maybe<Node>>;
-};
-
-
-export type QueryGetUserArgs = {
-  input: GetUserInput;
+  user: User;
 };
 
 
@@ -76,29 +64,34 @@ export type QueryNodesArgs = {
   ids: Array<Scalars['ID']['input']>;
 };
 
-export type UpdateLoginUserInput = {
-  email?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  newUserId?: InputMaybe<Scalars['String']['input']>;
+
+export type QueryUserArgs = {
+  input: GetUserInput;
 };
 
 export type UpdateUserInput = {
-  email?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  newUserId?: InputMaybe<Scalars['String']['input']>;
-  userId: Scalars['String']['input'];
+  data: UserInput;
+  userId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type User = Node & {
   __typename?: 'User';
-  email?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['Date']['output'];
+  databaseId: Scalars['String']['output'];
+  email: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   image?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
   role: UserRole;
-  userId?: Maybe<Scalars['String']['output']>;
+  updatedAt: Scalars['Date']['output'];
+  userId: Scalars['String']['output'];
+};
+
+export type UserInput = {
+  email?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  userId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export enum UserRole {
@@ -106,30 +99,36 @@ export enum UserRole {
   User = 'USER'
 }
 
+export type UserFragmentFragment = { __typename?: 'User', id: string, userId: string, name: string, email: string, role: UserRole };
+
 export type GetLoginUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLoginUserQuery = { __typename?: 'Query', loginUser: { __typename?: 'User', id: string, image?: string | null, name?: string | null, userId?: string | null, email?: string | null } };
+export type GetLoginUserQuery = { __typename?: 'Query', user: { __typename?: 'User', id: string, userId: string, name: string, email: string, role: UserRole } };
 
 export type UpdateLoginUserMutationVariables = Exact<{
-  input: UpdateLoginUserInput;
+  input: UserInput;
 }>;
 
 
-export type UpdateLoginUserMutation = { __typename?: 'Mutation', updateLoginUser: { __typename?: 'User', id: string } };
+export type UpdateLoginUserMutation = { __typename?: 'Mutation', updateUser: { __typename?: 'User', id: string, userId: string, name: string, email: string, role: UserRole } };
 
-
-export const GetLoginUserDocument = gql`
-    query getLoginUser {
-  loginUser {
-    id
-    image
-    name
-    userId
-    email
-  }
+export const UserFragmentFragmentDoc = gql`
+    fragment UserFragment on User {
+  id
+  userId
+  name
+  email
+  role
 }
     `;
+export const GetLoginUserDocument = gql`
+    query GetLoginUser {
+  user(input: {}) {
+    ...UserFragment
+  }
+}
+    ${UserFragmentFragmentDoc}`;
 
 /**
  * __useGetLoginUserQuery__
@@ -154,16 +153,21 @@ export function useGetLoginUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<GetLoginUserQuery, GetLoginUserQueryVariables>(GetLoginUserDocument, options);
         }
+export function useGetLoginUserSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetLoginUserQuery, GetLoginUserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetLoginUserQuery, GetLoginUserQueryVariables>(GetLoginUserDocument, options);
+        }
 export type GetLoginUserQueryHookResult = ReturnType<typeof useGetLoginUserQuery>;
 export type GetLoginUserLazyQueryHookResult = ReturnType<typeof useGetLoginUserLazyQuery>;
+export type GetLoginUserSuspenseQueryHookResult = ReturnType<typeof useGetLoginUserSuspenseQuery>;
 export type GetLoginUserQueryResult = Apollo.QueryResult<GetLoginUserQuery, GetLoginUserQueryVariables>;
 export const UpdateLoginUserDocument = gql`
-    mutation UpdateLoginUser($input: UpdateLoginUserInput!) {
-  updateLoginUser(input: $input) {
-    id
+    mutation updateLoginUser($input: UserInput!) {
+  updateUser(input: {data: $input}) {
+    ...UserFragment
   }
 }
-    `;
+    ${UserFragmentFragmentDoc}`;
 export type UpdateLoginUserMutationFn = Apollo.MutationFunction<UpdateLoginUserMutation, UpdateLoginUserMutationVariables>;
 
 /**

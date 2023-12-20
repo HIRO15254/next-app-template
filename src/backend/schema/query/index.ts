@@ -1,2 +1,0 @@
-import './getUser';
-import './loginUser';

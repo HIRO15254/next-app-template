@@ -1,9 +1,7 @@
 import { builder } from './builder';
 
-import './mutation';
-import './query';
-import './object';
-import './enum';
+import './objects/user';
+import './objects/userRole';
 
 builder.queryType();
 builder.mutationType();

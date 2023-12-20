@@ -1,5 +1,8 @@
+/* eslint-disable no-param-reassign */
+
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { AuthOptions } from 'next-auth';
+import { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from 'next';
+import { getServerSession, NextAuthOptions } from 'next-auth';
 import { AdapterUser } from 'next-auth/adapters';
 import GoogleProvider from 'next-auth/providers/google';
 
@@ -23,7 +26,7 @@ const prismaAdapter = {
   },
 };
 
-export const authOptions: AuthOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: prismaAdapter,
   providers: [
     GoogleProvider({
@@ -32,19 +35,34 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async session({ session }) {
-      const retSession = { ...session };
-      const userData = await prisma.user.findUnique({
-        where: {
-          email: session.user.email ?? '',
+    async jwt({
+      token, user, trigger,
+    }) {
+      if (user) {
+        token.userId = user.userId;
+      }
+      if (trigger === 'update') {
+        const newUser = await prisma.user.findUnique({
+          where: {
+            email: token.email ?? '',
+          },
+        });
+        if (newUser) {
+          token.picture = newUser?.image;
+          token.userId = newUser?.userId;
+          token.name = newUser?.name;
+        }
+      }
+      return token;
+    },
+    session({ session, token }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          userId: token.userId ?? '',
         },
-      });
-      retSession.user.userId = userData?.userId ?? '';
-      retSession.user.isDarkMode = userData?.isDarkMode ?? false;
-      retSession.user.email = userData?.email ?? '';
-      retSession.user.name = userData?.name ?? '';
-      retSession.user.image = userData?.image ?? '';
-      return retSession;
+      };
     },
   },
   session: {
@@ -58,3 +76,7 @@ export const authOptions: AuthOptions = {
     signIn: '/auth/login',
   },
 };
+
+export function auth(...args: [GetServerSidePropsContext['req'], GetServerSidePropsContext['res']] | [NextApiRequest, NextApiResponse] | []) {
+  return getServerSession(...args, authOptions);
+}

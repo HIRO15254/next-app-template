@@ -1,0 +1,56 @@
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+input DeleteUserInput {
+  userId: String!
+}
+
+input GetUserInput {
+  userId: String
+}
+
+type Mutation {
+  deleteUser(input: DeleteUserInput!): User!
+  updateUser(input: UpdateUserInput!): User!
+}
+
+interface Node {
+  id: ID!
+}
+
+type Query {
+  node(id: ID!): Node
+  nodes(ids: [ID!]!): [Node]!
+  user(input: GetUserInput!): User!
+}
+
+input UpdateUserInput {
+  data: UserInput!
+  userId: String
+}
+
+type User implements Node {
+  createdAt: Date!
+  databaseId: String!
+  email: String!
+  id: ID!
+  image: String
+  name: String!
+  role: UserRole!
+  updatedAt: Date!
+  userId: String!
+}
+
+input UserInput {
+  email: String
+  image: String
+  name: String
+  userId: String
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
