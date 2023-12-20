@@ -4,8 +4,11 @@ import {
   Menu, Anchor, UnstyledButton,
 } from '@mantine/core';
 import { IconLogout, IconSettings } from '@tabler/icons-react';
+import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 import React from 'react';
+
+import { APPLICATION_TOP_URL, USER_SETTINGS_URL } from 'config/urlConfig';
 
 interface Props {
   children: React.ReactNode
@@ -35,7 +38,7 @@ export const UserMenu: React.FC<Props> = (props) => {
         <Menu.Label>
           アカウント
         </Menu.Label>
-        <Anchor unstyled href="/application/settings/user">
+        <Anchor component={Link} href={USER_SETTINGS_URL} underline="never">
           <Menu.Item
             leftSection={<IconSettings size="0.9rem" stroke={1.5} />}
           >
@@ -45,7 +48,7 @@ export const UserMenu: React.FC<Props> = (props) => {
         <Menu.Item
           color="red"
           leftSection={<IconLogout size="0.9rem" stroke={1.5} />}
-          onClick={() => { signOut({ callbackUrl: '/application/dashboard' }); }}
+          onClick={() => signOut({ callbackUrl: APPLICATION_TOP_URL })}
         >
           ログアウト
         </Menu.Item>

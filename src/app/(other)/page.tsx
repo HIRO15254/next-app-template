@@ -3,12 +3,12 @@ import React from 'react';
 import { MainPageContents } from './_components/MainPageContents';
 
 export const metadata = {
-  title: 'QuizWis',
-  description: '競技クイズ支援Webアプリケーション',
+  title: 'next-app-template',
+  description: 'オレオレNext.jsフルスタック環境',
 };
 
-const Home: React.FC = () => (
+const MainPage: React.FC = () => (
   <MainPageContents />
 );
 
-export default Home;
+export default MainPage;

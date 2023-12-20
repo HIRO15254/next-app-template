@@ -22,7 +22,7 @@ const LoginForm: React.FC<LoginFormProps> = (props) => {
         ログイン
       </Title>
       <Stack px="md" m="auto" style={{ maxWidth: '480px' }}>
-        <LoginButton provider="google" callback={callbackUrl}>
+        <LoginButton provider="google" callbackUrl={callbackUrl}>
           Googleでログイン
         </LoginButton>
         <Text size="sm">

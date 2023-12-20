@@ -3,7 +3,7 @@ import React from 'react';
 import { DashBoardContainer } from './_containers/DashBoardContainer';
 
 export const metadata = {
-  title: 'ダッシュボード - QuizWis',
+  title: 'ダッシュボード',
 };
 
 const DashBoardPage = async () => (

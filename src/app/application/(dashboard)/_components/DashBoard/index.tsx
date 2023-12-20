@@ -4,7 +4,7 @@ import { Text } from '@mantine/core';
 import React from 'react';
 
 /**
- * 説明
+ * ログインユーザーが操作の起点とするダッシュボード
  */
 export const DashBoard: React.FC = () => (
   <Text>

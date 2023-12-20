@@ -10,7 +10,7 @@ interface LoginPageProps {
 }
 
 export const metadata = {
-  title: 'ログイン - QuizWis',
+  title: 'ログイン',
 };
 
 /**

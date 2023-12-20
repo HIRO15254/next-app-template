@@ -76,8 +76,6 @@ export const useAvatarSettingModal = () => {
     });
   };
 
-  const user = session?.user;
-
   const avatarEditModalProps = {
     opened,
     close: onClose,
@@ -85,12 +83,10 @@ export const useAvatarSettingModal = () => {
     onImageSave,
   };
 
-  const avatarEditModal = <AvatarEditModal {...avatarEditModalProps} />;
-
   return {
-    user,
+    user: session?.user,
     image,
     onImageChange,
-    avatarEditModal,
+    avatarEditModal: <AvatarEditModal {...avatarEditModalProps} />,
   };
 };
