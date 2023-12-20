@@ -2,8 +2,9 @@ import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import React from 'react';
 
+import { APPLICATION_TOP_URL } from 'config/urlConfig';
+
 import LoginForm from './_components/LoginForm';
-import { APPLICATION_TOP_URL } from '../../../../config/urlConfig';
 
 interface LoginPageProps {
   searchParams: { [key: string]: string | string[] | undefined }

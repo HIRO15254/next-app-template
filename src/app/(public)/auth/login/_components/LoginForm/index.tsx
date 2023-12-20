@@ -5,7 +5,7 @@ import {
 } from '@mantine/core';
 import React from 'react';
 
-import { LoginButton } from 'app/(other)/auth/login/_components/LoginButton';
+import { LoginButton } from '../LoginButton';
 
 interface LoginFormProps {
   callbackUrl: string;
