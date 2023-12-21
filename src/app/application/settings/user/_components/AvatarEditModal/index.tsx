@@ -16,6 +16,8 @@ export type OnImageSavePayload = {
 type AvatarEditModalProps = {
   opened: boolean;
   close: () => void;
+  scale: number;
+  setScale: (value: number) => void;
   image: File | null;
   onImageSave: (payload: OnImageSavePayload) => void;
 };
@@ -27,11 +29,12 @@ const AvatarEditModal: React.FC<AvatarEditModalProps> = (props) => {
   const {
     opened,
     close,
+    scale,
+    setScale,
     image,
     onImageSave,
   } = props;
 
-  const [scale, setScale] = React.useState(1.0);
   const editorRef = React.useRef<AvatarEditor>(null);
 
   const onSaveButtonClick = () => {
