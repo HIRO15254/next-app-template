@@ -7,12 +7,24 @@ import { LinksGroup } from './LinksGroup';
 import { linksGroupData } from './LinksGroup/linksGroupData';
 import classes from './index.module.css';
 
-export const Navbar: React.FC = () => (
-  <AppShell.Navbar p="md">
-    <ScrollArea className={classes.links}>
-      {linksGroupData.map((item) => (
-        <LinksGroup {...item} key={item.label} />
-      ))}
-    </ScrollArea>
-  </AppShell.Navbar>
-);
+interface Props {
+  closeMobile: () => void;
+}
+export const Navbar: React.FC<Props> = (props) => {
+  const {
+    closeMobile,
+  } = props;
+  return (
+    <AppShell.Navbar p="md">
+      <ScrollArea className={classes.links}>
+        {linksGroupData.map((item) => (
+          <LinksGroup
+            {...item}
+            closeMobile={closeMobile}
+            key={item.label}
+          />
+        ))}
+      </ScrollArea>
+    </AppShell.Navbar>
+  );
+};

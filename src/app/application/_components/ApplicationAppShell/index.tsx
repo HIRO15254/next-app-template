@@ -56,7 +56,7 @@ export const ApplicationAppShell: React.FC<Props> = (props) => {
           desktop: () => setDesktopOpened((o) => !o),
         }}
       />
-      <Navbar />
+      <Navbar closeMobile={() => setMobileOpened(false)} />
       <AppShell.Main>
         {children}
       </AppShell.Main>
