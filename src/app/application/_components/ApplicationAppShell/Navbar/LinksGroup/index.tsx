@@ -16,6 +16,7 @@ interface Props {
   icon: (props: TablerIconsProps) => ReactNode;
   label: string;
   initiallyOpened?: boolean;
+  closeMobile: () => void;
   link?: {
     label: string;
     link: string
@@ -24,7 +25,11 @@ interface Props {
 
 export const LinksGroup: React.FC<Props> = (props) => {
   const {
-    icon: Icon, label, initiallyOpened, link,
+    icon: Icon,
+    label,
+    initiallyOpened,
+    closeMobile,
+    link,
   } = props;
   const hasLinks = Array.isArray(link);
   const [opened, setOpened] = useState(initiallyOpened || false);
@@ -34,6 +39,7 @@ export const LinksGroup: React.FC<Props> = (props) => {
       unstyled
       className={classes.link}
       href={oneLink.link}
+      onClick={closeMobile}
       key={oneLink.label}
     >
       {oneLink.label}
@@ -69,7 +75,12 @@ export const LinksGroup: React.FC<Props> = (props) => {
         )}
       {!hasLinks
         && (
-          <Anchor component={Link} href={link ?? '/'} className={classes.control}>
+          <Anchor
+            component={Link}
+            href={link ?? '/'}
+            onClick={closeMobile}
+            className={classes.control}
+          >
             <Group justify="space-between" gap={0}>
               <Box style={{ display: 'flex', alignItems: 'center' }}>
                 <ThemeIcon variant="light" size={30}>
