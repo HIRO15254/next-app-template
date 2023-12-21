@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
             href={APPLICATION_TOP_URL}
             variant="outline"
           >
-            アプリケーションへ
+            アプリへ
           </Button>
         )}
         {!session && (

@@ -19,6 +19,7 @@ import AvatarEditModal, { OnImageSavePayload } from '../_components/AvatarEditMo
 export const useAvatarSettingModal = () => {
   const { data: session, update: updateSession } = useSession();
   const [opened, { open, close }] = useDisclosure(false);
+  const [scale, setScale] = React.useState(1.0);
   const [image, setImage] = React.useState<File | null>(null);
   const [updateLoginUserMutation] = useUpdateLoginUserMutation();
   const router = useRouter();
@@ -26,6 +27,7 @@ export const useAvatarSettingModal = () => {
   // ファイル選択時にモーダルを開く
   const onImageChange = (payload: File | null) => {
     setImage(payload);
+    setScale(1.0);
     if (payload) {
       open();
     }
@@ -79,6 +81,8 @@ export const useAvatarSettingModal = () => {
   const avatarEditModalProps = {
     opened,
     close: onClose,
+    scale,
+    setScale,
     image,
     onImageSave,
   };
