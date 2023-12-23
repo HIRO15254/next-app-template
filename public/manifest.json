@@ -2,7 +2,7 @@
     "name": "next-app-template",
     "short_name": "nat",
     "description": "オレオレnext.jsフルスタック環境",
-    "start_url": "/",
+    "start_url": "/application",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#0070f3",
