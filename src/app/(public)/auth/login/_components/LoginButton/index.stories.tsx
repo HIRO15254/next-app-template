@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
+import {Meta, StoryObj} from '@storybook/react';
 
-import { LoginButton } from './index';
+import {LoginButton} from './index';
 
 const meta = {
   title: 'Auth/LoginButton',

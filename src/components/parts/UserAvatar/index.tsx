@@ -1,6 +1,6 @@
 'use client';
 
-import { Avatar, AvatarProps, Loader } from '@mantine/core';
+import {Avatar, AvatarProps, Loader} from '@mantine/core';
 import React from 'react';
 
 interface UserAvatarProps extends AvatarProps {
@@ -13,20 +13,11 @@ interface UserAvatarProps extends AvatarProps {
 /**
  * ユーザーアイコン
  */
-export const UserAvatar: React.FC<UserAvatarProps> = (props) => {
-  const {
-    user,
-    src,
-    ...other
-  } = props;
+export const UserAvatar: React.FC<UserAvatarProps> = props => {
+  const {user, src, ...other} = props;
 
   if (!user) {
-    return (
-      <Loader
-        color="blue"
-        size={other.size}
-      />
-    );
+    return <Loader color="blue" size={other.size} />;
   }
 
   // 実際のコンポーネント

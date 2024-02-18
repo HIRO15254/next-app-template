@@ -1,14 +1,11 @@
 'use client';
 
-import {
-  AppShell,
-} from '@mantine/core';
-import React, { useState } from 'react';
+import {AppShell} from '@mantine/core';
+import {SMARTPHONE_BREAKPOINT} from 'const/layoutConfig';
+import React, {useState} from 'react';
 
-import { SMARTPHONE_BREAKPOINT } from 'config/layoutConfig';
-
-import { Header } from './Header';
-import { Navbar } from './Navbar';
+import {Header} from './Header';
+import {Navbar} from './Navbar';
 
 interface Props {
   children: React.ReactNode;
@@ -17,19 +14,11 @@ interface Props {
 /**
  * アプリケーション内のページで表示されるコンポーネント
  */
-export const ApplicationAppShell: React.FC<Props> = (props) => {
-  const {
-    children,
-  } = props;
+export const ApplicationAppShell: React.FC<Props> = props => {
+  const {children} = props;
 
-  const [
-    mobileOpened,
-    setMobileOpened,
-  ] = useState(false);
-  const [
-    desktopOpened,
-    setDesktopOpened,
-  ] = useState(true);
+  const [mobileOpened, setMobileOpened] = useState(false);
+  const [desktopOpened, setDesktopOpened] = useState(true);
 
   return (
     <AppShell
@@ -44,7 +33,7 @@ export const ApplicationAppShell: React.FC<Props> = (props) => {
           desktop: !desktopOpened,
         },
       }}
-      padding={{ base: 10, sm: 15 }}
+      padding={{base: 10, sm: 15}}
     >
       <Header
         burgerOpened={{
@@ -52,14 +41,12 @@ export const ApplicationAppShell: React.FC<Props> = (props) => {
           desktop: desktopOpened,
         }}
         onBurgerClick={{
-          mobile: () => setMobileOpened((o) => !o),
-          desktop: () => setDesktopOpened((o) => !o),
+          mobile: () => setMobileOpened(o => !o),
+          desktop: () => setDesktopOpened(o => !o),
         }}
       />
       <Navbar closeMobile={() => setMobileOpened(false)} />
-      <AppShell.Main>
-        {children}
-      </AppShell.Main>
+      <AppShell.Main>{children}</AppShell.Main>
     </AppShell>
   );
 };

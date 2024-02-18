@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  nat-db-local:
+    image: postgres:14
+    container_name: nat_local
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-store:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=nat_local
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=passw0rd
+      - PGDATA=/var/lib/postgresql/data/nat
+volumes:
+  db-store:

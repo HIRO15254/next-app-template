@@ -1,4 +1,4 @@
-import { NotificationData, notifications } from '@mantine/notifications';
+import {NotificationData, notifications} from '@mantine/notifications';
 
 export const successNotification = (props: NotificationData) => {
   notifications.show({

@@ -1,11 +1,9 @@
 'use client';
 
-import {
-  Anchor, Stack, Title, Text, Container,
-} from '@mantine/core';
+import {Anchor, Stack, Title, Text, Container} from '@mantine/core';
 import React from 'react';
 
-import { LoginButton } from '../LoginButton';
+import {LoginButton} from '../LoginButton';
 
 interface LoginFormProps {
   callbackUrl: string;
@@ -14,14 +12,14 @@ interface LoginFormProps {
 /**
  * ログインを行うためのフォーム
  */
-const LoginForm: React.FC<LoginFormProps> = (props) => {
-  const { callbackUrl } = props;
+const LoginForm: React.FC<LoginFormProps> = props => {
+  const {callbackUrl} = props;
   return (
     <Container size="xs">
       <Title order={1} p="md">
         ログイン
       </Title>
-      <Stack px="md" m="auto" style={{ maxWidth: '480px' }}>
+      <Stack px="md" m="auto" style={{maxWidth: '480px'}}>
         <LoginButton provider="google" callbackUrl={callbackUrl}>
           Googleでログイン
         </LoginButton>

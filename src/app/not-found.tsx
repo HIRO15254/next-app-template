@@ -1,23 +1,17 @@
-import {
-  Title, Text, Button, Container, Group, Anchor,
-} from '@mantine/core';
+import {Title, Text, Button, Container, Group, Anchor} from '@mantine/core';
 import Link from 'next/link';
-import { getServerSession } from 'next-auth';
+import {getServerSession} from 'next-auth';
 import React from 'react';
 
 import classes from './not-found.module.css';
-import { APPLICATION_TOP_URL, PUBLIC_TOP_URL } from '../config/urlConfig';
+import {APPLICATION_TOP_URL, PUBLIC_TOP_URL} from '../const/urls';
 
 const NotFoundPage = async () => {
   const session = await getServerSession();
   return (
     <Container className={classes.root}>
-      <div className={classes.label}>
-        404
-      </div>
-      <Title className={classes.title}>
-        ページが見つかりません
-      </Title>
+      <div className={classes.label}>404</div>
+      <Title className={classes.title}>ページが見つかりません</Title>
       <Text c="dimmed" size="lg" ta="center" className={classes.description}>
         お探しのページは、移動または削除された可能性があります。
         <br />

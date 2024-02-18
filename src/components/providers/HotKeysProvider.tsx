@@ -1,7 +1,7 @@
 'use client';
 
-import { useMantineColorScheme } from '@mantine/core';
-import { useHotkeys } from '@mantine/hooks';
+import {useMantineColorScheme} from '@mantine/core';
+import {useHotkeys} from '@mantine/hooks';
 import React from 'react';
 
 type Props = {
@@ -9,15 +9,11 @@ type Props = {
 };
 
 export const HotKeysProvider = (props: Props) => {
-  const {
-    children,
-  } = props;
+  const {children} = props;
 
-  const { toggleColorScheme } = useMantineColorScheme();
+  const {toggleColorScheme} = useMantineColorScheme();
 
-  useHotkeys([
-    ['ctrl+j', toggleColorScheme, { preventDefault: true }],
-  ]);
+  useHotkeys([['ctrl+j', toggleColorScheme, {preventDefault: true}]]);
 
   return children;
 };

@@ -1,10 +1,10 @@
 'use client';
 
-import { Group, Tabs } from '@mantine/core';
+import {Group, Tabs} from '@mantine/core';
 import React from 'react';
 
-import { AvatarSettingForm } from '../AvatarSettingForm';
-import { BasicUserSettingForm } from '../BasicUserSettingForm';
+import {AvatarSettingForm} from '../AvatarSettingForm';
+import {BasicUserSettingForm} from '../BasicUserSettingForm';
 
 /**
  * 各種ユーザー設定フォームをまとめたタブ

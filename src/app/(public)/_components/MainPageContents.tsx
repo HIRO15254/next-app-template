@@ -1,6 +1,6 @@
 'use client';
 
-import { Title, Group, Paper } from '@mantine/core';
+import {Title, Group, Paper} from '@mantine/core';
 import React from 'react';
 
 export const MainPageContents: React.FC = () => (

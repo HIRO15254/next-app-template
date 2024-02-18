@@ -1,11 +1,9 @@
-import { ApolloServer } from '@apollo/server';
+import {ApolloServer} from '@apollo/server';
 
-import { Context } from './context';
-import { schema } from '../schema';
+import {Context} from './context';
+import {schema} from '../schema';
 
-export const server = new ApolloServer<Context>(
-  {
-    schema,
-    introspection: true,
-  },
-);
+export const server = new ApolloServer<Context>({
+  schema,
+  introspection: true,
+});

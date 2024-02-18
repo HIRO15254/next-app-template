@@ -1,13 +1,13 @@
 /* eslint-disable no-param-reassign */
 
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from 'next';
-import { getServerSession, NextAuthOptions } from 'next-auth';
-import { AdapterUser } from 'next-auth/adapters';
-import GoogleProvider from 'next-auth/providers/google';
+import {createRandomID} from 'util/createUserId';
 
-import { prisma } from 'lib/prisma';
-import { createRandomID } from 'util/createUserId';
+import {PrismaAdapter} from '@next-auth/prisma-adapter';
+import {prisma} from 'lib/prisma';
+import {GetServerSidePropsContext, NextApiRequest, NextApiResponse} from 'next';
+import {getServerSession, NextAuthOptions} from 'next-auth';
+import {AdapterUser} from 'next-auth/adapters';
+import GoogleProvider from 'next-auth/providers/google';
 
 const prismaAdapter = {
   ...PrismaAdapter(prisma),
@@ -35,9 +35,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({
-      token, user, trigger,
-    }) {
+    async jwt({token, user, trigger}) {
       if (user) {
         token.userId = user.userId;
       }
@@ -55,7 +53,7 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
-    session({ session, token }) {
+    session({session, token}) {
       return {
         ...session,
         user: {
@@ -77,6 +75,11 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-export function auth(...args: [GetServerSidePropsContext['req'], GetServerSidePropsContext['res']] | [NextApiRequest, NextApiResponse] | []) {
+export function auth(
+  ...args:
+    | [GetServerSidePropsContext['req'], GetServerSidePropsContext['res']]
+    | [NextApiRequest, NextApiResponse]
+    | []
+) {
   return getServerSession(...args, authOptions);
 }

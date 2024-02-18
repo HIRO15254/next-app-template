@@ -1,13 +1,13 @@
 'use client';
 
-import { Button, ButtonProps } from '@mantine/core';
-import { signIn } from 'next-auth/react';
+import {Button, ButtonProps} from '@mantine/core';
+import {signIn} from 'next-auth/react';
 import React from 'react';
 
 import GoogleIcon from '../GoogleIcon';
 
 interface LoginButtonProps extends ButtonProps {
-  provider: 'google',
+  provider: 'google';
   callbackUrl?: string;
 }
 
@@ -15,11 +15,11 @@ interface LoginButtonProps extends ButtonProps {
  * プロバイダーを指定してログインを行うボタン
  * @param props mantineのButtonPropsを継承 + provider: プロバイダー名 + callback: コールバックURL
  */
-export const LoginButton: React.FC<LoginButtonProps> = (props) => {
-  const { provider, callbackUrl, ...rest } = props;
+export const LoginButton: React.FC<LoginButtonProps> = props => {
+  const {provider, callbackUrl, ...rest} = props;
 
   const handleLogin = () => {
-    return signIn(provider, { callbackUrl });
+    return signIn(provider, {callbackUrl});
   };
 
   if (provider === 'google') {

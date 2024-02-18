@@ -1,18 +1,26 @@
 'use client';
 
-import { useForm, zodResolver } from '@mantine/form';
-import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
-import { z } from 'zod';
+import {errorNotification, successNotification} from 'util/notifications';
+import {
+  userIdValidator,
+  userNameValidator,
+  emailValidator,
+} from 'util/validators';
 
-import { GetLoginUserQuery, useGetLoginUserQuery, useUpdateLoginUserMutation } from 'gql';
-import { errorNotification, successNotification } from 'util/notifications';
-import { userIdValidator, userNameValidator, emailValidator } from 'util/validators';
+import {useForm, zodResolver} from '@mantine/form';
+import {
+  GetLoginUserQuery,
+  useGetLoginUserQuery,
+  useUpdateLoginUserMutation,
+} from 'gql';
+import {useRouter} from 'next/navigation';
+import {useSession} from 'next-auth/react';
+import {z} from 'zod';
 
 export type BasicUserSettingType = {
-  userId: string
-  name: string
-  email: string
+  userId: string;
+  name: string;
+  email: string;
 };
 
 /**
@@ -20,7 +28,7 @@ export type BasicUserSettingType = {
  */
 export const useBasicUserSettingForm = () => {
   const router = useRouter();
-  const { update: updateSession } = useSession();
+  const {update: updateSession} = useSession();
 
   const form = useForm<BasicUserSettingType>({
     initialValues: {
@@ -33,7 +41,7 @@ export const useBasicUserSettingForm = () => {
         userId: userIdValidator,
         name: userNameValidator,
         email: emailValidator,
-      }),
+      })
     ),
   });
 
@@ -47,7 +55,7 @@ export const useBasicUserSettingForm = () => {
     }
   };
 
-  const { loading } = useGetLoginUserQuery({ onCompleted: initializeForm });
+  const {loading} = useGetLoginUserQuery({onCompleted: initializeForm});
   const [updateUser] = useUpdateLoginUserMutation();
 
   const onSubmit = async (values: BasicUserSettingType) => {
@@ -55,19 +63,21 @@ export const useBasicUserSettingForm = () => {
       variables: {
         input: values,
       },
-    }).then(async () => {
-      successNotification({
-        title: '更新成功',
-        message: 'ユーザー情報を更新しました',
+    })
+      .then(async () => {
+        successNotification({
+          title: '更新成功',
+          message: 'ユーザー情報を更新しました',
+        });
+        await updateSession();
+        router.refresh();
+      })
+      .catch(() => {
+        errorNotification({
+          title: '更新失敗',
+          message: 'ユーザー情報の更新に失敗しました',
+        });
       });
-      await updateSession();
-      router.refresh();
-    }).catch(() => {
-      errorNotification({
-        title: '更新失敗',
-        message: 'ユーザー情報の更新に失敗しました',
-      });
-    });
   };
 
   return {

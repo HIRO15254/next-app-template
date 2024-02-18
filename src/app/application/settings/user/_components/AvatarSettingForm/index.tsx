@@ -1,26 +1,18 @@
 'use client';
 
-import {
-  Group, FileInput, Input,
-} from '@mantine/core';
-import { IconUpload } from '@tabler/icons-react';
+import {Group, FileInput, Input} from '@mantine/core';
+import {IconUpload} from '@tabler/icons-react';
+import {UserAvatar} from 'components/parts/UserAvatar';
+import {USER_ICON_SIZE} from 'const/userConfig';
 import React from 'react';
 
-import { UserAvatar } from 'components/parts/UserAvatar';
-import { USER_ICON_SIZE } from 'config/userConfig';
-
-import { useAvatarSettingModal } from '../../_hooks/useAvatarSettingModal';
+import {useAvatarSettingModal} from '../../_hooks/useAvatarSettingModal';
 
 /**
  * ユーザーアイコンを設定するためのフォーム
  */
 export const AvatarSettingForm: React.FC = () => {
-  const {
-    user,
-    onImageChange,
-    image,
-    avatarEditModal,
-  } = useAvatarSettingModal();
+  const {user, onImageChange, image, avatarEditModal} = useAvatarSettingModal();
 
   return (
     <Input.Wrapper

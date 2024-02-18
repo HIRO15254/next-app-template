@@ -1,8 +1,8 @@
-import { ContextFunction } from '@apollo/server';
-import { NextApiHandler } from 'next';
-import { getServerSession } from 'next-auth';
+import {ContextFunction} from '@apollo/server';
+import {NextApiHandler} from 'next';
+import {getServerSession} from 'next-auth';
 
-import { authOptions } from '../../lib/nextAuth';
+import {authOptions} from '../../lib/nextAuth';
 
 export type Context = {
   currentUserId: string;

@@ -4,11 +4,12 @@ import {
   Collapse,
   ThemeIcon,
   UnstyledButton,
-  Anchor, rem,
+  Anchor,
+  rem,
 } from '@mantine/core';
-import { IconChevronLeft, TablerIconsProps } from '@tabler/icons-react';
+import {IconChevronLeft, TablerIconsProps} from '@tabler/icons-react';
 import Link from 'next/link';
-import React, { ReactNode, useState } from 'react';
+import React, {ReactNode, useState} from 'react';
 
 import classes from './index.module.css';
 
@@ -17,23 +18,19 @@ interface Props {
   label: string;
   initiallyOpened?: boolean;
   closeMobile: () => void;
-  link?: {
-    label: string;
-    link: string
-  }[] | string;
+  link?:
+    | {
+        label: string;
+        link: string;
+      }[]
+    | string;
 }
 
-export const LinksGroup: React.FC<Props> = (props) => {
-  const {
-    icon: Icon,
-    label,
-    initiallyOpened,
-    closeMobile,
-    link,
-  } = props;
+export const LinksGroup: React.FC<Props> = props => {
+  const {icon: Icon, label, initiallyOpened, closeMobile, link} = props;
   const hasLinks = Array.isArray(link);
   const [opened, setOpened] = useState(initiallyOpened || false);
-  const items = (hasLinks ? link : []).map((oneLink) => (
+  const items = (hasLinks ? link : []).map(oneLink => (
     <Anchor
       component={Link}
       unstyled
@@ -48,12 +45,14 @@ export const LinksGroup: React.FC<Props> = (props) => {
 
   return (
     <>
-      {hasLinks
-        && (
+      {hasLinks && (
         <>
-          <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
+          <UnstyledButton
+            onClick={() => setOpened(o => !o)}
+            className={classes.control}
+          >
             <Group justify="space-between" gap={0}>
-              <Box style={{ display: 'flex', alignItems: 'center' }}>
+              <Box style={{display: 'flex', alignItems: 'center'}}>
                 <ThemeIcon variant="light" size={30}>
                   <Icon size="1.1rem" />
                 </ThemeIcon>
@@ -72,27 +71,24 @@ export const LinksGroup: React.FC<Props> = (props) => {
           </UnstyledButton>
           <Collapse in={opened}>{items}</Collapse>
         </>
-        )}
-      {!hasLinks
-        && (
-          <Anchor
-            component={Link}
-            href={link ?? '/'}
-            onClick={closeMobile}
-            className={classes.control}
-          >
-            <Group justify="space-between" gap={0}>
-              <Box style={{ display: 'flex', alignItems: 'center' }}>
-                <ThemeIcon variant="light" size={30}>
-                  <Icon size="1.1rem" />
-                </ThemeIcon>
-                <Box ml="md">
-                  {label}
-                </Box>
-              </Box>
-            </Group>
-          </Anchor>
-        )}
+      )}
+      {!hasLinks && (
+        <Anchor
+          component={Link}
+          href={link ?? '/'}
+          onClick={closeMobile}
+          className={classes.control}
+        >
+          <Group justify="space-between" gap={0}>
+            <Box style={{display: 'flex', alignItems: 'center'}}>
+              <ThemeIcon variant="light" size={30}>
+                <Icon size="1.1rem" />
+              </ThemeIcon>
+              <Box ml="md">{label}</Box>
+            </Box>
+          </Group>
+        </Anchor>
+      )}
     </>
   );
 };

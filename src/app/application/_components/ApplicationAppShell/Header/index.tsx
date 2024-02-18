@@ -1,41 +1,35 @@
 'use client';
 
-import {
-  AppShell, Code, Burger, Group, Title, Anchor,
-} from '@mantine/core';
+import {AppShell, Code, Burger, Group, Title, Anchor} from '@mantine/core';
+import {UserAvatar} from 'components/parts/UserAvatar';
+import {SMARTPHONE_BREAKPOINT} from 'const/layoutConfig';
+import {APPLICATION_TOP_URL} from 'const/urls';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+import {useSession} from 'next-auth/react';
 import React from 'react';
-
-import { UserAvatar } from 'components/parts/UserAvatar';
-import { SMARTPHONE_BREAKPOINT } from 'config/layoutConfig';
-import { APPLICATION_TOP_URL } from 'config/urlConfig';
 
 import classes from './index.module.css';
 import packageJson from '../../../../../../package.json';
-import { UserMenu } from '../../UserMenu';
+import {UserMenu} from '../../UserMenu';
 
 interface Props {
   burgerOpened: {
     mobile: boolean;
     desktop: boolean;
-  }
+  };
   onBurgerClick: {
     mobile: () => void;
     desktop: () => void;
-  }
+  };
 }
 
 /**
  * アプリケーション用AppShellのヘッダー
  */
-export const Header: React.FC<Props> = (props) => {
-  const {
-    burgerOpened,
-    onBurgerClick,
-  } = props;
+export const Header: React.FC<Props> = props => {
+  const {burgerOpened, onBurgerClick} = props;
 
-  const { data: sessionData } = useSession();
+  const {data: sessionData} = useSession();
 
   return (
     <AppShell.Header p="xs">

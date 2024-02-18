@@ -1,13 +1,12 @@
-import { redirect } from 'next/navigation';
-import { getServerSession } from 'next-auth';
+import {APPLICATION_TOP_URL} from 'const/urls';
+import {redirect} from 'next/navigation';
+import {getServerSession} from 'next-auth';
 import React from 'react';
-
-import { APPLICATION_TOP_URL } from 'config/urlConfig';
 
 import LoginForm from './_components/LoginForm';
 
 interface LoginPageProps {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: {[key: string]: string | string[] | undefined};
 }
 
 export const metadata = {
@@ -18,7 +17,7 @@ export const metadata = {
  * ログイン用のページ ログイン時のアクセスは禁止
  */
 const LoginPage = async (props: LoginPageProps) => {
-  const { searchParams } = props;
+  const {searchParams} = props;
 
   const session = await getServerSession();
   const callback = searchParams.callbackUrl?.toString() ?? APPLICATION_TOP_URL;
@@ -28,9 +27,7 @@ const LoginPage = async (props: LoginPageProps) => {
     redirect(callback);
   }
 
-  return (
-    <LoginForm callbackUrl={callback} />
-  );
+  return <LoginForm callbackUrl={callback} />;
 };
 
 export default LoginPage;

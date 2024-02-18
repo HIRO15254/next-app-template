@@ -1,12 +1,9 @@
 'use client';
 
-import {
-  Modal, Stack, Text, Slider, Group, Button,
-} from '@mantine/core';
+import {Modal, Stack, Text, Slider, Group, Button} from '@mantine/core';
+import {USER_ICON_SIZE} from 'const/userConfig';
 import React from 'react';
 import AvatarEditor from 'react-avatar-editor';
-
-import { USER_ICON_SIZE } from 'config/userConfig';
 
 export type OnImageSavePayload = {
   canvas: HTMLCanvasElement;
@@ -25,15 +22,8 @@ type AvatarEditModalProps = {
 /**
  * ユーザーアイコンの編集(拡大・中心の変更)を行うためのモーダル
  */
-const AvatarEditModal: React.FC<AvatarEditModalProps> = (props) => {
-  const {
-    opened,
-    close,
-    scale,
-    setScale,
-    image,
-    onImageSave,
-  } = props;
+const AvatarEditModal: React.FC<AvatarEditModalProps> = props => {
+  const {opened, close, scale, setScale, image, onImageSave} = props;
 
   const editorRef = React.useRef<AvatarEditor>(null);
 
@@ -48,12 +38,7 @@ const AvatarEditModal: React.FC<AvatarEditModalProps> = (props) => {
   };
 
   return (
-    <Modal
-      opened={opened}
-      onClose={close}
-      size="auto"
-      title="アイコンの編集"
-    >
+    <Modal opened={opened} onClose={close} size="auto" title="アイコンの編集">
       <Stack>
         <AvatarEditor
           ref={editorRef}
@@ -71,12 +56,12 @@ const AvatarEditModal: React.FC<AvatarEditModalProps> = (props) => {
           step={1}
           label={null}
           defaultValue={scale}
-          onChange={(value) => { setScale(value / 100); }}
+          onChange={value => {
+            setScale(value / 100);
+          }}
         />
         <Group justify="flex-end">
-          <Button onClick={onSaveButtonClick}>
-            更新
-          </Button>
+          <Button onClick={onSaveButtonClick}>更新</Button>
         </Group>
       </Stack>
     </Modal>
