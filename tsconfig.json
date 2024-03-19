@@ -3,6 +3,7 @@
   "module": "esnext",
   "compilerOptions": {
     "baseUrl": "src",
+    "declaration": false,
     "jsx": "preserve",
     "noEmit": true,
     "outDir": "build",

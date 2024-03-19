@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ApplicationAppShell} from './_components/ApplicationAppShell';
+import {CustomAppShell} from '../../components/CustomAppShell';
 
 interface Props {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ interface Props {
 const ApplicationLayout = async (props: Props) => {
   const {children} = props;
 
-  return <ApplicationAppShell>{children}</ApplicationAppShell>;
+  return <CustomAppShell hasNavbar>{children}</CustomAppShell>;
 };
 
 export default ApplicationLayout;

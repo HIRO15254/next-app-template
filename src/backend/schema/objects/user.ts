@@ -4,7 +4,7 @@ import {
   emailValidator,
   userIdValidator,
   userNameValidator,
-} from '../../../util/validators';
+} from '../../../utils/validators';
 import {isAdmin} from '../../util/authorityCheckers';
 import {builder} from '../builder';
 

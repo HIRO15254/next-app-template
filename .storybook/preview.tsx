@@ -10,7 +10,8 @@ import { MantineProvider, useMantineColorScheme } from '@mantine/core';
 
 // theme.ts file from previous step
 import { theme } from 'styles/theme';
-import {GetGenreSetsDocument} from '../src/gql';
+
+import {AuthProvider} from "../src/providers/AuthProvider";
 
 const channel = addons.getChannel();
 

@@ -1,12 +1,6 @@
+import {Title} from '@mantine/core';
 import React from 'react';
 
-import {MainPageContents} from './_components/MainPageContents';
-
-export const metadata = {
-  title: 'next-app-template',
-  description: 'オレオレNext.jsフルスタック環境',
-};
-
-const MainPage: React.FC = () => <MainPageContents />;
+const MainPage: React.FC = () => <Title>This is a Main Page</Title>;
 
 export default MainPage;

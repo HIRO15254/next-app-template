@@ -1,17 +1,16 @@
+import {CustomAppShell} from 'components/CustomAppShell';
 import React from 'react';
-
-import {PublicAppShell} from './_components/PublicAppShell';
 
 interface Props {
   children: React.ReactNode;
 }
 
 /**
- * 非ログイン必須ページのレイアウト
+ * 公開ページの共通レイアウト
  */
-const RootLayout = async (props: Props) => {
+const PublicLayout = async (props: Props) => {
   const {children} = props;
-  return <PublicAppShell>{children}</PublicAppShell>;
+  return <CustomAppShell>{children}</CustomAppShell>;
 };
 
-export default RootLayout;
+export default PublicLayout;

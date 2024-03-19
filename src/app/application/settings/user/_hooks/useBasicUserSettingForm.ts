@@ -1,12 +1,5 @@
 'use client';
 
-import {errorNotification, successNotification} from 'util/notifications';
-import {
-  userIdValidator,
-  userNameValidator,
-  emailValidator,
-} from 'util/validators';
-
 import {useForm, zodResolver} from '@mantine/form';
 import {
   GetLoginUserQuery,
@@ -15,6 +8,12 @@ import {
 } from 'gql';
 import {useRouter} from 'next/navigation';
 import {useSession} from 'next-auth/react';
+import {errorNotification, successNotification} from 'utils/notifications';
+import {
+  userIdValidator,
+  userNameValidator,
+  emailValidator,
+} from 'utils/validators';
 import {z} from 'zod';
 
 export type BasicUserSettingType = {

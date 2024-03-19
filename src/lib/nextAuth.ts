@@ -1,13 +1,12 @@
 /* eslint-disable no-param-reassign */
 
-import {createRandomID} from 'util/createUserId';
-
 import {PrismaAdapter} from '@next-auth/prisma-adapter';
 import {prisma} from 'lib/prisma';
 import {GetServerSidePropsContext, NextApiRequest, NextApiResponse} from 'next';
 import {getServerSession, NextAuthOptions} from 'next-auth';
 import {AdapterUser} from 'next-auth/adapters';
 import GoogleProvider from 'next-auth/providers/google';
+import {createRandomID} from 'utils/createRandomId';
 
 const prismaAdapter = {
   ...PrismaAdapter(prisma),

@@ -1,8 +1,5 @@
 'use client';
 
-import {createRandomID} from 'util/createUserId';
-import {deleteFile, uploadFile} from 'util/uploadFile';
-
 import {useDisclosure} from '@mantine/hooks';
 import {showNotification} from '@mantine/notifications';
 import {useUpdateLoginUserMutation} from 'gql';
@@ -10,6 +7,8 @@ import {useRouter} from 'next/navigation';
 import {useSession} from 'next-auth/react';
 import pica from 'pica';
 import React from 'react';
+import {createRandomID} from 'utils/createRandomId';
+import {deleteFile, uploadFile} from 'utils/uploadFile';
 
 import AvatarEditModal, {
   OnImageSavePayload,

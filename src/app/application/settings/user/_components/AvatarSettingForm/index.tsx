@@ -2,7 +2,7 @@
 
 import {Group, FileInput, Input} from '@mantine/core';
 import {IconUpload} from '@tabler/icons-react';
-import {UserAvatar} from 'components/parts/UserAvatar';
+import {Presentation} from 'components/UserAvatar';
 import {USER_ICON_SIZE} from 'const/userConfig';
 import React from 'react';
 
