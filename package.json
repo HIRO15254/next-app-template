@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "docker-compose -f .dev/docker-compose.yml up -d && prisma generate --schema=./src/lib/prisma/schema.prisma && prisma migrate dev --schema=./src/lib/prisma/schema.prisma && graphql-codegen --config codegen.cts && next dev",
-    "build": "next build",
+    "build": "prisma generate && next build && prisma migrate deploy",
     "analyze": "ANALYZE=true next build",
     "codegen": "graphql-codegen --config codegen.cts",
     "start": "next start",
