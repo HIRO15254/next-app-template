@@ -6,8 +6,8 @@ import {ColorSchemeScript} from '@mantine/core';
 import {CustomAppShell} from '~/frontend/components/CustomAppShell';
 import {PwaHeader} from '~/frontend/lib/PwaHeader';
 import {StyleProvider} from '~/frontend/lib/StyleProvider';
+import {GqlProvider} from '~/frontend/lib/apollo/GqlProvider';
 import {auth} from '~/lib/nextAuth';
-import {GqlProvider} from "~/frontend/lib/apollo/GqlProvider";
 
 export const metadata = {
   title: 'Mantine Next.js template',

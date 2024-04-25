@@ -1,3 +1,4 @@
+import {prisma} from '../../../lib/prisma';
 import {
   emailValidator,
   userIdValidator,
@@ -5,7 +6,6 @@ import {
 } from '../../../util/validators';
 import {builder} from '../../lib/pothos';
 import {isAdmin} from '../util/authorityCheckers';
-import {prisma} from '../../../lib/prisma';
 
 import {UserRoleEnum} from './userRole';
 
@@ -97,7 +97,7 @@ builder.queryFields(t => ({
     args: {
       input: t.arg({type: GetUserInput, required: true}),
     },
-    resolve: (query, _root, args, ctx, _info) =>
+    resolve: (query, _root, args, ctx) =>
       prisma.user.findUniqueOrThrow({
         ...query,
         where: {userId: args.input.userId || ctx.currentUserId},
