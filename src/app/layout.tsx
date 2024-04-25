@@ -1,49 +1,41 @@
-import {ColorSchemeScript} from '@mantine/core';
-import {AuthProvider} from 'providers/AuthProvider';
-import {GqlProvider} from 'providers/GqlProvider';
-import {HotKeysProvider} from 'providers/HotKeysProvider';
-import {PwaHeader} from 'providers/PwaHeader';
-import {StyleProvider} from 'providers/StyleProvider';
 import '@mantine/core/styles.css';
-import '@mantine/notifications/styles.css';
-import 'styles/globalColor.css';
-import React from 'react';
+import React, {ReactNode} from 'react';
 
-// TODO: タイトルと説明を変更
+import {ColorSchemeScript} from '@mantine/core';
+
+import {CustomAppShell} from '~/frontend/components/CustomAppShell';
+import {PwaHeader} from '~/frontend/lib/PwaHeader';
+import {StyleProvider} from '~/frontend/lib/StyleProvider';
+import {auth} from '~/lib/nextAuth';
+import {GqlProvider} from "~/frontend/lib/apollo/GqlProvider";
+
 export const metadata = {
-  title: 'next-app-template',
-  description: 'template for next.js app',
+  title: 'Mantine Next.js template',
+  description: 'I am using Mantine with Next.js!',
 };
 
-interface Props {
-  children: React.ReactNode;
-}
-
-/**
- * 全ページに共通する部分のレイアウト
- */
-const RootLayout: React.FC<Props> = props => {
-  const {children} = props;
-
+export default async function RootLayout({children}: {children: ReactNode}) {
+  const session = await auth();
   return (
     <html lang="ja">
       <head>
-        <meta charSet="utf-8" />
-        <title>{metadata.title}</title>
-        <PwaHeader />
         <ColorSchemeScript />
+        <PwaHeader />
+        <meta
+          charSet="utf-8"
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+        />
       </head>
       <body>
         <GqlProvider>
-          <AuthProvider>
-            <StyleProvider>
-              <HotKeysProvider>{children}</HotKeysProvider>
-            </StyleProvider>
-          </AuthProvider>
+          <StyleProvider>
+            <CustomAppShell hasNavbar={session !== null}>
+              {children}
+            </CustomAppShell>
+          </StyleProvider>
         </GqlProvider>
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

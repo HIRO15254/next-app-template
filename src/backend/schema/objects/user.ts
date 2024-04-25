@@ -1,12 +1,13 @@
-import {UserRoleEnum} from './userRole';
-import {prisma} from '../../../lib/prisma';
 import {
   emailValidator,
   userIdValidator,
   userNameValidator,
-} from '../../../utils/validators';
-import {isAdmin} from '../../util/authorityCheckers';
-import {builder} from '../builder';
+} from '../../../util/validators';
+import {builder} from '../../lib/pothos';
+import {isAdmin} from '../util/authorityCheckers';
+import {prisma} from '../../../lib/prisma';
+
+import {UserRoleEnum} from './userRole';
 
 export const User = builder.prismaNode('User', {
   id: {field: 'id'},
@@ -51,7 +52,7 @@ builder.mutationFields(t => ({
     args: {
       input: t.arg({type: UpdateUserInput, required: true}),
     },
-    resolve: (_query, _root, args, ctx, _info) => {
+    resolve: (_query, _root, args, ctx) => {
       const targetUserId = args.input?.userId || ctx.currentUserId;
       if (!isAdmin(ctx.currentUserId) && ctx.currentUserId !== targetUserId) {
         throw new Error('権限がありません。');
@@ -72,7 +73,7 @@ builder.mutationFields(t => ({
     args: {
       input: t.arg({type: DeleteUserInput, required: true}),
     },
-    resolve: (_query, _root, args, ctx, _info) => {
+    resolve: (_query, _root, args, ctx) => {
       const targetUserId = args.input?.userId || ctx.currentUserId;
       if (!isAdmin(ctx.currentUserId) && ctx.currentUserId !== targetUserId) {
         throw new Error('権限がありません。');
@@ -96,11 +97,10 @@ builder.queryFields(t => ({
     args: {
       input: t.arg({type: GetUserInput, required: true}),
     },
-    resolve: (query, _root, args, ctx, _info) => {
-      return prisma.user.findUniqueOrThrow({
+    resolve: (query, _root, args, ctx, _info) =>
+      prisma.user.findUniqueOrThrow({
         ...query,
         where: {userId: args.input.userId || ctx.currentUserId},
-      });
-    },
+      }),
   }),
 }));

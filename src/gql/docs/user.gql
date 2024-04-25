@@ -1,19 +1,19 @@
 fragment UserFragment on User {
-  id
-  userId
-  name
-  email
-  role
+    id
+    userId
+    name
+    email
+    role
 }
 
 query GetLoginUser {
-  user(input: {}) {
-    ...UserFragment
-  }
+    user(input: {}) {
+        ...UserFragment
+    }
 }
 
 mutation updateLoginUser($input: UserInput!) {
-  updateUser(input: {data: $input}) {
-    ...UserFragment
-  }
+    updateUser(input: {data: $input}) {
+        ...UserFragment
+    }
 }

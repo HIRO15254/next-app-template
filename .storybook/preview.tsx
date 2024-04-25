@@ -1,17 +1,9 @@
-// Import styles of packages that you've installed.
-// All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
-import { MockedProvider } from '@apollo/client/testing';
-
 import React, { useEffect } from 'react';
 import { addons } from '@storybook/preview-api';
 import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
 import { MantineProvider, useMantineColorScheme } from '@mantine/core';
-
-// theme.ts file from previous step
-import { theme } from 'styles/theme';
-
-import {AuthProvider} from "../src/providers/AuthProvider";
+import { theme } from '../src/frontend/style/theme';
 
 const channel = addons.getChannel();
 
@@ -31,9 +23,3 @@ export const decorators = [
   (renderStory: any) => <ColorSchemeWrapper>{renderStory()}</ColorSchemeWrapper>,
   (renderStory: any) => <MantineProvider theme={theme}>{renderStory()}</MantineProvider>,
 ];
-
-export const parameters = {
-  apolloClient: {
-    MockedProvider,
-  }
-}

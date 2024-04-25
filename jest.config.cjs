@@ -4,13 +4,13 @@ const createJestConfig = nextJest({
   dir: './',
 });
 
-const config = {
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  coverageProvider: 'v8',
-  testEnvironment: 'jest-environment-jsdom',
+const customJestConfig = {
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.cjs'],
   moduleNameMapper: {
-    '^/(.*)$': '<rootDir>/src/$1',
+    '^@/components/(.*)$': '<rootDir>/components/$1',
+    '^@/pages/(.*)$': '<rootDir>/pages/$1',
   },
-}
+  testEnvironment: 'jest-environment-jsdom',
+};
 
-module.exports = createJestConfig(config);
+module.exports = createJestConfig(customJestConfig);

@@ -1,7 +1,7 @@
 import {startServerAndCreateNextHandler} from '@as-integrations/next';
 
-import {server} from '../../../backend/lib/apollo';
-import {createContext} from '../../../backend/lib/context';
+import {createContext} from '~/backend/context';
+import {server} from '~/backend/lib/apollo';
 
 const handler = startServerAndCreateNextHandler(server, {
   context: createContext,

@@ -1,8 +1,10 @@
-import {APPLICATION_TOP_URL} from 'const/urls';
-import {LoginForm} from 'features/auth/components/LoginForm';
-import {redirect} from 'next/navigation';
-import {getServerSession} from 'next-auth';
 import React from 'react';
+
+import {redirect} from 'next/navigation';
+
+import {APPLICATION_TOP_URL} from '~/frontend/const/urls';
+import {LoginForm} from '~/frontend/features/auth/components/LoginForm';
+import {auth} from '~/lib/nextAuth';
 
 interface LoginPageProps {
   searchParams: {[key: string]: string | string[] | undefined};
@@ -18,7 +20,7 @@ export const metadata = {
 const LoginPage = async (props: LoginPageProps) => {
   const {searchParams} = props;
 
-  const session = await getServerSession();
+  const session = await auth();
   const callbackUrl =
     searchParams.callbackUrl?.toString() ?? APPLICATION_TOP_URL;
 

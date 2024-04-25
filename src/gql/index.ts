@@ -99,6 +99,11 @@ export enum UserRole {
   User = 'USER'
 }
 
+export type UserApiTestQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UserApiTestQuery = { __typename?: 'Query', user: { __typename?: 'User', id: string, userId: string, name: string, email: string, role: UserRole } };
+
 export type UserFragmentFragment = { __typename?: 'User', id: string, userId: string, name: string, email: string, role: UserRole };
 
 export type GetLoginUserQueryVariables = Exact<{ [key: string]: never; }>;
@@ -122,6 +127,45 @@ export const UserFragmentFragmentDoc = gql`
   role
 }
     `;
+export const UserApiTestDocument = gql`
+    query UserApiTest {
+  user(input: {}) {
+    ...UserFragment
+  }
+}
+    ${UserFragmentFragmentDoc}`;
+
+/**
+ * __useUserApiTestQuery__
+ *
+ * To run a query within a React component, call `useUserApiTestQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserApiTestQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserApiTestQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useUserApiTestQuery(baseOptions?: Apollo.QueryHookOptions<UserApiTestQuery, UserApiTestQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UserApiTestQuery, UserApiTestQueryVariables>(UserApiTestDocument, options);
+      }
+export function useUserApiTestLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserApiTestQuery, UserApiTestQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserApiTestQuery, UserApiTestQueryVariables>(UserApiTestDocument, options);
+        }
+export function useUserApiTestSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<UserApiTestQuery, UserApiTestQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<UserApiTestQuery, UserApiTestQueryVariables>(UserApiTestDocument, options);
+        }
+export type UserApiTestQueryHookResult = ReturnType<typeof useUserApiTestQuery>;
+export type UserApiTestLazyQueryHookResult = ReturnType<typeof useUserApiTestLazyQuery>;
+export type UserApiTestSuspenseQueryHookResult = ReturnType<typeof useUserApiTestSuspenseQuery>;
+export type UserApiTestQueryResult = Apollo.QueryResult<UserApiTestQuery, UserApiTestQueryVariables>;
 export const GetLoginUserDocument = gql`
     query GetLoginUser {
   user(input: {}) {

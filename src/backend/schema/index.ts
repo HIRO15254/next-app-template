@@ -1,4 +1,4 @@
-import {builder} from './builder';
+import {builder} from '../lib/pothos';
 
 import './objects/user';
 import './objects/userRole';

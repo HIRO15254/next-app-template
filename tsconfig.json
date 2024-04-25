@@ -1,36 +1,27 @@
 {
-  "extends": "./node_modules/gts/tsconfig-google.json",
-  "module": "esnext",
   "compilerOptions": {
     "baseUrl": "src",
-    "declaration": false,
-    "jsx": "preserve",
-    "noEmit": true,
-    "outDir": "build",
-    "resolveJsonModule": true,
+    "paths": {
+      "~/*": ["*"],
+    },
     "rootDir": ".",
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "lib": [
-      "dom",
-      "es2017"
-    ],
+    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "incremental": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "isolatedModules": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{ "name": "next" }]
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "**/*.stories.tsx",
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
