@@ -2,6 +2,7 @@ import {Session} from "next-auth";
 
 export const dummySession: Session = {
   user: {
+    userId: 'dummy_id',
     name: 'dummy',
     email: 'dummy-email@dummy.com',
     image: 'https://picsum.photos/240'
