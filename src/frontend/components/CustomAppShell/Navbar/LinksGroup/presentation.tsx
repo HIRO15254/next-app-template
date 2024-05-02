@@ -12,6 +12,8 @@ import {
 import {Icon, IconChevronLeft} from '@tabler/icons-react';
 import Link from 'next/link';
 
+import {PUBLIC_TOP_URL} from '~/frontend/const/urls';
+
 import classes from './index.module.css';
 
 interface LinksProps {
@@ -83,18 +85,17 @@ const SingleLink = (props: LinkProps) => {
   return (
     <Anchor
       component={Link}
-      href={link ?? '/'}
+      unstyled
+      href={link ?? PUBLIC_TOP_URL}
       onClick={onClick}
       className={classes.control}
     >
-      <Group justify="space-between" gap={0}>
-        <Box style={{display: 'flex', alignItems: 'center'}}>
-          <ThemeIcon variant="light" size={30}>
-            <LinkIcon size="1.1rem" />
-          </ThemeIcon>
-          <Box ml="md">{label}</Box>
-        </Box>
-      </Group>
+      <Box style={{display: 'flex', alignItems: 'center'}}>
+        <ThemeIcon variant="light" size={30}>
+          <LinkIcon size="1.1rem" />
+        </ThemeIcon>
+        <Box ml="md">{label}</Box>
+      </Box>
     </Anchor>
   );
 };

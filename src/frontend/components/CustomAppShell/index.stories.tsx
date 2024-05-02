@@ -1,7 +1,7 @@
 import {Meta, StoryObj} from '@storybook/react';
 
 import {Presentation} from './presentation';
-import {dummySession} from '../../../../.storybook/dummySession';
+import {dummySession} from '~/util/dummySession';
 
 const meta = {
   title: 'AppShell/MyAppShell',

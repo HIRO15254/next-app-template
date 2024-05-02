@@ -3,7 +3,7 @@ import React from 'react';
 import {Avatar, AvatarProps, Loader} from '@mantine/core';
 
 interface UserAvatarProps extends AvatarProps {
-  user?: {
+  user: {
     name?: string | null;
     image?: string | null;
   };
