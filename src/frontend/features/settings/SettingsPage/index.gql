@@ -1,0 +1,8 @@
+query SettingsPage {
+    user(input: {}) {
+        id
+        userId
+        name
+        email
+    }
+}

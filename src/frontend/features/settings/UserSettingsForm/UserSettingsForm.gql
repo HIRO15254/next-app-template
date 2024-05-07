@@ -1,0 +1,5 @@
+mutation UpdateUserSettings($input: UserInput!) {
+    updateUser(input: {data: $input}) {
+        ...UserFragment
+    }
+}

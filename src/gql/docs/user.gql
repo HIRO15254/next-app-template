@@ -12,7 +12,7 @@ query GetLoginUser {
     }
 }
 
-mutation updateLoginUser($input: UserInput!) {
+mutation UpdateLoginUser($input: UserInput!) {
     updateUser(input: {data: $input}) {
         ...UserFragment
     }
