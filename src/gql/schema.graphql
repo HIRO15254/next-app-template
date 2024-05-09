@@ -4,10 +4,12 @@ A date string, such as 2007-12-03, compliant with the `full-date` format outline
 scalar Date
 
 input DeleteUserInput {
+  token: String
   userId: String!
 }
 
 input GetUserInput {
+  token: String
   userId: String
 }
 
@@ -28,6 +30,7 @@ type Query {
 
 input UpdateUserInput {
   data: UserInput!
+  token: String
   userId: String
 }
 

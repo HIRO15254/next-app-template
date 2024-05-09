@@ -1,8 +1,5 @@
-query SettingsPage {
-    user(input: {}) {
-        id
-        userId
-        name
-        email
+query SettingsPage($token: String!) {
+    user(input: {token: $token}) {
+        ...UserFragment
     }
 }

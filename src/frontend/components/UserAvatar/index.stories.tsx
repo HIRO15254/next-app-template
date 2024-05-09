@@ -1,16 +1,16 @@
 import {Meta, StoryObj} from '@storybook/react';
 
-import {Presentation} from './presentation';
+import {UserAvatar} from "./index";
 import {dummySession} from '~/util/dummySession';
 
 const meta = {
-  title: 'UserAvatar',
-  component: Presentation,
-} satisfies Meta<typeof Presentation>;
+  title: 'Common/UserAvatar',
+  component: UserAvatar,
+} satisfies Meta<typeof UserAvatar>;
 
 export default meta;
 
-type Story = StoryObj<typeof Presentation>;
+type Story = StoryObj<typeof UserAvatar>;
 
 export const Default = {
   args: {

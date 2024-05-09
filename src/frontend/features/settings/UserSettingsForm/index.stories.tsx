@@ -25,3 +25,17 @@ export const Default = {
     },
   },
 } satisfies Story;
+
+export const Sending = {
+  args: {
+    initialValues: {
+      userId: dummySession.user.userId,
+      name: dummySession.user.name ?? '',
+      email: dummySession.user.email ?? '',
+    },
+    sending: true,
+    handleSubmit: (values) => {
+      action('handleSubmit')(values);
+    },
+  },
+} satisfies Story;

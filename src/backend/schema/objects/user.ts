@@ -1,3 +1,5 @@
+import {UserRole} from '@prisma/client';
+
 import {prisma} from '../../../lib/prisma';
 import {
   emailValidator,
@@ -5,7 +7,7 @@ import {
   userNameValidator,
 } from '../../../util/validators';
 import {builder} from '../../lib/pothos';
-import {isAdmin} from '../util/authorityCheckers';
+import {getAuthUser} from '../util/getAuthUser';
 
 import {UserRoleEnum} from './userRole';
 
@@ -36,6 +38,7 @@ const UserInput = builder.inputType('UserInput', {
 const UpdateUserInput = builder.inputType('UpdateUserInput', {
   fields: t => ({
     userId: t.string({required: false}),
+    token: t.string({required: false}),
     data: t.field({type: UserInput, required: true}),
   }),
 });
@@ -43,6 +46,7 @@ const UpdateUserInput = builder.inputType('UpdateUserInput', {
 const DeleteUserInput = builder.inputType('DeleteUserInput', {
   fields: t => ({
     userId: t.string({required: true}),
+    token: t.string({required: false}),
   }),
 });
 
@@ -52,9 +56,13 @@ builder.mutationFields(t => ({
     args: {
       input: t.arg({type: UpdateUserInput, required: true}),
     },
-    resolve: (_query, _root, args, ctx) => {
-      const targetUserId = args.input?.userId || ctx.currentUserId;
-      if (!isAdmin(ctx.currentUserId) && ctx.currentUserId !== targetUserId) {
+    resolve: async (_query, _root, args, ctx) => {
+      const authUser = await getAuthUser(ctx, args.input.token);
+      const targetUserId = args.input?.userId || authUser.userId;
+      if (
+        authUser.role !== UserRole.ADMIN &&
+        authUser.userId !== targetUserId
+      ) {
         throw new Error('権限がありません。');
       }
       return prisma.user.update({
@@ -73,9 +81,13 @@ builder.mutationFields(t => ({
     args: {
       input: t.arg({type: DeleteUserInput, required: true}),
     },
-    resolve: (_query, _root, args, ctx) => {
+    resolve: async (_query, _root, args, ctx) => {
+      const authUser = await getAuthUser(ctx, args.input.token);
       const targetUserId = args.input?.userId || ctx.currentUserId;
-      if (!isAdmin(ctx.currentUserId) && ctx.currentUserId !== targetUserId) {
+      if (
+        authUser.role !== UserRole.ADMIN &&
+        authUser.userId !== targetUserId
+      ) {
         throw new Error('権限がありません。');
       }
       return prisma.user.delete({
@@ -88,6 +100,7 @@ builder.mutationFields(t => ({
 const GetUserInput = builder.inputType('GetUserInput', {
   fields: t => ({
     userId: t.string({required: false}),
+    token: t.string({required: false}),
   }),
 });
 
@@ -95,12 +108,18 @@ builder.queryFields(t => ({
   user: t.prismaField({
     type: User,
     args: {
-      input: t.arg({type: GetUserInput, required: true}),
-    },
-    resolve: (query, _root, args, ctx) =>
-      prisma.user.findUniqueOrThrow({
-        ...query,
-        where: {userId: args.input.userId || ctx.currentUserId},
+      input: t.arg({
+        type: GetUserInput,
+        required: true,
       }),
+    },
+    resolve: async (query, _root, args, ctx) => {
+      const authUser = await getAuthUser(ctx, args.input.token);
+      const targetUserId = args.input.userId || authUser.userId;
+      return prisma.user.findUniqueOrThrow({
+        ...query,
+        where: {userId: targetUserId},
+      });
+    },
   }),
 }));

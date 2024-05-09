@@ -9,7 +9,7 @@ import classes from './index.module.css';
 interface Props {
   onClick?: () => void;
 }
-export const Presentation: React.FC<Props> = props => {
+export const Navbar: React.FC<Props> = props => {
   const {onClick} = props;
   return (
     <AppShell.Navbar p="md">

@@ -33,7 +33,7 @@ type Props = BurgerData & {
 /**
  * ヘッダー
  */
-export const Presentation: React.FC<Props> = props => {
+export const Header: React.FC<Props> = props => {
   const {hasBurger, burger, session} = props;
   return (
     <AppShell.Header p="xs">

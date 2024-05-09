@@ -11,9 +11,9 @@ interface Props {
 
 export const CustomAppShell = async (props: Props) => {
   const {children, ...other} = props;
-  const sessionData = await auth();
+  const session = await auth();
   return (
-    <Presentation sessionData={sessionData || undefined} {...props} {...other}>
+    <Presentation sessionData={session || undefined} {...props} {...other}>
       {children}
     </Presentation>
   );

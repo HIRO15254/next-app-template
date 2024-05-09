@@ -4,8 +4,8 @@ import RelayPlugin from '@pothos/plugin-relay';
 import ValidationPlugin from '@pothos/plugin-validation';
 import {DateResolver} from 'graphql-scalars';
 
-import {prisma} from '../../../lib/prisma';
 import {Context} from '../../context';
+import {prisma} from '../prisma';
 
 import type PrismaTypes from '@pothos/plugin-prisma/generated';
 

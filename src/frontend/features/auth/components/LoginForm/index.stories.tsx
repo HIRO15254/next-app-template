@@ -1,15 +1,15 @@
 import {Meta, StoryObj} from '@storybook/react';
 
-import {Presentation} from './presentation';
+import {LoginForm} from './index';
 
 const meta = {
   title: 'Auth/LoginForm',
-  component: Presentation,
-} satisfies Meta<typeof Presentation>;
+  component: LoginForm,
+} satisfies Meta<typeof LoginForm>;
 
 export default meta;
 
-type Story = StoryObj<typeof Presentation>;
+type Story = StoryObj<typeof LoginForm>;
 
 export const Default: Story = {
   args: {

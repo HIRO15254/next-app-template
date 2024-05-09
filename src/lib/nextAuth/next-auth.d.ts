@@ -7,15 +7,9 @@ declare module 'next-auth' {
     user: {
       userId: string;
     } & DefaultSession['user'];
+    token: string;
   }
   interface User {
-    userId: string;
-  }
-}
-
-declare module 'next-auth/jwt' {
-  interface JWT {
-    /** OpenID ID Token */
     userId: string;
   }
 }

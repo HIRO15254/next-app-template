@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ReactNode, useState} from 'react';
 
 import {
   Group,
@@ -17,7 +17,7 @@ import {PUBLIC_TOP_URL} from '~/frontend/const/urls';
 import classes from './index.module.css';
 
 interface LinksProps {
-  icon: Icon;
+  icon: ReactNode;
   label: string;
   initiallyOpened?: boolean;
   onClick?: () => void;
@@ -28,7 +28,7 @@ interface LinksProps {
 }
 
 const Links = (props: LinksProps) => {
-  const {icon: LinkIcon, label, initiallyOpened, onClick, link} = props;
+  const {icon, label, initiallyOpened, onClick, link} = props;
   const [opened, setOpened] = useState(initiallyOpened || false);
 
   return (
@@ -40,7 +40,7 @@ const Links = (props: LinksProps) => {
         <Group justify="space-between" gap={0}>
           <Box style={{display: 'flex', alignItems: 'center'}}>
             <ThemeIcon variant="light" size={30}>
-              <LinkIcon size="1.1rem" />
+              {icon}
             </ThemeIcon>
             <Box ml="md">{label}</Box>
           </Box>
@@ -74,14 +74,14 @@ const Links = (props: LinksProps) => {
 };
 
 interface LinkProps {
-  icon: Icon;
+  icon: ReactNode;
   label: string;
   onClick?: () => void;
   link: string;
 }
 
 const SingleLink = (props: LinkProps) => {
-  const {icon: LinkIcon, label, onClick, link} = props;
+  const {icon, label, onClick, link} = props;
   return (
     <Anchor
       component={Link}
@@ -92,7 +92,7 @@ const SingleLink = (props: LinkProps) => {
     >
       <Box style={{display: 'flex', alignItems: 'center'}}>
         <ThemeIcon variant="light" size={30}>
-          <LinkIcon size="1.1rem" />
+          {icon}
         </ThemeIcon>
         <Box ml="md">{label}</Box>
       </Box>
@@ -102,7 +102,7 @@ const SingleLink = (props: LinkProps) => {
 
 type Props = LinksProps | LinkProps;
 
-export const Presentation: React.FC<Props> = props => {
+export const LinksGroup: React.FC<Props> = props => {
   const {link, ...other} = props;
   const isLinks = Array.isArray(link);
 

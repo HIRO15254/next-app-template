@@ -5,15 +5,3 @@ fragment UserFragment on User {
     email
     role
 }
-
-query GetLoginUser {
-    user(input: {}) {
-        ...UserFragment
-    }
-}
-
-mutation UpdateLoginUser($input: UserInput!) {
-    updateUser(input: {data: $input}) {
-        ...UserFragment
-    }
-}

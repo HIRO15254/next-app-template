@@ -1,4 +1,5 @@
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 import React, {ReactNode} from 'react';
 
 import {ColorSchemeScript} from '@mantine/core';
@@ -10,8 +11,8 @@ import {GqlProvider} from '~/frontend/lib/apollo/GqlProvider';
 import {auth} from '~/lib/nextAuth';
 
 export const metadata = {
-  title: 'Mantine Next.js template',
-  description: 'I am using Mantine with Next.js!',
+  title: 'Next.js application Template',
+  description: 'my favorite Next.js application template',
 };
 
 export default async function RootLayout({children}: {children: ReactNode}) {

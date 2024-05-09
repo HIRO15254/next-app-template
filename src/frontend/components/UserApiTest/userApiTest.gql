@@ -1,5 +1,0 @@
-query UserApiTest {
-    user(input: {}) {
-        ...UserFragment
-    }
-}

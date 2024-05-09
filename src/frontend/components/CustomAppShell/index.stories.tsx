@@ -4,7 +4,7 @@ import {Presentation} from './presentation';
 import {dummySession} from '~/util/dummySession';
 
 const meta = {
-  title: 'AppShell/MyAppShell',
+  title: 'Common/AppShell/MyAppShell',
   component: Presentation,
 } satisfies Meta<typeof Presentation>;
 
