@@ -10,7 +10,7 @@ import Google from 'next-auth/providers/google';
 import {prisma} from '../prisma';
 
 const prismaAdapter = {
-  // @ts-ignore
+  // @ts-expect-error due to prisma adapter type error
   // TODO: Fix type error (because of prisma Edge)
   ...PrismaAdapter(prisma),
   getUserByEmail: () => null,

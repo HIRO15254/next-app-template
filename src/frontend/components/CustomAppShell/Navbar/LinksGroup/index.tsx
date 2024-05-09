@@ -9,7 +9,7 @@ import {
   Anchor,
   rem,
 } from '@mantine/core';
-import {Icon, IconChevronLeft} from '@tabler/icons-react';
+import {IconChevronLeft} from '@tabler/icons-react';
 import Link from 'next/link';
 
 import {PUBLIC_TOP_URL} from '~/frontend/const/urls';

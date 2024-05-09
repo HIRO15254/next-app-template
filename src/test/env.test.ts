@@ -8,6 +8,9 @@ describe('environment variables', () => {
   test('DATABASE_URL', () => {
     expect(process.env.DATABASE_URL).toBeDefined();
   });
+  test('DIRECT_DATABASE_URL', () => {
+    expect(process.env.NEXTAUTH_URL).toBeDefined();
+  });
   test('AUTH_SECRET', () => {
     expect(process.env.AUTH_SECRET).toBeDefined();
   });

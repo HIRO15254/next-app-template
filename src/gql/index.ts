@@ -118,18 +118,6 @@ export type UpdateUserSettingsMutation = { __typename?: 'Mutation', updateUser: 
 
 export type UserFragmentFragment = { __typename?: 'User', id: string, userId: string, name: string, email: string, role: UserRole };
 
-export type GetLoginUserQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetLoginUserQuery = { __typename?: 'Query', user: { __typename?: 'User', id: string, userId: string, name: string, email: string, role: UserRole } };
-
-export type UpdateLoginUserMutationVariables = Exact<{
-  input: UserInput;
-}>;
-
-
-export type UpdateLoginUserMutation = { __typename?: 'Mutation', updateUser: { __typename?: 'User', id: string, userId: string, name: string, email: string, role: UserRole } };
-
 export const UserFragmentFragmentDoc = gql`
     fragment UserFragment on User {
   id
@@ -212,75 +200,3 @@ export function useUpdateUserSettingsMutation(baseOptions?: Apollo.MutationHookO
 export type UpdateUserSettingsMutationHookResult = ReturnType<typeof useUpdateUserSettingsMutation>;
 export type UpdateUserSettingsMutationResult = Apollo.MutationResult<UpdateUserSettingsMutation>;
 export type UpdateUserSettingsMutationOptions = Apollo.BaseMutationOptions<UpdateUserSettingsMutation, UpdateUserSettingsMutationVariables>;
-export const GetLoginUserDocument = gql`
-    query GetLoginUser {
-  user(input: {}) {
-    ...UserFragment
-  }
-}
-    ${UserFragmentFragmentDoc}`;
-
-/**
- * __useGetLoginUserQuery__
- *
- * To run a query within a React component, call `useGetLoginUserQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetLoginUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetLoginUserQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetLoginUserQuery(baseOptions?: Apollo.QueryHookOptions<GetLoginUserQuery, GetLoginUserQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetLoginUserQuery, GetLoginUserQueryVariables>(GetLoginUserDocument, options);
-      }
-export function useGetLoginUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLoginUserQuery, GetLoginUserQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetLoginUserQuery, GetLoginUserQueryVariables>(GetLoginUserDocument, options);
-        }
-export function useGetLoginUserSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetLoginUserQuery, GetLoginUserQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetLoginUserQuery, GetLoginUserQueryVariables>(GetLoginUserDocument, options);
-        }
-export type GetLoginUserQueryHookResult = ReturnType<typeof useGetLoginUserQuery>;
-export type GetLoginUserLazyQueryHookResult = ReturnType<typeof useGetLoginUserLazyQuery>;
-export type GetLoginUserSuspenseQueryHookResult = ReturnType<typeof useGetLoginUserSuspenseQuery>;
-export type GetLoginUserQueryResult = Apollo.QueryResult<GetLoginUserQuery, GetLoginUserQueryVariables>;
-export const UpdateLoginUserDocument = gql`
-    mutation UpdateLoginUser($input: UserInput!) {
-  updateUser(input: {data: $input}) {
-    ...UserFragment
-  }
-}
-    ${UserFragmentFragmentDoc}`;
-export type UpdateLoginUserMutationFn = Apollo.MutationFunction<UpdateLoginUserMutation, UpdateLoginUserMutationVariables>;
-
-/**
- * __useUpdateLoginUserMutation__
- *
- * To run a mutation, you first call `useUpdateLoginUserMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateLoginUserMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateLoginUserMutation, { data, loading, error }] = useUpdateLoginUserMutation({
- *   variables: {
- *      input: // value for 'input'
- *   },
- * });
- */
-export function useUpdateLoginUserMutation(baseOptions?: Apollo.MutationHookOptions<UpdateLoginUserMutation, UpdateLoginUserMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateLoginUserMutation, UpdateLoginUserMutationVariables>(UpdateLoginUserDocument, options);
-      }
-export type UpdateLoginUserMutationHookResult = ReturnType<typeof useUpdateLoginUserMutation>;
-export type UpdateLoginUserMutationResult = Apollo.MutationResult<UpdateLoginUserMutation>;
-export type UpdateLoginUserMutationOptions = Apollo.BaseMutationOptions<UpdateLoginUserMutation, UpdateLoginUserMutationVariables>;
