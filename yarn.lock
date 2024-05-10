@@ -57,7 +57,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:^3.10.0":
+"@apollo/client@npm:^3.10.3":
   version: 3.10.3
   resolution: "@apollo/client@npm:3.10.3"
   dependencies:
@@ -94,7 +94,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/experimental-nextjs-app-support@npm:^0.10.0":
+"@apollo/experimental-nextjs-app-support@npm:^0.10.1":
   version: 0.10.1
   resolution: "@apollo/experimental-nextjs-app-support@npm:0.10.1"
   dependencies:
@@ -3593,9 +3593,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mantine/core@npm:7.9.0":
-  version: 7.9.0
-  resolution: "@mantine/core@npm:7.9.0"
+"@mantine/core@npm:7.9.1":
+  version: 7.9.1
+  resolution: "@mantine/core@npm:7.9.1"
   dependencies:
     "@floating-ui/react": "npm:^0.26.9"
     clsx: "npm:2.1.0"
@@ -3604,14 +3604,14 @@ __metadata:
     react-textarea-autosize: "npm:8.5.3"
     type-fest: "npm:^4.12.0"
   peerDependencies:
-    "@mantine/hooks": 7.9.0
+    "@mantine/hooks": 7.9.1
     react: ^18.2.0
     react-dom: ^18.2.0
-  checksum: 10c0/e856f73ab864aba644c59ecaf5189be1e3f0420e5003564449958faa795267f24d5c94275c1cf73841f95fd55368855e46126cd805aa1c137144e0fcc2a1aa69
+  checksum: 10c0/6a84b59957375c20e462a5ef0b3bdf78a45398114d67bff6c9d26b715a4e9e3b4144eb2e41c7dc0a7a4543b1891334215b2cfffd7927a828726cff908838ba9e
   languageName: node
   linkType: hard
 
-"@mantine/form@npm:^7.9.0":
+"@mantine/form@npm:^7.9.1":
   version: 7.9.1
   resolution: "@mantine/form@npm:7.9.1"
   dependencies:
@@ -3623,16 +3623,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mantine/hooks@npm:7.9.0":
-  version: 7.9.0
-  resolution: "@mantine/hooks@npm:7.9.0"
+"@mantine/hooks@npm:7.9.1":
+  version: 7.9.1
+  resolution: "@mantine/hooks@npm:7.9.1"
   peerDependencies:
     react: ^18.2.0
-  checksum: 10c0/6fce7d1262413a2b0954a228b6d4ee4021dc5c73fbc6611310824cf4d31d5fe12b4439271d6e1e048b827c02073db2dd2664320019a444840d8a3fab728441d3
+  checksum: 10c0/048614a18836163000eee23a5993be6ece236ec42ca644eeea3890137de62b9b4a50270abfd55619388fe92f191bece3fb549c13edc73bb43388eb84c0b6db1f
   languageName: node
   linkType: hard
 
-"@mantine/notifications@npm:^7.9.0":
+"@mantine/notifications@npm:^7.9.1":
   version: 7.9.1
   resolution: "@mantine/notifications@npm:7.9.1"
   dependencies:
@@ -4412,7 +4412,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-essentials@npm:^8.0.9":
+"@storybook/addon-essentials@npm:^8.0.10":
   version: 8.0.10
   resolution: "@storybook/addon-essentials@npm:8.0.10"
   dependencies:
@@ -4490,7 +4490,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/blocks@npm:8.0.10, @storybook/blocks@npm:^8.0.9":
+"@storybook/blocks@npm:8.0.10, @storybook/blocks@npm:^8.0.10":
   version: 8.0.10
   resolution: "@storybook/blocks@npm:8.0.10"
   dependencies:
@@ -4924,7 +4924,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/nextjs@npm:^8.0.9":
+"@storybook/nextjs@npm:^8.0.10":
   version: 8.0.10
   resolution: "@storybook/nextjs@npm:8.0.10"
   dependencies:
@@ -5083,7 +5083,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/react@npm:8.0.10, @storybook/react@npm:^8.0.9":
+"@storybook/react@npm:8.0.10, @storybook/react@npm:^8.0.10":
   version: 8.0.10
   resolution: "@storybook/react@npm:8.0.10"
   dependencies:
@@ -5282,7 +5282,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:^15.0.6":
+"@testing-library/react@npm:^15.0.7":
   version: 15.0.7
   resolution: "@testing-library/react@npm:15.0.7"
   dependencies:
@@ -5680,7 +5680,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.12.8":
+"@types/node@npm:*, @types/node@npm:^20.12.11":
   version: 20.12.11
   resolution: "@types/node@npm:20.12.11"
   dependencies:
@@ -5712,7 +5712,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/pg@npm:^8":
+"@types/pg@npm:^8.11.6":
   version: 8.11.6
   resolution: "@types/pg@npm:8.11.6"
   dependencies:
@@ -13996,8 +13996,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "next-app-template@workspace:."
   dependencies:
-    "@apollo/client": "npm:^3.10.0"
-    "@apollo/experimental-nextjs-app-support": "npm:^0.10.0"
+    "@apollo/client": "npm:^3.10.3"
+    "@apollo/experimental-nextjs-app-support": "npm:^0.10.1"
     "@apollo/server": "npm:^4.10.4"
     "@as-integrations/next": "npm:^3.0.0"
     "@auth/prisma-adapter": "npm:^2.0.0"
@@ -14005,10 +14005,10 @@ __metadata:
     "@graphql-codegen/cli": "npm:^5.0.2"
     "@graphql-codegen/typescript-react-apollo": "npm:^4.3.0"
     "@jest/globals": "npm:^29.7.0"
-    "@mantine/core": "npm:7.9.0"
-    "@mantine/form": "npm:^7.9.0"
-    "@mantine/hooks": "npm:7.9.0"
-    "@mantine/notifications": "npm:^7.9.0"
+    "@mantine/core": "npm:7.9.1"
+    "@mantine/form": "npm:^7.9.1"
+    "@mantine/hooks": "npm:7.9.1"
+    "@mantine/notifications": "npm:^7.9.1"
     "@next-auth/prisma-adapter": "npm:^1.0.7"
     "@next/bundle-analyzer": "npm:^14.2.3"
     "@next/eslint-plugin-next": "npm:^14.2.3"
@@ -14019,20 +14019,20 @@ __metadata:
     "@pothos/plugin-validation": "npm:^3.10.1"
     "@prisma/client": "npm:^5.13.0"
     "@prisma/extension-accelerate": "npm:^1.0.0"
-    "@storybook/addon-essentials": "npm:^8.0.9"
+    "@storybook/addon-essentials": "npm:^8.0.10"
     "@storybook/addon-styling-webpack": "npm:^1.0.0"
-    "@storybook/blocks": "npm:^8.0.9"
-    "@storybook/nextjs": "npm:^8.0.9"
-    "@storybook/react": "npm:^8.0.9"
+    "@storybook/blocks": "npm:^8.0.10"
+    "@storybook/nextjs": "npm:^8.0.10"
+    "@storybook/react": "npm:^8.0.10"
     "@tabler/icons-react": "npm:^3.3.0"
     "@testing-library/dom": "npm:^10.1.0"
     "@testing-library/jest-dom": "npm:^6.4.5"
-    "@testing-library/react": "npm:^15.0.6"
+    "@testing-library/react": "npm:^15.0.7"
     "@testing-library/user-event": "npm:^14.5.2"
     "@types/jest": "npm:^29.5.12"
     "@types/next-pwa": "npm:^5.6.9"
-    "@types/node": "npm:^20.12.8"
-    "@types/pg": "npm:^8"
+    "@types/node": "npm:^20.12.11"
+    "@types/pg": "npm:^8.11.6"
     "@types/react": "npm:18.3.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.8.0"
     "@typescript-eslint/parser": "npm:^7.8.0"
@@ -14066,7 +14066,7 @@ __metadata:
     prisma-accelerate-local: "npm:^1.1.4"
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
-    storybook: "npm:^8.0.9"
+    storybook: "npm:^8.0.10"
     storybook-addon-apollo-client: "npm:^7.3.0"
     storybook-dark-mode: "npm:^4.0.1"
     stylelint: "npm:^16.5.0"
@@ -14074,7 +14074,7 @@ __metadata:
     ts-jest: "npm:^29.1.2"
     typescript: "npm:5.4.5"
     webpack: "npm:^5.91.0"
-    zod: "npm:^3.23.6"
+    zod: "npm:^3.23.8"
   languageName: unknown
   linkType: soft
 
@@ -17475,7 +17475,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook@npm:^8.0.9":
+"storybook@npm:^8.0.10":
   version: 8.0.10
   resolution: "storybook@npm:8.0.10"
   dependencies:
@@ -19846,7 +19846,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.23.6":
+"zod@npm:^3.23.8":
   version: 3.23.8
   resolution: "zod@npm:3.23.8"
   checksum: 10c0/8f14c87d6b1b53c944c25ce7a28616896319d95bc46a9660fe441adc0ed0a81253b02b5abdaeffedbeb23bdd25a0bf1c29d2c12dd919aef6447652dd295e3e69

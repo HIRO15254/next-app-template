@@ -1,4 +1,8 @@
-import {Loader} from '@mantine/core';
+import {Center, Loader} from '@mantine/core';
 
-const Loading = () => <Loader color="blue" size="xl" type="bars" />;
+const Loading = () => (
+  <Center>
+    <Loader color="blue" size="xl" type="bars" />
+  </Center>
+);
 export default Loading;
