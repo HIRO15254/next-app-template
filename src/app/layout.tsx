@@ -8,7 +8,6 @@ import {CustomAppShell} from '~/frontend/components/CustomAppShell';
 import {PwaHeader} from '~/frontend/lib/PwaHeader';
 import {StyleProvider} from '~/frontend/lib/StyleProvider';
 import {GqlProvider} from '~/frontend/lib/apollo/GqlProvider';
-import {auth} from '~/lib/nextAuth';
 
 export const metadata = {
   title: 'Next.js application Template',
@@ -16,7 +15,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({children}: {children: ReactNode}) {
-  const session = await auth();
   return (
     <html lang="ja">
       <head>
@@ -31,9 +29,7 @@ export default async function RootLayout({children}: {children: ReactNode}) {
       <body>
         <GqlProvider>
           <StyleProvider>
-            <CustomAppShell hasNavbar={session !== null}>
-              {children}
-            </CustomAppShell>
+            <CustomAppShell>{children}</CustomAppShell>
           </StyleProvider>
         </GqlProvider>
       </body>

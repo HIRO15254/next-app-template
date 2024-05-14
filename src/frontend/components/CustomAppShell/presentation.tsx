@@ -8,21 +8,21 @@ import {Header} from './Header';
 import {Navbar} from './Navbar';
 import {useNavbar} from './useNavbar';
 
-import type {Session} from 'next-auth';
+import type {User} from '@supabase/auth-js';
 
 interface Props {
-  hasNavbar?: boolean;
   children: React.ReactNode;
-  sessionData?: Session;
+  userData?: User;
 }
 
 /**
  * 全ページのコンテンツを囲むシェル
  */
 export const Presentation: React.FC<Props> = props => {
-  const {children, hasNavbar, sessionData} = props;
+  const {children, userData} = props;
+
   const {navbarProps, burgerData, closeMobile} = useNavbar({
-    active: hasNavbar || false,
+    active: !!userData,
   });
 
   return (
@@ -36,7 +36,7 @@ export const Presentation: React.FC<Props> = props => {
       }}
       padding={{base: 10, sm: 15}}
     >
-      <Header session={sessionData} {...burgerData} />
+      <Header user={userData} {...burgerData} />
       <Navbar onClick={closeMobile} />
       <AppShell.Main>{children}</AppShell.Main>
     </AppShell>

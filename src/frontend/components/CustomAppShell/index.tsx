@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {auth} from 'lib/nextAuth';
+import {createClient} from '~/frontend/lib/supabase/server';
 
 import {Presentation} from './presentation';
 
@@ -11,9 +11,11 @@ interface Props {
 
 export const CustomAppShell = async (props: Props) => {
   const {children, ...other} = props;
-  const session = await auth();
+  const supabase = createClient();
+  const {data: session} = await supabase.auth.getUser();
+
   return (
-    <Presentation sessionData={session || undefined} {...props} {...other}>
+    <Presentation userData={session.user ?? undefined} {...props} {...other}>
       {children}
     </Presentation>
   );

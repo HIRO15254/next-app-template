@@ -1,17 +1,30 @@
 import {getClient} from '~/frontend/lib/apollo/GetClient';
+import {createClient} from '~/frontend/lib/supabase/server';
 import {SettingsPageDocument, SettingsPageQuery} from '~/gql';
-import {auth} from '~/lib/nextAuth';
 
 import {SettingsPagePresentation} from './presentation';
 
 export const SettingsPage = async () => {
-  const session = await auth();
+  const supabase = createClient();
+  const {data: session} = await supabase.auth.getUser();
   const {data} = await getClient().query<SettingsPageQuery>({
     query: SettingsPageDocument,
     variables: {
-      token: session?.token,
+      id: session.user?.id || '',
     },
   });
+  const user = data.userDataCollection?.edges[0].node;
 
-  return <SettingsPagePresentation initialValues={{userSettings: data.user}} />;
+  return (
+    <SettingsPagePresentation
+      nodeId={user?.nodeId || ''}
+      initialValues={{
+        userSettings: {
+          userId: user?.userId || '',
+          name: user?.name || '',
+          email: user?.email || '',
+        },
+      }}
+    />
+  );
 };

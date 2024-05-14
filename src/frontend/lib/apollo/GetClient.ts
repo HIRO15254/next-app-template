@@ -1,16 +1,29 @@
-import {ApolloClient, HttpLink, InMemoryCache} from '@apollo/client';
+import {ApolloClient, createHttpLink, InMemoryCache} from '@apollo/client';
+import {setContext} from '@apollo/client/link/context';
 import {registerApolloClient} from '@apollo/experimental-nextjs-app-support/rsc';
 
-export const {getClient} = registerApolloClient(() => {
-  let uri = 'http://localhost:3000/api/graphql';
-  if (process.env.VERCEL_URL) {
-    uri = `https://${process.env.VERCEL_URL}/api/graphql`;
-  }
-  return new ApolloClient({
-    cache: new InMemoryCache(),
-    link: new HttpLink({
-      uri,
-      fetchOptions: {cache: 'no-store'},
-    }),
-  });
+import {createClient} from '~/frontend/lib/supabase/server';
+
+const authLink = setContext(async (_, {headers}) => {
+  const supabase = createClient();
+  const token = (await supabase.auth.getSession()).data.session?.access_token;
+
+  return {
+    headers: {
+      ...headers,
+      Authorization: token ? `Bearer ${token}` : '',
+    },
+  };
 });
+
+const httpLink = createHttpLink({
+  uri: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/graphql/v1`,
+});
+
+export const {getClient} = registerApolloClient(
+  () =>
+    new ApolloClient({
+      cache: new InMemoryCache(),
+      link: authLink.concat(httpLink),
+    })
+);

@@ -8,7 +8,7 @@ import {notifications} from '@mantine/notifications';
 import {IconAt} from '@tabler/icons-react';
 import {z} from 'zod';
 
-import {useUpdateUserSettingsMutation} from '~/gql';
+import {useUserSettingFormMutation} from '~/gql';
 import {
   emailValidator,
   userIdValidator,
@@ -22,6 +22,7 @@ export interface UserSettingsFormType {
 }
 
 interface Props {
+  nodeId: string;
   initialValues: UserSettingsFormType | null;
 }
 
@@ -30,8 +31,8 @@ interface Props {
  * @param props.initialValues 初期値
  */
 export const UserSettingsForm: React.FC<Props> = props => {
-  const {initialValues} = props;
-  const [update, {loading}] = useUpdateUserSettingsMutation();
+  const {initialValues, nodeId} = props;
+  const [update, {loading}] = useUserSettingFormMutation();
 
   return (
     <Presentation
@@ -40,7 +41,8 @@ export const UserSettingsForm: React.FC<Props> = props => {
       handleSubmit={async values => {
         await update({
           variables: {
-            input: {
+            nodeId,
+            data: {
               userId: values.userId,
               name: values.name,
               email: values.email,

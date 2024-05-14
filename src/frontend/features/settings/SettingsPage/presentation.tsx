@@ -14,10 +14,11 @@ interface Props {
   initialValues: {
     userSettings: UserSettingsFormType;
   };
+  nodeId: string;
 }
 
 export const SettingsPagePresentation: React.FC<Props> = props => {
-  const {initialValues} = props;
+  const {initialValues, nodeId} = props;
   return (
     <Container>
       <Title>設定</Title>
@@ -28,7 +29,10 @@ export const SettingsPagePresentation: React.FC<Props> = props => {
         </Tabs.List>
         <Tabs.Panel value="user" py="md">
           <Container size="sm">
-            <UserSettingsForm initialValues={initialValues.userSettings} />
+            <UserSettingsForm
+              nodeId={nodeId}
+              initialValues={initialValues.userSettings}
+            />
           </Container>
         </Tabs.Panel>
         <Tabs.Panel value="appearance" py="md">

@@ -1,11 +1,14 @@
+'use client';
+
 import React from 'react';
 
 import {Menu, Anchor, UnstyledButton} from '@mantine/core';
 import {IconLogout, IconSettings} from '@tabler/icons-react';
 import Link from 'next/link';
-import {signOut} from 'next-auth/react';
+import {useRouter} from 'next/navigation';
 
 import {PUBLIC_TOP_URL, SETTINGS_URL} from '~/frontend/const/urls';
+import {createClient} from '~/frontend/lib/supabase/client';
 
 interface Props {
   children: React.ReactNode;
@@ -16,6 +19,15 @@ interface Props {
  */
 export const UserMenu: React.FC<Props> = props => {
   const {children} = props;
+  const supabase = createClient();
+  const router = useRouter();
+
+  const logout = async () => {
+    const {error} = await supabase.auth.signOut();
+    if (!error) {
+      router.refresh();
+    }
+  };
 
   return (
     <Menu
@@ -37,7 +49,7 @@ export const UserMenu: React.FC<Props> = props => {
         <Menu.Item
           color="red"
           leftSection={<IconLogout size="0.9rem" stroke={1.5} />}
-          onClick={() => signOut({callbackUrl: PUBLIC_TOP_URL})}
+          onClick={logout}
         >
           ログアウト
         </Menu.Item>

@@ -9,6 +9,7 @@ import {
   Button,
   Burger,
 } from '@mantine/core';
+import {User} from '@supabase/auth-js';
 import Link from 'next/link';
 
 import {UserAvatar} from '~/frontend/components/UserAvatar';
@@ -24,17 +25,16 @@ import {UserMenu} from './UserMenu';
 import classes from './index.module.css';
 
 import type {BurgerData} from '../useNavbar';
-import type {Session} from 'next-auth';
 
 type Props = BurgerData & {
-  session?: Session;
+  user?: User;
 };
 
 /**
  * ヘッダー
  */
 export const Header: React.FC<Props> = props => {
-  const {hasBurger, burger, session} = props;
+  const {hasBurger, burger, user} = props;
   return (
     <AppShell.Header p="xs">
       <Group justify="space-between" h="100%">
@@ -63,12 +63,17 @@ export const Header: React.FC<Props> = props => {
           </Anchor>
           <Code>{`v${packageJson.version}`}</Code>
         </Group>
-        {session && (
+        {user && (
           <UserMenu>
-            <UserAvatar user={session.user} size="md" />
+            <UserAvatar
+              user={{
+                name: user.user_metadata.full_name,
+                image: user.user_metadata.avatar_url,
+              }}
+            />
           </UserMenu>
         )}
-        {!session && (
+        {!user && (
           <Button component={Link} href={LOGIN_URL}>
             ログイン
           </Button>

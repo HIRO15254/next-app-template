@@ -1,15 +1,12 @@
 import React from 'react';
 
 import {ButtonProps} from '@mantine/core';
-import {BuiltInProviderType} from 'next-auth/providers';
-import {LiteralUnion} from 'next-auth/react';
-
-import {signIn} from '~/lib/nextAuth';
+import {Provider} from '@supabase/auth-js';
 
 import {Presentation} from './presentation';
 
 interface Props extends Omit<ButtonProps, 'onClick'> {
-  provider: LiteralUnion<BuiltInProviderType>;
+  provider: Provider;
   callbackUrl?: string;
 }
 
@@ -18,17 +15,7 @@ interface Props extends Omit<ButtonProps, 'onClick'> {
  * @param props mantineのButtonPropsを継承 + provider: プロバイダー名 + callback: コールバックURL
  */
 export const LoginButton: React.FC<Props> = props => {
-  const {provider, callbackUrl, ...rest} = props;
+  const {provider, children, ...rest} = props;
 
-  const handleLogin = async () => {
-    'use server';
-
-    await signIn(provider, {callbackUrl});
-  };
-
-  return (
-    <form action={handleLogin}>
-      <Presentation provider={provider} {...rest} />
-    </form>
-  );
+  return <Presentation provider={provider} {...rest} />;
 };

@@ -1,16 +1,20 @@
-import {NextResponse} from 'next/server';
+import {type NextRequest} from 'next/server';
 
-import {auth} from '~/lib/nextAuth';
+import {updateSession} from '~/frontend/lib/supabase/middleware';
 
-// eslint-disable-next-line consistent-return
-export default auth(req => {
-  if (!req.auth) {
-    return NextResponse.redirect(
-      // eslint-disable-next-line node/no-unsupported-features/node-builtins
-      new URL(`/auth/login?redirect=${encodeURIComponent(req.url)}`, req.url)
-    );
-  }
-});
+export async function middleware(request: NextRequest) {
+  return updateSession(request);
+}
+
 export const config = {
-  matcher: ['/(application.*)'],
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * Feel free to modify this pattern to include more paths.
+     */
+    '/application/:path*',
+  ],
 };

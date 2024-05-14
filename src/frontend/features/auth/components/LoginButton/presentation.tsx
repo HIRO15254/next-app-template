@@ -1,29 +1,43 @@
+'use client';
+
 import React from 'react';
 
 import {Button, ButtonProps} from '@mantine/core';
-import {BuiltInProviderType} from 'next-auth/providers';
-import {LiteralUnion} from 'next-auth/react';
+import {Provider} from '@supabase/auth-js';
+
+import {createClient} from '~/frontend/lib/supabase/client';
 
 import {GoogleIcon} from './GoogleIcon';
 
 interface Props extends ButtonProps {
-  provider: LiteralUnion<BuiltInProviderType>;
+  provider: Provider;
+  callbackUrl?: string;
 }
 
 export const Presentation: React.FC<Props> = props => {
-  const {provider, children, ...rest} = props;
+  const {provider, children, callbackUrl, ...rest} = props;
+  const supabase = createClient();
 
   let leftSection = null;
   if (provider === 'google') {
     leftSection = <GoogleIcon />;
   }
 
+  const handleLogin = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/api/auth/callback?next=${callbackUrl ?? '/'}`,
+      },
+    });
+  };
+
   return (
     <Button
-      type="submit"
       leftSection={leftSection}
       variant="default"
       color="gray"
+      onClick={handleLogin}
       {...rest}
     >
       {children || `${provider}でログイン`}

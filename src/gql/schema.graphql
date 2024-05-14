@@ -1,59 +1,369 @@
+"""A high precision floating point value represented as a string"""
+scalar BigFloat
+
 """
-A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+Boolean expression comparing fields on type "BigFloat"
 """
+input BigFloatFilter {
+  eq: BigFloat
+  gt: BigFloat
+  gte: BigFloat
+  in: [BigFloat!]
+  is: FilterIs
+  lt: BigFloat
+  lte: BigFloat
+  neq: BigFloat
+}
+
+"""An arbitrary size integer represented as a string"""
+scalar BigInt
+
+"""
+Boolean expression comparing fields on type "BigInt"
+"""
+input BigIntFilter {
+  eq: BigInt
+  gt: BigInt
+  gte: BigInt
+  in: [BigInt!]
+  is: FilterIs
+  lt: BigInt
+  lte: BigInt
+  neq: BigInt
+}
+
+"""
+Boolean expression comparing fields on type "Boolean"
+"""
+input BooleanFilter {
+  eq: Boolean
+  is: FilterIs
+}
+
+"""
+An opaque string using for tracking a position in results during pagination
+"""
+scalar Cursor
+
+"""A date wihout time information"""
 scalar Date
 
-input DeleteUserInput {
-  token: String
-  userId: String!
+"""
+Boolean expression comparing fields on type "Date"
+"""
+input DateFilter {
+  eq: Date
+  gt: Date
+  gte: Date
+  in: [Date!]
+  is: FilterIs
+  lt: Date
+  lte: Date
+  neq: Date
 }
 
-input GetUserInput {
-  token: String
-  userId: String
+"""A date and time"""
+scalar Datetime
+
+"""
+Boolean expression comparing fields on type "Datetime"
+"""
+input DatetimeFilter {
+  eq: Datetime
+  gt: Datetime
+  gte: Datetime
+  in: [Datetime!]
+  is: FilterIs
+  lt: Datetime
+  lte: Datetime
+  neq: Datetime
 }
 
+enum FilterIs {
+  NOT_NULL
+  NULL
+}
+
+"""
+Boolean expression comparing fields on type "Float"
+"""
+input FloatFilter {
+  eq: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  is: FilterIs
+  lt: Float
+  lte: Float
+  neq: Float
+}
+
+"""
+Boolean expression comparing fields on type "ID"
+"""
+input IDFilter {
+  eq: ID
+}
+
+"""
+Boolean expression comparing fields on type "Int"
+"""
+input IntFilter {
+  eq: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  is: FilterIs
+  lt: Int
+  lte: Int
+  neq: Int
+}
+
+"""A Javascript Object Notation value serialized as a string"""
+scalar JSON
+
+"""The root type for creating and mutating data"""
 type Mutation {
-  deleteUser(input: DeleteUserInput!): User!
-  updateUser(input: UpdateUserInput!): User!
+  """Deletes zero or more records from the `UserData` collection"""
+  deleteFromUserDataCollection(
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: UserDataFilter
+  ): UserDataDeleteResponse!
+
+  """Adds one or more `UserData` records to the collection"""
+  insertIntoUserDataCollection(objects: [UserDataInsertInput!]!): UserDataInsertResponse
+  string_random(p_length: Int = 10, p_source: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"): String
+
+  """Updates zero or more records in the `UserData` collection"""
+  updateUserDataCollection(
+    """
+    The maximum number of records in the collection permitted to be affected
+    """
+    atMost: Int! = 1
+
+    """Restricts the mutation's impact to records matching the criteria"""
+    filter: UserDataFilter
+
+    """
+    Fields that are set will be updated for all records matching the `filter`
+    """
+    set: UserDataUpdateInput!
+  ): UserDataUpdateResponse!
 }
 
 interface Node {
-  id: ID!
+  """Retrieves a record by `ID`"""
+  nodeId: ID!
 }
 
+"""Any type not handled by the type system"""
+scalar Opaque
+
+"""
+Boolean expression comparing fields on type "Opaque"
+"""
+input OpaqueFilter {
+  eq: Opaque
+  is: FilterIs
+}
+
+"""Defines a per-field sorting order"""
+enum OrderByDirection {
+  """Ascending order, nulls first"""
+  AscNullsFirst
+
+  """Ascending order, nulls last"""
+  AscNullsLast
+
+  """Descending order, nulls first"""
+  DescNullsFirst
+
+  """Descending order, nulls last"""
+  DescNullsLast
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+"""The root type for querying data"""
 type Query {
-  node(id: ID!): Node
-  nodes(ids: [ID!]!): [Node]!
-  user(input: GetUserInput!): User!
+  """Retrieve a record by its `ID`"""
+  node(
+    """The record's `ID`"""
+    nodeId: ID!
+  ): Node
+
+  """A pagable collection of type `UserData`"""
+  userDataCollection(
+    """Query values in the collection after the provided cursor"""
+    after: Cursor
+
+    """Query values in the collection before the provided cursor"""
+    before: Cursor
+
+    """Filters to apply to the results set when querying from the collection"""
+    filter: UserDataFilter
+
+    """Query the first `n` records in the collection"""
+    first: Int
+
+    """Query the last `n` records in the collection"""
+    last: Int
+
+    """
+    Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    """
+    offset: Int
+
+    """Sort order to apply to the collection"""
+    orderBy: [UserDataOrderBy!]
+  ): UserDataConnection
 }
 
-input UpdateUserInput {
-  data: UserInput!
-  token: String
-  userId: String
+"""
+Boolean expression comparing fields on type "String"
+"""
+input StringFilter {
+  eq: String
+  gt: String
+  gte: String
+  ilike: String
+  in: [String!]
+  iregex: String
+  is: FilterIs
+  like: String
+  lt: String
+  lte: String
+  neq: String
+  regex: String
+  startsWith: String
 }
 
-type User implements Node {
-  createdAt: Date!
-  databaseId: String!
-  email: String!
-  id: ID!
+"""A time without date information"""
+scalar Time
+
+"""
+Boolean expression comparing fields on type "Time"
+"""
+input TimeFilter {
+  eq: Time
+  gt: Time
+  gte: Time
+  in: [Time!]
+  is: FilterIs
+  lt: Time
+  lte: Time
+  neq: Time
+}
+
+"""A universally unique identifier"""
+scalar UUID
+
+"""
+Boolean expression comparing fields on type "UUID"
+"""
+input UUIDFilter {
+  eq: UUID
+  in: [UUID!]
+  is: FilterIs
+  neq: UUID
+}
+
+type UserData implements Node {
+  email: String
+  id: UUID!
   image: String
-  name: String!
-  role: UserRole!
-  updatedAt: Date!
+  name: String
+
+  """Globally Unique Record Identifier"""
+  nodeId: ID!
   userId: String!
 }
 
-input UserInput {
+type UserDataConnection {
+  edges: [UserDataEdge!]!
+  pageInfo: PageInfo!
+}
+
+type UserDataDeleteResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [UserData!]!
+}
+
+type UserDataEdge {
+  cursor: String!
+  node: UserData!
+}
+
+input UserDataFilter {
+  """
+  Returns true only if all its inner filters are true, otherwise returns false
+  """
+  and: [UserDataFilter!]
+  email: StringFilter
+  id: UUIDFilter
+  image: StringFilter
+  name: StringFilter
+  nodeId: IDFilter
+
+  """Negates a filter"""
+  not: UserDataFilter
+
+  """
+  Returns true if at least one of its inner filters is true, otherwise returns false
+  """
+  or: [UserDataFilter!]
+  userId: StringFilter
+}
+
+input UserDataInsertInput {
   email: String
+  id: UUID
   image: String
   name: String
   userId: String
 }
 
-enum UserRole {
-  ADMIN
-  USER
+type UserDataInsertResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [UserData!]!
+}
+
+input UserDataOrderBy {
+  email: OrderByDirection
+  id: OrderByDirection
+  image: OrderByDirection
+  name: OrderByDirection
+  userId: OrderByDirection
+}
+
+input UserDataUpdateInput {
+  email: String
+  id: UUID
+  image: String
+  name: String
+  userId: String
+}
+
+type UserDataUpdateResponse {
+  """Count of the records impacted by the mutation"""
+  affectedCount: Int!
+
+  """Array of records impacted by the mutation"""
+  records: [UserData!]!
 }
