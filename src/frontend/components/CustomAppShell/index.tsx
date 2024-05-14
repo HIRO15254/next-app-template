@@ -2,13 +2,7 @@ import React from 'react';
 
 import {getClient} from '~/frontend/lib/apollo/GetClient';
 import {createClient} from '~/frontend/lib/supabase/server';
-import {
-  AppShellDocument,
-  AppShellQuery,
-  SettingsPageDocument,
-  SettingsPageQuery,
-  useAppShellQuery,
-} from '~/gql';
+import {AppShellDocument, AppShellQuery} from '~/gql';
 
 import {Presentation} from './presentation';
 
