@@ -1,0 +1,14 @@
+query appShell($id: UUID!) {
+    userDataCollection(filter: {id: {eq: $id}}) {
+        edges {
+            node {
+                nodeId
+                id
+                name
+                email
+                image
+                userId
+            }
+        }
+    }
+}

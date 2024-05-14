@@ -9,7 +9,6 @@ import {
   Button,
   Burger,
 } from '@mantine/core';
-import {User} from '@supabase/auth-js';
 import Link from 'next/link';
 
 import {UserAvatar} from '~/frontend/components/UserAvatar';
@@ -18,6 +17,7 @@ import {
   DESKTOP_BREAKPOINT,
 } from '~/frontend/const/layoutConfig';
 import {LOGIN_URL, PUBLIC_TOP_URL} from '~/frontend/const/urls';
+import {UserData} from '~/gql';
 
 import packageJson from '../../../../../package.json';
 
@@ -27,7 +27,7 @@ import classes from './index.module.css';
 import type {BurgerData} from '../useNavbar';
 
 type Props = BurgerData & {
-  user?: User;
+  user?: UserData;
 };
 
 /**
@@ -67,8 +67,8 @@ export const Header: React.FC<Props> = props => {
           <UserMenu>
             <UserAvatar
               user={{
-                name: user.user_metadata.full_name,
-                image: user.user_metadata.avatar_url,
+                name: user.name,
+                image: user.image,
               }}
             />
           </UserMenu>

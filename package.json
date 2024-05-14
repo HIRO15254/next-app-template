@@ -2,6 +2,9 @@
   "name": "next-app-template",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=10.6.0"
+  },
   "scripts": {
     "build": "next build",
     "codegen": "graphql-codegen --config codegen.cts",

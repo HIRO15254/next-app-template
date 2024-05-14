@@ -15,21 +15,17 @@ type Story = StoryObj<typeof Presentation>;
 export const WithNavbar = {
   args: {
     children: 'MyAppShell',
-    hasNavbar: true,
   },
 } satisfies Story;
 
 export const WithoutNavbar = {
   args: {
     children: 'MyAppShell',
-    hasNavbar: false,
   },
 } satisfies Story;
 
 export const WithSession = {
   args: {
     children: 'MyAppShell',
-    hasNavbar: true,
-    sessionData: dummySession,
   },
 } satisfies Story;

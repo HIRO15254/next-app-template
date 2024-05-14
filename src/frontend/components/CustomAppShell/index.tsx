@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {createClient} from '~/frontend/lib/supabase/server';
+import {useAppShellQuery} from '~/gql';
 
 import {Presentation} from './presentation';
 
@@ -13,9 +14,14 @@ export const CustomAppShell = async (props: Props) => {
   const {children, ...other} = props;
   const supabase = createClient();
   const {data: session} = await supabase.auth.getUser();
+  const {data} = useAppShellQuery({
+    variables: {id: session.user?.id ?? ''},
+    errorPolicy: 'ignore',
+  });
+  const userData = data?.userDataCollection?.edges[0].node;
 
   return (
-    <Presentation userData={session.user ?? undefined} {...props} {...other}>
+    <Presentation userData={userData} {...props} {...other}>
       {children}
     </Presentation>
   );

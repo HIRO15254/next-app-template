@@ -7,7 +7,7 @@ import {IconLogout, IconSettings} from '@tabler/icons-react';
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 
-import {PUBLIC_TOP_URL, SETTINGS_URL} from '~/frontend/const/urls';
+import {SETTINGS_URL} from '~/frontend/const/urls';
 import {createClient} from '~/frontend/lib/supabase/client';
 
 interface Props {

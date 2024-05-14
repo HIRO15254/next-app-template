@@ -1,6 +1,4 @@
-import {Session} from 'next-auth';
-
-export const dummySession: Session = {
+export const dummySession = {
   user: {
     userId: 'dummy_id',
     name: 'dummy',

@@ -4,15 +4,15 @@ import React from 'react';
 
 import {AppShell} from '@mantine/core';
 
+import {UserData} from '~/gql';
+
 import {Header} from './Header';
 import {Navbar} from './Navbar';
 import {useNavbar} from './useNavbar';
 
-import type {User} from '@supabase/auth-js';
-
 interface Props {
   children: React.ReactNode;
-  userData?: User;
+  userData?: UserData;
 }
 
 /**
