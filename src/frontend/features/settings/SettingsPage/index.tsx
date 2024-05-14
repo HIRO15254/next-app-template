@@ -13,7 +13,7 @@ export const SettingsPage = async () => {
       id: session.user?.id || '',
     },
   });
-  const user = data.userDataCollection?.edges[0].node;
+  const user = data.userDataCollection?.edges[0]?.node;
 
   return (
     <SettingsPagePresentation

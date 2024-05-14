@@ -56,9 +56,9 @@ export async function updateSession(request: NextRequest) {
 
   const {data: session} = await supabase.auth.getUser();
   if (!session.user) {
-    const {pathname} = new URL(request.url);
+    const {pathname, origin} = new URL(request.url);
     return NextResponse.redirect(
-      `${process.env.BASE_URL}/auth/login?callbackUrl=${pathname}`
+      `${origin}/auth/login?callbackUrl=${pathname}`
     );
   }
 

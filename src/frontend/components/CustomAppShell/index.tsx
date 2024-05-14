@@ -15,14 +15,20 @@ export const CustomAppShell = async (props: Props) => {
   const {children, ...other} = props;
   const supabase = createClient();
   const {data: session} = await supabase.auth.getUser();
+  if (!session.user) {
+    return (
+      <Presentation {...props} {...other}>
+        {children}
+      </Presentation>
+    );
+  }
   const {data} = await getClient().query<AppShellQuery>({
     query: AppShellDocument,
     variables: {
       id: session.user?.id || '',
     },
-    errorPolicy: 'ignore',
   });
-  const userData = data?.userDataCollection?.edges[0].node;
+  const userData = data?.userDataCollection?.edges[0]?.node;
 
   return (
     <Presentation userData={userData} {...props} {...other}>

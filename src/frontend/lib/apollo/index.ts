@@ -10,6 +10,7 @@ const authLink = setContext(async (_, {headers}) => {
   return {
     headers: {
       ...headers,
+      apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
       Authorization: token ? `Bearer ${token}` : '',
     },
   };
