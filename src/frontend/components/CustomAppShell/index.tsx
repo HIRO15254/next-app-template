@@ -1,7 +1,14 @@
 import React from 'react';
 
+import {getClient} from '~/frontend/lib/apollo/GetClient';
 import {createClient} from '~/frontend/lib/supabase/server';
-import {useAppShellQuery} from '~/gql';
+import {
+  AppShellDocument,
+  AppShellQuery,
+  SettingsPageDocument,
+  SettingsPageQuery,
+  useAppShellQuery,
+} from '~/gql';
 
 import {Presentation} from './presentation';
 
@@ -14,8 +21,11 @@ export const CustomAppShell = async (props: Props) => {
   const {children, ...other} = props;
   const supabase = createClient();
   const {data: session} = await supabase.auth.getUser();
-  const {data} = useAppShellQuery({
-    variables: {id: session.user?.id ?? ''},
+  const {data} = await getClient().query<AppShellQuery>({
+    query: AppShellDocument,
+    variables: {
+      id: session.user?.id || '',
+    },
     errorPolicy: 'ignore',
   });
   const userData = data?.userDataCollection?.edges[0].node;
