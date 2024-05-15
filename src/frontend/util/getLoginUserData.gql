@@ -1,4 +1,4 @@
-query appShell($id: UUID!) {
+query loginUserData($id: UUID!) {
     userDataCollection(filter: {id: {eq: $id}}) {
         edges {
             node {

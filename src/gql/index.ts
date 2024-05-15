@@ -335,13 +335,6 @@ export type UserDataUpdateResponse = {
   records: Array<UserData>;
 };
 
-export type AppShellQueryVariables = Exact<{
-  id: Scalars['UUID']['input'];
-}>;
-
-
-export type AppShellQuery = { __typename?: 'Query', userDataCollection?: { __typename?: 'UserDataConnection', edges: Array<{ __typename?: 'UserDataEdge', node: { __typename?: 'UserData', nodeId: string, id: string, name?: string | null, email?: string | null, image?: string | null, userId: string } }> } | null };
-
 export type SettingsPageQueryVariables = Exact<{
   id: Scalars['UUID']['input'];
 }>;
@@ -357,56 +350,14 @@ export type UserSettingFormMutationVariables = Exact<{
 
 export type UserSettingFormMutation = { __typename?: 'Mutation', updateUserDataCollection: { __typename?: 'UserDataUpdateResponse', records: Array<{ __typename?: 'UserData', nodeId: string }> } };
 
+export type LoginUserDataQueryVariables = Exact<{
+  id: Scalars['UUID']['input'];
+}>;
 
-export const AppShellDocument = gql`
-    query appShell($id: UUID!) {
-  userDataCollection(filter: {id: {eq: $id}}) {
-    edges {
-      node {
-        nodeId
-        id
-        name
-        email
-        image
-        userId
-      }
-    }
-  }
-}
-    `;
 
-/**
- * __useAppShellQuery__
- *
- * To run a query within a React component, call `useAppShellQuery` and pass it any options that fit your needs.
- * When your component renders, `useAppShellQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAppShellQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useAppShellQuery(baseOptions: Apollo.QueryHookOptions<AppShellQuery, AppShellQueryVariables> & ({ variables: AppShellQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<AppShellQuery, AppShellQueryVariables>(AppShellDocument, options);
-      }
-export function useAppShellLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AppShellQuery, AppShellQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<AppShellQuery, AppShellQueryVariables>(AppShellDocument, options);
-        }
-export function useAppShellSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<AppShellQuery, AppShellQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<AppShellQuery, AppShellQueryVariables>(AppShellDocument, options);
-        }
-export type AppShellQueryHookResult = ReturnType<typeof useAppShellQuery>;
-export type AppShellLazyQueryHookResult = ReturnType<typeof useAppShellLazyQuery>;
-export type AppShellSuspenseQueryHookResult = ReturnType<typeof useAppShellSuspenseQuery>;
-export type AppShellQueryResult = Apollo.QueryResult<AppShellQuery, AppShellQueryVariables>;
+export type LoginUserDataQuery = { __typename?: 'Query', userDataCollection?: { __typename?: 'UserDataConnection', edges: Array<{ __typename?: 'UserDataEdge', node: { __typename?: 'UserData', nodeId: string, id: string, name?: string | null, email?: string | null, image?: string | null, userId: string } }> } | null };
+
+
 export const SettingsPageDocument = gql`
     query settingsPage($id: UUID!) {
   userDataCollection(filter: {id: {eq: $id}}) {
@@ -491,3 +442,52 @@ export function useUserSettingFormMutation(baseOptions?: Apollo.MutationHookOpti
 export type UserSettingFormMutationHookResult = ReturnType<typeof useUserSettingFormMutation>;
 export type UserSettingFormMutationResult = Apollo.MutationResult<UserSettingFormMutation>;
 export type UserSettingFormMutationOptions = Apollo.BaseMutationOptions<UserSettingFormMutation, UserSettingFormMutationVariables>;
+export const LoginUserDataDocument = gql`
+    query loginUserData($id: UUID!) {
+  userDataCollection(filter: {id: {eq: $id}}) {
+    edges {
+      node {
+        nodeId
+        id
+        name
+        email
+        image
+        userId
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useLoginUserDataQuery__
+ *
+ * To run a query within a React component, call `useLoginUserDataQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLoginUserDataQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLoginUserDataQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useLoginUserDataQuery(baseOptions: Apollo.QueryHookOptions<LoginUserDataQuery, LoginUserDataQueryVariables> & ({ variables: LoginUserDataQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LoginUserDataQuery, LoginUserDataQueryVariables>(LoginUserDataDocument, options);
+      }
+export function useLoginUserDataLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LoginUserDataQuery, LoginUserDataQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LoginUserDataQuery, LoginUserDataQueryVariables>(LoginUserDataDocument, options);
+        }
+export function useLoginUserDataSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<LoginUserDataQuery, LoginUserDataQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<LoginUserDataQuery, LoginUserDataQueryVariables>(LoginUserDataDocument, options);
+        }
+export type LoginUserDataQueryHookResult = ReturnType<typeof useLoginUserDataQuery>;
+export type LoginUserDataLazyQueryHookResult = ReturnType<typeof useLoginUserDataLazyQuery>;
+export type LoginUserDataSuspenseQueryHookResult = ReturnType<typeof useLoginUserDataSuspenseQuery>;
+export type LoginUserDataQueryResult = Apollo.QueryResult<LoginUserDataQuery, LoginUserDataQueryVariables>;

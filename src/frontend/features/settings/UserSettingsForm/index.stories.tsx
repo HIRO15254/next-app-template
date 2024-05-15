@@ -1,7 +1,7 @@
 import {Meta, StoryObj} from '@storybook/react';
 
 import {Presentation} from './index';
-import {dummySession} from '~/util/dummySession';
+import {dummyUserData} from '~/util/dummyUserData';
 import {action} from "@storybook/addon-actions";
 
 const meta = {
@@ -16,9 +16,9 @@ type Story = StoryObj<typeof Presentation>;
 export const Default = {
   args: {
     initialValues: {
-      userId: dummySession.user.userId,
-      name: dummySession.user.name ?? '',
-      email: dummySession.user.email ?? '',
+      userId: dummyUserData.userId,
+      name: dummyUserData.name ?? '',
+      email: dummyUserData.email ?? '',
     },
     handleSubmit: (values) => {
       action('handleSubmit')(values);
@@ -29,9 +29,9 @@ export const Default = {
 export const Sending = {
   args: {
     initialValues: {
-      userId: dummySession.user.userId,
-      name: dummySession.user.name ?? '',
-      email: dummySession.user.email ?? '',
+      userId: dummyUserData.userId,
+      name: dummyUserData.name ?? '',
+      email: dummyUserData.email ?? '',
     },
     sending: true,
     handleSubmit: (values) => {

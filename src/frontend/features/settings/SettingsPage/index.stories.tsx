@@ -1,6 +1,6 @@
 import {Meta, StoryObj} from "@storybook/react";
 import {SettingsPagePresentation} from "./presentation";
-import {dummySession} from "~/util/dummySession";
+import {dummyUserData} from "~/util/dummyUserData";
 
 const meta = {
   title: 'Settings/SettingsPage',
@@ -21,9 +21,9 @@ export const Default = {
   args: {
     initialValues: {
       userSettings: {
-        userId: dummySession.user.userId,
-        name: dummySession.user.name ?? '',
-        email: dummySession.user.email ?? '',
+        userId: dummyUserData.userId,
+        name: dummyUserData.name ?? '',
+        email: dummyUserData.email ?? '',
       },
     },
   }

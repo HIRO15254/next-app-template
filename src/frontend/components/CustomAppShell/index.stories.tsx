@@ -1,31 +1,26 @@
 import {Meta, StoryObj} from '@storybook/react';
+import {CustomAppShell} from "~/frontend/components/CustomAppShell/index";
+import {dummyUserData} from "~/util/dummyUserData";
 
-import {Presentation} from './presentation';
-import {dummySession} from '~/util/dummySession';
 
 const meta = {
   title: 'Common/AppShell/MyAppShell',
-  component: Presentation,
-} satisfies Meta<typeof Presentation>;
+  component: CustomAppShell,
+} satisfies Meta<typeof CustomAppShell>;
 
 export default meta;
 
-type Story = StoryObj<typeof Presentation>;
+type Story = StoryObj<typeof CustomAppShell>;
 
 export const WithNavbar = {
   args: {
-    children: 'MyAppShell',
+    children: 'CustomAppShell',
+    userData: dummyUserData,
   },
 } satisfies Story;
 
 export const WithoutNavbar = {
   args: {
-    children: 'MyAppShell',
-  },
-} satisfies Story;
-
-export const WithSession = {
-  args: {
-    children: 'MyAppShell',
+    children: 'CustomAppShell',
   },
 } satisfies Story;

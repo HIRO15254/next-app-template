@@ -1,7 +1,7 @@
 import {Meta, StoryObj} from '@storybook/react';
 
 import {UserAvatar} from "./index";
-import {dummySession} from '~/util/dummySession';
+import {dummyUserData} from '~/util/dummyUserData';
 
 const meta = {
   title: 'Common/UserAvatar',
@@ -14,7 +14,7 @@ type Story = StoryObj<typeof UserAvatar>;
 
 export const Default = {
   args: {
-    user: dummySession.user,
+    user: dummyUserData
   },
 } satisfies Story;
 

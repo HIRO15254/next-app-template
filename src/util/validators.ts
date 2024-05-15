@@ -4,7 +4,7 @@ import {
   USER_ID_MAX_LENGTH,
   USER_ID_MIN_LENGTH,
   USER_NAME_MAX_LENGTH,
-} from '../const/userConfig';
+} from '~/const/userConfig';
 
 /**
  * メールアドレスのバリデーション

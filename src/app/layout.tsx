@@ -8,6 +8,7 @@ import {CustomAppShell} from '~/frontend/components/CustomAppShell';
 import {PwaHeader} from '~/frontend/lib/PwaHeader';
 import {StyleProvider} from '~/frontend/lib/StyleProvider';
 import {GqlProvider} from '~/frontend/lib/apollo/GqlProvider';
+import {getLoginUserData} from '~/frontend/util/getLoginUserData';
 
 export const metadata = {
   title: 'Next.js application Template',
@@ -15,6 +16,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({children}: {children: ReactNode}) {
+  const userData = await getLoginUserData();
   return (
     <html lang="ja">
       <head>
@@ -29,7 +31,9 @@ export default async function RootLayout({children}: {children: ReactNode}) {
       <body>
         <GqlProvider>
           <StyleProvider>
-            <CustomAppShell>{children}</CustomAppShell>
+            <CustomAppShell userData={userData ?? undefined}>
+              {children}
+            </CustomAppShell>
           </StyleProvider>
         </GqlProvider>
       </body>

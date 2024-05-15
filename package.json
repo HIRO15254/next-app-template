@@ -8,8 +8,8 @@
   "scripts": {
     "build": "next build",
     "codegen": "graphql-codegen --config codegen.cts",
-    "supabase:start": "src/backend/supabase start --workdir src/backend",
-    "supabase:stop": "src/backend/supabase stop --workdir src/backend",
+    "supabase:start": "supabase start --workdir src/backend",
+    "supabase:stop": "supabase stop --workdir src/backend",
     "dev": "next dev",
     "fix": "gts fix && npm run lint:stylelint --fix",
     "jest": "jest",

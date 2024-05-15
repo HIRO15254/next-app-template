@@ -1,38 +1,44 @@
+'use client';
+
 import React from 'react';
 
-import {getClient} from '~/frontend/lib/apollo/GetClient';
-import {createClient} from '~/frontend/lib/supabase/server';
-import {AppShellDocument, AppShellQuery} from '~/gql';
+import {AppShell} from '@mantine/core';
 
-import {Presentation} from './presentation';
+import {UserData} from '~/gql';
+
+import {Header} from './Header';
+import {Navbar} from './Navbar';
+import {useNavbar} from './useNavbar';
 
 interface Props {
-  hasNavbar?: boolean;
   children: React.ReactNode;
+  userData?: UserData;
 }
 
-export const CustomAppShell = async (props: Props) => {
-  const {children, ...other} = props;
-  const supabase = createClient();
-  const {data: session} = await supabase.auth.getUser();
-  if (!session.user) {
-    return (
-      <Presentation {...props} {...other}>
-        {children}
-      </Presentation>
-    );
-  }
-  const {data} = await getClient().query<AppShellQuery>({
-    query: AppShellDocument,
-    variables: {
-      id: session.user?.id || '',
-    },
+/**
+ * 全ページのコンテンツを囲むシェル
+ */
+export const CustomAppShell: React.FC<Props> = props => {
+  const {children, userData} = props;
+
+  const {navbarProps, burgerData, closeMobile} = useNavbar({
+    active: !!userData,
   });
-  const userData = data?.userDataCollection?.edges[0]?.node;
 
   return (
-    <Presentation userData={userData} {...props} {...other}>
-      {children}
-    </Presentation>
+    <AppShell
+      header={{
+        height: 60,
+      }}
+      navbar={{
+        width: 250,
+        ...navbarProps,
+      }}
+      padding={{base: 10, sm: 15}}
+    >
+      <Header user={userData} {...burgerData} />
+      <Navbar onClick={closeMobile} />
+      <AppShell.Main>{children}</AppShell.Main>
+    </AppShell>
   );
 };

@@ -5,19 +5,10 @@ describe('environment variables', () => {
   test('NODE_ENV', () => {
     expect(process.env.NODE_ENV).toBeDefined();
   });
-  test('DATABASE_URL', () => {
-    expect(process.env.DATABASE_URL).toBeDefined();
+  test('NEXT_PUBLIC_SUPABASE_URL', () => {
+    expect(process.env.NEXT_PUBLIC_SUPABASE_URL).toBeDefined();
   });
-  test('DIRECT_DATABASE_URL', () => {
-    expect(process.env.NEXTAUTH_URL).toBeDefined();
-  });
-  test('AUTH_SECRET', () => {
-    expect(process.env.AUTH_SECRET).toBeDefined();
-  });
-  test('AUTH_GOOGLE_ID', () => {
-    expect(process.env.AUTH_GOOGLE_ID).toBeDefined();
-  });
-  test('AUTH_GOOGLE_SECRET', () => {
-    expect(process.env.AUTH_GOOGLE_SECRET).toBeDefined();
+  test('NEXT_PUBLIC_SUPABASE_ANON_KEY', () => {
+    expect(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY).toBeDefined();
   });
 });
