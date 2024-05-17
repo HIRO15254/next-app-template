@@ -9,6 +9,11 @@ import classes from './index.module.css';
 interface Props {
   onClick?: () => void;
 }
+
+/**
+ * カスタムアプリケーションシェルのナビゲーションバー
+ * @param props.onClick リンクがクリックされたときの副次的処理
+ */
 export const Navbar: React.FC<Props> = props => {
   const {onClick} = props;
   return (

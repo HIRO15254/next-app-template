@@ -1,4 +1,4 @@
-import {NotFoundPage} from 'frontend/pages/NotFoundPage';
+import {NotFoundPage} from 'frontend/components/NotFoundPage';
 
 const Page = () => <NotFoundPage />;
 

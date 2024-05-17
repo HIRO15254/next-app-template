@@ -8,12 +8,12 @@ import {notifications} from '@mantine/notifications';
 import {IconAt} from '@tabler/icons-react';
 import {z} from 'zod';
 
-import {useUserSettingFormMutation} from '~/gql';
 import {
   emailValidator,
   userIdValidator,
   userNameValidator,
-} from '~/util/validators';
+} from '~/frontend/util/validators';
+import {useUserSettingFormMutation} from '~/gql';
 
 export interface UserSettingsFormType {
   userId: string;

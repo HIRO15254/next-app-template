@@ -1,6 +1,6 @@
 'use client';
 
-import {ErrorPage} from '~/frontend/pages/ErrorPage';
+import {ErrorPage} from 'frontend/components/ErrorPage';
 
 type Props = {
   error: Error;

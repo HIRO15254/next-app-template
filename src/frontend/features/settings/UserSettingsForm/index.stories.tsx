@@ -1,7 +1,7 @@
 import {Meta, StoryObj} from '@storybook/react';
 
 import {Presentation} from './index';
-import {dummyUserData} from '~/util/dummyUserData';
+import {dummyUserData} from '~/frontend/util/dummyUserData';
 import {action} from "@storybook/addon-actions";
 
 const meta = {

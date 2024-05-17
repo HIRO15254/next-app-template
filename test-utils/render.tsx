@@ -1,7 +1,7 @@
 import {MantineProvider} from '@mantine/core';
 import {render as testingLibraryRender} from '@testing-library/react';
 
-import {theme} from '~/frontend/style/theme';
+import {theme} from '~/frontend/lib/mantine/theme';
 
 export function render(ui: React.ReactNode) {
   return testingLibraryRender(<>{ui}</>, {

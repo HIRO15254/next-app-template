@@ -22,7 +22,7 @@ export const SettingsPagePresentation: React.FC<Props> = props => {
   return (
     <Container>
       <Title>設定</Title>
-      <Tabs defaultValue="user" p="md">
+      <Tabs defaultValue="user" py="md">
         <Tabs.List>
           <Tabs.Tab value="user">ユーザー設定</Tabs.Tab>
           <Tabs.Tab value="appearance">外観設定</Tabs.Tab>

@@ -1,6 +1,6 @@
 import {Meta, StoryObj} from "@storybook/react";
 import {SettingsPagePresentation} from "./presentation";
-import {dummyUserData} from "~/util/dummyUserData";
+import {dummyUserData} from "~/frontend/util/dummyUserData";
 
 const meta = {
   title: 'Settings/SettingsPage',

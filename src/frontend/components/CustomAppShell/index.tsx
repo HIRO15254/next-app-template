@@ -17,6 +17,7 @@ interface Props {
 
 /**
  * 全ページのコンテンツを囲むシェル
+ * @param props.userData 与えるとナビゲーションバーが表示され、ヘッダーにユーザーメニューが表示される
  */
 export const CustomAppShell: React.FC<Props> = props => {
   const {children, userData} = props;

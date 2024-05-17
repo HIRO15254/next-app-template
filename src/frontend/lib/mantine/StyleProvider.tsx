@@ -5,7 +5,7 @@ import React from 'react';
 import {MantineProvider} from '@mantine/core';
 import {Notifications} from '@mantine/notifications';
 
-import {theme} from '~/frontend/style/theme';
+import {theme} from '~/frontend/lib/mantine/theme';
 
 type Props = {
   children: React.ReactNode;

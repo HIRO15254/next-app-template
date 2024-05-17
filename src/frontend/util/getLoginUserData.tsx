@@ -19,10 +19,5 @@ export const getLoginUserData = async (): Promise<UserData | null> => {
     },
   });
   const userData = data?.userDataCollection?.edges[0]?.node;
-  if (!userData) {
-    throw new Error(
-      'セッションデータは存在しますが、対応するユーザーデータが取得できませんでした'
-    );
-  }
-  return userData;
+  return userData ?? null;
 };
