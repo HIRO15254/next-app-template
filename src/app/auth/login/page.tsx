@@ -3,7 +3,7 @@ import React from 'react';
 import {redirect} from 'next/navigation';
 
 import {APPLICATION_TOP_URL} from '~/frontend/const/urls';
-import {LoginForm} from '~/frontend/features/auth/components/LoginForm';
+import {LoginPage} from '~/frontend/features/auth/pages/LoginPage';
 import {createClient} from '~/frontend/lib/supabase/server';
 
 interface LoginPageProps {
@@ -17,7 +17,7 @@ export const metadata = {
 /**
  * ログイン用のページ ログイン時のアクセスは禁止
  */
-const LoginPage = async (props: LoginPageProps) => {
+const Page = async (props: LoginPageProps) => {
   const {searchParams} = props;
   const supabase = createClient();
 
@@ -26,12 +26,11 @@ const LoginPage = async (props: LoginPageProps) => {
   const callbackUrl =
     searchParams.callbackUrl?.toString() ?? APPLICATION_TOP_URL;
 
-  // ログイン済みならコールバック先へリダイレクト
   if (data.user) {
     redirect(callbackUrl);
   }
 
-  return <LoginForm callbackUrl={callbackUrl} />;
+  return <LoginPage callbackUrl={callbackUrl} />;
 };
 
-export default LoginPage;
+export default Page;

@@ -1,10 +1,15 @@
+import React from 'react';
+
 import {getClient} from '~/frontend/lib/apollo/GetClient';
 import {createClient} from '~/frontend/lib/supabase/server';
 import {SettingsPageDocument, SettingsPageQuery} from '~/gql';
 
 import {SettingsPagePresentation} from './presentation';
 
-export const SettingsPage = async () => {
+/**
+ * 設定ページ
+ */
+export const SettingsPage: React.FC = async () => {
   const supabase = createClient();
   const {data: session} = await supabase.auth.getUser();
   const {data} = await getClient().query<SettingsPageQuery>({
@@ -14,16 +19,16 @@ export const SettingsPage = async () => {
     },
   });
   const user = data.userDataCollection?.edges[0]?.node;
+  if (!user) return null;
 
   return (
     <SettingsPagePresentation
-      nodeId={user?.nodeId || ''}
-      initialValues={{
-        userSettings: {
-          userId: user?.userId || '',
-          name: user?.name || '',
-          email: user?.email || '',
-        },
+      user={{
+        name: user.name || '',
+        email: user.email || '',
+        image: user.image || '',
+        userId: user.userId,
+        nodeId: user.nodeId,
       }}
     />
   );

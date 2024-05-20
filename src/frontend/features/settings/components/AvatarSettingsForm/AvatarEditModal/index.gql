@@ -1,0 +1,8 @@
+mutation UpdateUserAvatar($nodeId: ID!, $imagePath: String!){
+    updateUserDataCollection(filter: {nodeId: {eq: $nodeId}}, set: {image: $imagePath}) {
+        records {
+            nodeId
+            image
+        }
+    }
+}

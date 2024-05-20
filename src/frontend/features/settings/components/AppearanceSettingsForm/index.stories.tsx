@@ -1,5 +1,5 @@
 import {Meta, StoryObj} from "@storybook/react";
-import {AppearanceSettingsForm} from "~/frontend/features/settings/AppearanceSettingsForm/index";
+import {AppearanceSettingsForm} from "~/frontend/features/settings/components/AppearanceSettingsForm/index";
 
 const meta = {
   title: 'Settings/AppearanceSettingsForm',

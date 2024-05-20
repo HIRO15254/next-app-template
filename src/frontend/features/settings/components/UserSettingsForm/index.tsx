@@ -15,7 +15,7 @@ import {
 } from '~/frontend/util/validators';
 import {useUserSettingFormMutation} from '~/gql';
 
-export interface UserSettingsFormType {
+interface UserSettingsFormType {
   userId: string;
   name: string;
   email: string;

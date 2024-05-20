@@ -1333,7 +1333,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-runtime@npm:^7.23.2":
+"@babel/plugin-transform-runtime@npm:^7.12.1, @babel/plugin-transform-runtime@npm:^7.23.2":
   version: 7.24.3
   resolution: "@babel/plugin-transform-runtime@npm:7.24.3"
   dependencies:
@@ -5233,6 +5233,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/pica@npm:^9":
+  version: 9.0.4
+  resolution: "@types/pica@npm:9.0.4"
+  checksum: 10c0/be815b696d148400683181eb6b33ca2aeaa7ec0b0b2af002fdc8643bbf6f7125808ace691b680dda2b96f9e3f6be045598794a9fbb6450efe6aee8c99ea7807f
+  languageName: node
+  linkType: hard
+
 "@types/pretty-hrtime@npm:^1.0.0":
   version: 1.0.3
   resolution: "@types/pretty-hrtime@npm:1.0.3"
@@ -5258,6 +5265,15 @@ __metadata:
   version: 1.2.7
   resolution: "@types/range-parser@npm:1.2.7"
   checksum: 10c0/361bb3e964ec5133fa40644a0b942279ed5df1949f21321d77de79f48b728d39253e5ce0408c9c17e4e0fd95ca7899da36841686393b9f7a1e209916e9381a3c
+  languageName: node
+  linkType: hard
+
+"@types/react-avatar-editor@npm:^13":
+  version: 13.0.2
+  resolution: "@types/react-avatar-editor@npm:13.0.2"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 10c0/4b8c79f926fd365be3b9678788f3b0ebd9338b0b98b274603d66101d781bbc350a8e856bc6062a2754ff951889a1099e7fcb135944cac679b09044e06d799458
   languageName: node
   linkType: hard
 
@@ -10430,6 +10446,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"glur@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "glur@npm:1.1.2"
+  checksum: 10c0/756fcbc7f1a8576755811e31367feeaffbd13b7f20d788672bccbd65956839065e256621a7576f4ab321352b28a0aea442d64567bca23882526b891767ffbe3e
+  languageName: node
+  linkType: hard
+
 "gopd@npm:^1.0.1":
   version: 1.0.1
   resolution: "gopd@npm:1.0.1"
@@ -13359,6 +13382,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"multimath@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "multimath@npm:2.0.0"
+  dependencies:
+    glur: "npm:^1.1.2"
+    object-assign: "npm:^4.1.1"
+  checksum: 10c0/3e60b7e0ec69b19114d6a2419e86ca456c852a30d40ae37f6d6bd9377c2e98d8df2e33313e917e2c70dd6d08660345cc2183066679bbd43fb6848a7aba16cb02
+  languageName: node
+  linkType: hard
+
 "mute-stream@npm:0.0.8":
   version: 0.0.8
   resolution: "mute-stream@npm:0.0.8"
@@ -13445,7 +13478,9 @@ __metadata:
     "@types/next-pwa": "npm:^5.6.9"
     "@types/node": "npm:^20.12.11"
     "@types/pg": "npm:^8.11.6"
+    "@types/pica": "npm:^9"
     "@types/react": "npm:18.3.1"
+    "@types/react-avatar-editor": "npm:^13"
     "@typescript-eslint/eslint-plugin": "npm:^7.8.0"
     "@typescript-eslint/parser": "npm:^7.8.0"
     babel-loader: "npm:^9.1.3"
@@ -13469,11 +13504,13 @@ __metadata:
     mantine-form-zod-resolver: "npm:^1.1.0"
     next: "npm:14.2.3"
     next-pwa: "npm:^5.6.0"
+    pica: "npm:^9.0.1"
     postcss: "npm:^8.4.38"
     postcss-preset-mantine: "npm:1.15.0"
     postcss-simple-vars: "npm:^7.0.1"
     prettier: "npm:^3.2.5"
     react: "npm:18.3.1"
+    react-avatar-editor: "npm:^13.0.2"
     react-dom: "npm:18.3.1"
     storybook: "npm:^8.0.10"
     storybook-addon-apollo-client: "npm:^7.3.0"
@@ -14467,6 +14504,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pica@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "pica@npm:9.0.1"
+  dependencies:
+    glur: "npm:^1.1.2"
+    multimath: "npm:^2.0.0"
+    object-assign: "npm:^4.1.1"
+    webworkify: "npm:^1.5.0"
+  checksum: 10c0/1378f493ea4d2cc810ee31ca4e2fcaf7afe7330d8c03b0a4b2a26046de3eb4abaa5e21a2dc1bc7f26cc878f81d1e17eb3f54893ce0ca1241d32313436f52570f
+  languageName: node
+  linkType: hard
+
 "picocolors@npm:^1.0.0":
   version: 1.0.0
   resolution: "picocolors@npm:1.0.0"
@@ -15153,6 +15202,20 @@ __metadata:
     iconv-lite: "npm:0.4.24"
     unpipe: "npm:1.0.0"
   checksum: 10c0/b201c4b66049369a60e766318caff5cb3cc5a900efd89bdac431463822d976ad0670912c931fdbdcf5543207daf6f6833bca57aa116e1661d2ea91e12ca692c4
+  languageName: node
+  linkType: hard
+
+"react-avatar-editor@npm:^13.0.2":
+  version: 13.0.2
+  resolution: "react-avatar-editor@npm:13.0.2"
+  dependencies:
+    "@babel/plugin-transform-runtime": "npm:^7.12.1"
+    "@babel/runtime": "npm:^7.12.5"
+    prop-types: "npm:^15.7.2"
+  peerDependencies:
+    react: ^0.14.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^0.14.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/798ee4b87ffe2d5db0adfa7386e5a619c82ed03469f330fa4a8846e5b38f46de5382b0001f22b7705951fe901e7ec70b3e8b11809ea8f424a14cfbd356874078
   languageName: node
   linkType: hard
 
@@ -18376,6 +18439,13 @@ __metadata:
   bin:
     webpack: bin/webpack.js
   checksum: 10c0/74a3e0ea1c9a492accf035317f31769ffeaaab415811524b9f17bc7bf7012c5b6e1a9860df5ca6903f3ae2618727b801eb47d9351a2595dfffb25941d368b88c
+  languageName: node
+  linkType: hard
+
+"webworkify@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "webworkify@npm:1.5.0"
+  checksum: 10c0/f451e42c5dc6e8f467736788ce05eef74455d6735705e5459825250b1c10db3e6087abdca149d965e86974a988109c4aa328d93ace3a252bad2f2889ab181bbb
   languageName: node
   linkType: hard
 

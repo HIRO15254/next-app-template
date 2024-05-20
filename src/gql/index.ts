@@ -335,6 +335,14 @@ export type UserDataUpdateResponse = {
   records: Array<UserData>;
 };
 
+export type UpdateUserAvatarMutationVariables = Exact<{
+  nodeId: Scalars['ID']['input'];
+  imagePath: Scalars['String']['input'];
+}>;
+
+
+export type UpdateUserAvatarMutation = { __typename?: 'Mutation', updateUserDataCollection: { __typename?: 'UserDataUpdateResponse', records: Array<{ __typename?: 'UserData', nodeId: string, image?: string | null }> } };
+
 export type SettingsPageQueryVariables = Exact<{
   id: Scalars['UUID']['input'];
 }>;
@@ -358,6 +366,46 @@ export type LoginUserDataQueryVariables = Exact<{
 export type LoginUserDataQuery = { __typename?: 'Query', userDataCollection?: { __typename?: 'UserDataConnection', edges: Array<{ __typename?: 'UserDataEdge', node: { __typename?: 'UserData', nodeId: string, id: string, name?: string | null, email?: string | null, image?: string | null, userId: string } }> } | null };
 
 
+export const UpdateUserAvatarDocument = gql`
+    mutation UpdateUserAvatar($nodeId: ID!, $imagePath: String!) {
+  updateUserDataCollection(
+    filter: {nodeId: {eq: $nodeId}}
+    set: {image: $imagePath}
+  ) {
+    records {
+      nodeId
+      image
+    }
+  }
+}
+    `;
+export type UpdateUserAvatarMutationFn = Apollo.MutationFunction<UpdateUserAvatarMutation, UpdateUserAvatarMutationVariables>;
+
+/**
+ * __useUpdateUserAvatarMutation__
+ *
+ * To run a mutation, you first call `useUpdateUserAvatarMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateUserAvatarMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateUserAvatarMutation, { data, loading, error }] = useUpdateUserAvatarMutation({
+ *   variables: {
+ *      nodeId: // value for 'nodeId'
+ *      imagePath: // value for 'imagePath'
+ *   },
+ * });
+ */
+export function useUpdateUserAvatarMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserAvatarMutation, UpdateUserAvatarMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateUserAvatarMutation, UpdateUserAvatarMutationVariables>(UpdateUserAvatarDocument, options);
+      }
+export type UpdateUserAvatarMutationHookResult = ReturnType<typeof useUpdateUserAvatarMutation>;
+export type UpdateUserAvatarMutationResult = Apollo.MutationResult<UpdateUserAvatarMutation>;
+export type UpdateUserAvatarMutationOptions = Apollo.BaseMutationOptions<UpdateUserAvatarMutation, UpdateUserAvatarMutationVariables>;
 export const SettingsPageDocument = gql`
     query settingsPage($id: UUID!) {
   userDataCollection(filter: {id: {eq: $id}}) {

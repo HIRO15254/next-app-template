@@ -11,6 +11,9 @@ type Props = {
   children: React.ReactNode;
 };
 
+/**
+ * Mantineのスタイルを提供するプロバイダー（全体のレイアウトをラップする）
+ */
 export const StyleProvider = (props: Props) => {
   const {children} = props;
 

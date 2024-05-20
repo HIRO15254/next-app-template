@@ -19,12 +19,12 @@ export const Default = {
     },
   },
   args: {
-    initialValues: {
-      userSettings: {
-        userId: dummyUserData.userId,
-        name: dummyUserData.name ?? '',
-        email: dummyUserData.email ?? '',
-      },
-    },
+    user: {
+      name: dummyUserData.name ?? '',
+      email: dummyUserData.email ?? '',
+      image: dummyUserData.image ?? '',
+      userId: dummyUserData.userId,
+      nodeId: dummyUserData.nodeId,
+    }
   }
 } satisfies Story;

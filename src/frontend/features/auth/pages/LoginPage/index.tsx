@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Stack, Title, Container} from '@mantine/core';
 
-import {LoginButton} from '../LoginButton';
+import {LoginButton} from '../../components/LoginButton';
 
 interface Props {
   callbackUrl: string;
@@ -11,7 +11,7 @@ interface Props {
 /**
  * ログインを行うためのフォーム
  */
-export const LoginForm: React.FC<Props> = props => {
+export const LoginPage: React.FC<Props> = props => {
   const {callbackUrl} = props;
   return (
     <Container size="xs">

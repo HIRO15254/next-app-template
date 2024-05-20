@@ -1,5 +1,8 @@
 import {createBrowserClient} from '@supabase/ssr';
 
+/**
+ * supabaseクライアントを取得(client components用)
+ */
 export function createClient() {
   return createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

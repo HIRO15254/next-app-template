@@ -1,4 +1,4 @@
-import {SettingsPage} from '~/frontend/features/settings/SettingsPage';
+import {SettingsPage} from 'frontend/features/settings/pages/SettingsPage';
 
 export default SettingsPage;
 
