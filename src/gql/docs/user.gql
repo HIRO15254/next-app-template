@@ -1,0 +1,14 @@
+fragment UserDataFragment on UserData {
+    nodeId
+    id
+    name
+    email
+    image
+    userId
+}
+
+query loginUserData {
+    loginUserData {
+        ...UserDataFragment
+    }
+}

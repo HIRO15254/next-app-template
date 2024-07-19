@@ -1,7 +1,7 @@
 import {Meta, StoryObj} from '@storybook/react';
 
 import {UserAvatar} from "./index";
-import {dummyUserData} from '~/frontend/util/dummyUserData';
+import {dummyUserData} from '~/frontend/features/auth/utils/dummyUserData';
 
 const meta = {
   title: 'Common/UserAvatar',

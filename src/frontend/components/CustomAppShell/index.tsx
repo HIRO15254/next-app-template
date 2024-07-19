@@ -4,7 +4,7 @@ import React from 'react';
 
 import {AppShell} from '@mantine/core';
 
-import {UserData} from '~/gql';
+import {UserDataType} from '~/frontend/features/auth/types/UserDataType';
 
 import {Header} from './Header';
 import {Navbar} from './Navbar';
@@ -12,7 +12,7 @@ import {useNavbar} from './useNavbar';
 
 interface Props {
   children: React.ReactNode;
-  userData?: UserData;
+  userData: UserDataType | null;
 }
 
 /**

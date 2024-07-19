@@ -1,6 +1,6 @@
 import {Meta, StoryObj} from '@storybook/react';
 import {CustomAppShell} from "~/frontend/components/CustomAppShell/index";
-import {dummyUserData} from "~/frontend/util/dummyUserData";
+import {dummyUserData} from "~/frontend/features/auth/utils/dummyUserData";
 
 
 const meta = {

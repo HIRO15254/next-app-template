@@ -7,24 +7,22 @@ import {IconUpload} from '@tabler/icons-react';
 
 import {UserAvatar} from '~/frontend/components/UserAvatar';
 import {USER_ICON_SIZE} from '~/frontend/const/userConfig';
+import {UserDataType} from '~/frontend/features/auth/types/UserDataType';
 
 import {useAvatarSettingModal} from './AvatarEditModal/hook';
 
 type Props = {
-  user: {
-    name: string;
-    image: string;
-    userId: string;
-    nodeId: string;
-  };
+  userData: UserDataType;
 };
 
 /**
  * ユーザーアイコンを設定するためのフォーム
  */
 export const AvatarSettingsForm: React.FC<Props> = props => {
-  const {user} = props;
-  const {onImageChange, image, avatarEditModal} = useAvatarSettingModal({user});
+  const {userData} = props;
+  const {onImageChange, image, avatarEditModal} = useAvatarSettingModal({
+    user: userData,
+  });
 
   return (
     <Stack px="md" m="auto">
@@ -34,7 +32,7 @@ export const AvatarSettingsForm: React.FC<Props> = props => {
       >
         {avatarEditModal}
         <Group pt="sm">
-          <UserAvatar user={user} size="lg" />
+          <UserAvatar user={userData} size="lg" />
           <FileInput
             placeholder="ファイルを選択…"
             accept="image/*"

@@ -137,7 +137,7 @@ type Mutation {
 
   """Adds one or more `UserData` records to the collection"""
   insertIntoUserDataCollection(objects: [UserDataInsertInput!]!): UserDataInsertResponse
-  string_random(p_length: Int = 10, p_source: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"): String
+  randomString(pLength: Int = 10, pSource: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"): String
 
   """Updates zero or more records in the `UserData` collection"""
   updateUserDataCollection(
@@ -196,6 +196,8 @@ type PageInfo {
 
 """The root type for querying data"""
 type Query {
+  loginUserData: UserData
+
   """Retrieve a record by its `ID`"""
   node(
     """The record's `ID`"""

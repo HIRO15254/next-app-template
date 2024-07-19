@@ -5,10 +5,10 @@ import React, {ReactNode} from 'react';
 import {ColorSchemeScript} from '@mantine/core';
 
 import {CustomAppShell} from '~/frontend/components/CustomAppShell';
+import {getLoginUserData} from '~/frontend/features/auth/utils/getLoginUserData';
 import {PwaHeader} from '~/frontend/lib/PwaHeader';
 import {GqlProvider} from '~/frontend/lib/apollo/GqlProvider';
 import {StyleProvider} from '~/frontend/lib/mantine/StyleProvider';
-import {getLoginUserData} from '~/frontend/util/getLoginUserData';
 
 export const metadata = {
   title: 'Next.js application Template',

@@ -1,9 +1,9 @@
-import {UserData} from '~/gql';
+import {UserDataType} from '../types/UserDataType';
 
 /**
  * テスト・Storybook用のダミーユーザーデータ
  */
-export const dummyUserData: UserData = {
+export const dummyUserData: UserDataType = {
   id: 'dummy_id',
   userId: 'dummy_user_id',
   nodeId: 'dummy_node_id',

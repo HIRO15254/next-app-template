@@ -1,41 +1,30 @@
 import {Meta, StoryObj} from '@storybook/react';
 
-import {Presentation} from './index';
-import {dummyUserData} from '~/frontend/util/dummyUserData';
+import {UserSettingsFormPresentation} from './presentation';
 import {action} from "@storybook/addon-actions";
 
 const meta = {
   title: 'Settings/UserSettingsForm',
-  component: Presentation,
-} satisfies Meta<typeof Presentation>;
+  component: UserSettingsFormPresentation,
+} satisfies Meta<typeof UserSettingsFormPresentation>;
 
 export default meta;
 
-type Story = StoryObj<typeof Presentation>;
+type Story = StoryObj<typeof UserSettingsFormPresentation>;
 
 export const Default = {
   args: {
-    initialValues: {
-      userId: dummyUserData.userId,
-      name: dummyUserData.name ?? '',
-      email: dummyUserData.email ?? '',
-    },
-    handleSubmit: (values) => {
-      action('handleSubmit')(values);
+    onSubmit: () => {
+      action('handleSubmit')
     },
   },
 } satisfies Story;
 
 export const Sending = {
   args: {
-    initialValues: {
-      userId: dummyUserData.userId,
-      name: dummyUserData.name ?? '',
-      email: dummyUserData.email ?? '',
-    },
     sending: true,
-    handleSubmit: (values) => {
-      action('handleSubmit')(values);
+    onSubmit: () => {
+      action('handleSubmit')
     },
   },
 } satisfies Story;

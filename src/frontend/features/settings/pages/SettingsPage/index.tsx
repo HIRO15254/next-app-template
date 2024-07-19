@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {getClient} from '~/frontend/lib/apollo/GetClient';
-import {createClient} from '~/frontend/lib/supabase/server';
-import {SettingsPageDocument, SettingsPageQuery} from '~/gql';
+import {getLoginUserData} from '~/frontend/features/auth/utils/getLoginUserData';
 
 import {SettingsPagePresentation} from './presentation';
 
@@ -10,26 +8,10 @@ import {SettingsPagePresentation} from './presentation';
  * 設定ページ
  */
 export const SettingsPage: React.FC = async () => {
-  const supabase = createClient();
-  const {data: session} = await supabase.auth.getUser();
-  const {data} = await getClient().query<SettingsPageQuery>({
-    query: SettingsPageDocument,
-    variables: {
-      id: session.user?.id || '',
-    },
-  });
-  const user = data.userDataCollection?.edges[0]?.node;
-  if (!user) return null;
+  const loginUserData = await getLoginUserData();
+  if (!loginUserData) {
+    throw new Error('ログイン情報が取得できませんでした');
+  }
 
-  return (
-    <SettingsPagePresentation
-      user={{
-        name: user.name || '',
-        email: user.email || '',
-        image: user.image || '',
-        userId: user.userId,
-        nodeId: user.nodeId,
-      }}
-    />
-  );
+  return <SettingsPagePresentation userData={loginUserData} />;
 };

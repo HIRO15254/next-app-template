@@ -4,22 +4,18 @@ import React from 'react';
 
 import {Container, Tabs, Title} from '@mantine/core';
 
+import {UserDataType} from '~/frontend/features/auth/types/UserDataType';
+
 import {AppearanceSettingsForm} from '../../components/AppearanceSettingsForm';
 import {AvatarSettingsForm} from '../../components/AvatarSettingsForm';
 import {UserSettingsForm} from '../../components/UserSettingsForm';
 
 interface Props {
-  user: {
-    name: string;
-    email: string;
-    image: string;
-    userId: string;
-    nodeId: string;
-  };
+  userData: UserDataType;
 }
 
 export const SettingsPagePresentation: React.FC<Props> = props => {
-  const {user} = props;
+  const {userData} = props;
   return (
     <Container>
       <Title>設定</Title>
@@ -31,12 +27,12 @@ export const SettingsPagePresentation: React.FC<Props> = props => {
         </Tabs.List>
         <Tabs.Panel value="user" py="md">
           <Container size="sm">
-            <UserSettingsForm nodeId={user.nodeId} initialValues={user} />
+            <UserSettingsForm userData={userData} />
           </Container>
         </Tabs.Panel>
         <Tabs.Panel value="avatar" py="md">
           <Container size="sm">
-            <AvatarSettingsForm user={user} />
+            <AvatarSettingsForm userData={userData} />
           </Container>
         </Tabs.Panel>
         <Tabs.Panel value="appearance" py="md">

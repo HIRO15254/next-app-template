@@ -1,6 +1,6 @@
 import {AvatarSettingsForm} from "~/frontend/features/settings/components/AvatarSettingsForm/index";
 import {Meta, StoryObj} from "@storybook/react";
-import {dummyUserData} from "~/frontend/util/dummyUserData";
+import {dummyUserData} from "~/frontend/features/auth/utils/dummyUserData";
 
 const meta = {
   title: "Settings/AvatarSettingsForm",
