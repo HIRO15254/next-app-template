@@ -6,6 +6,14 @@ import {dummyUserData} from "~/frontend/features/auth/utils/dummyUserData";
 const meta = {
   title: 'Common/AppShell/MyAppShell',
   component: CustomAppShell,
+  parameters: {
+    actions: {
+      argTypesRegex: '^on.*',
+    },
+    nextjs: {
+      appDirectory: true,
+    },
+  }
 } satisfies Meta<typeof CustomAppShell>;
 
 export default meta;

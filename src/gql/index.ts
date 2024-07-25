@@ -252,10 +252,10 @@ export type UuidFilter = {
 
 export type UserData = Node & {
   __typename?: 'UserData';
-  email?: Maybe<Scalars['String']['output']>;
+  email: Scalars['String']['output'];
   id: Scalars['UUID']['output'];
   image?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
   /** Globally Unique Record Identifier */
   nodeId: Scalars['ID']['output'];
   userId: Scalars['String']['output'];
@@ -344,27 +344,38 @@ export type UpdateUserAvatarMutationVariables = Exact<{
 
 export type UpdateUserAvatarMutation = { __typename?: 'Mutation', updateUserDataCollection: { __typename?: 'UserDataUpdateResponse', records: Array<{ __typename?: 'UserData', nodeId: string, image?: string | null }> } };
 
-export type UserSettingFormMutationVariables = Exact<{
-  nodeId: Scalars['ID']['input'];
-  data: UserDataUpdateInput;
-}>;
-
-
-export type UserSettingFormMutation = { __typename?: 'Mutation', updateUserDataCollection: { __typename?: 'UserDataUpdateResponse', records: Array<{ __typename?: 'UserData', nodeId: string }> } };
-
 export type SettingsPageQueryVariables = Exact<{
   id: Scalars['UUID']['input'];
 }>;
 
 
-export type SettingsPageQuery = { __typename?: 'Query', userDataCollection?: { __typename?: 'UserDataConnection', edges: Array<{ __typename?: 'UserDataEdge', node: { __typename?: 'UserData', nodeId: string, name?: string | null, email?: string | null, image?: string | null, userId: string } }> } | null };
+export type SettingsPageQuery = { __typename?: 'Query', userDataCollection?: { __typename?: 'UserDataConnection', edges: Array<{ __typename?: 'UserDataEdge', node: { __typename?: 'UserData', nodeId: string, name: string, email: string, image?: string | null, userId: string } }> } | null };
+
+export type UserDataFragmentFragment = { __typename?: 'UserData', nodeId: string, id: string, name: string, email: string, image?: string | null, userId: string };
 
 export type LoginUserDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type LoginUserDataQuery = { __typename?: 'Query', loginUserData?: { __typename?: 'UserData', nodeId: string, id: string, name?: string | null, email?: string | null, image?: string | null, userId: string } | null };
+export type LoginUserDataQuery = { __typename?: 'Query', loginUserData?: { __typename?: 'UserData', nodeId: string, id: string, name: string, email: string, image?: string | null, userId: string } | null };
+
+export type UpdateUserMutationVariables = Exact<{
+  nodeId: Scalars['ID']['input'];
+  data: UserDataUpdateInput;
+}>;
 
 
+export type UpdateUserMutation = { __typename?: 'Mutation', updateUserDataCollection: { __typename?: 'UserDataUpdateResponse', records: Array<{ __typename?: 'UserData', nodeId: string }> } };
+
+export const UserDataFragmentFragmentDoc = gql`
+    fragment UserDataFragment on UserData {
+  nodeId
+  id
+  name
+  email
+  image
+  userId
+}
+    `;
 export const UpdateUserAvatarDocument = gql`
     mutation UpdateUserAvatar($nodeId: ID!, $imagePath: String!) {
   updateUserDataCollection(
@@ -405,42 +416,6 @@ export function useUpdateUserAvatarMutation(baseOptions?: Apollo.MutationHookOpt
 export type UpdateUserAvatarMutationHookResult = ReturnType<typeof useUpdateUserAvatarMutation>;
 export type UpdateUserAvatarMutationResult = Apollo.MutationResult<UpdateUserAvatarMutation>;
 export type UpdateUserAvatarMutationOptions = Apollo.BaseMutationOptions<UpdateUserAvatarMutation, UpdateUserAvatarMutationVariables>;
-export const UserSettingFormDocument = gql`
-    mutation UserSettingForm($nodeId: ID!, $data: UserDataUpdateInput!) {
-  updateUserDataCollection(filter: {nodeId: {eq: $nodeId}}, set: $data) {
-    records {
-      nodeId
-    }
-  }
-}
-    `;
-export type UserSettingFormMutationFn = Apollo.MutationFunction<UserSettingFormMutation, UserSettingFormMutationVariables>;
-
-/**
- * __useUserSettingFormMutation__
- *
- * To run a mutation, you first call `useUserSettingFormMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUserSettingFormMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [userSettingFormMutation, { data, loading, error }] = useUserSettingFormMutation({
- *   variables: {
- *      nodeId: // value for 'nodeId'
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useUserSettingFormMutation(baseOptions?: Apollo.MutationHookOptions<UserSettingFormMutation, UserSettingFormMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UserSettingFormMutation, UserSettingFormMutationVariables>(UserSettingFormDocument, options);
-      }
-export type UserSettingFormMutationHookResult = ReturnType<typeof useUserSettingFormMutation>;
-export type UserSettingFormMutationResult = Apollo.MutationResult<UserSettingFormMutation>;
-export type UserSettingFormMutationOptions = Apollo.BaseMutationOptions<UserSettingFormMutation, UserSettingFormMutationVariables>;
 export const SettingsPageDocument = gql`
     query settingsPage($id: UUID!) {
   userDataCollection(filter: {id: {eq: $id}}) {
@@ -492,15 +467,10 @@ export type SettingsPageQueryResult = Apollo.QueryResult<SettingsPageQuery, Sett
 export const LoginUserDataDocument = gql`
     query loginUserData {
   loginUserData {
-    nodeId
-    id
-    name
-    email
-    image
-    userId
+    ...UserDataFragment
   }
 }
-    `;
+    ${UserDataFragmentFragmentDoc}`;
 
 /**
  * __useLoginUserDataQuery__
@@ -533,3 +503,39 @@ export type LoginUserDataQueryHookResult = ReturnType<typeof useLoginUserDataQue
 export type LoginUserDataLazyQueryHookResult = ReturnType<typeof useLoginUserDataLazyQuery>;
 export type LoginUserDataSuspenseQueryHookResult = ReturnType<typeof useLoginUserDataSuspenseQuery>;
 export type LoginUserDataQueryResult = Apollo.QueryResult<LoginUserDataQuery, LoginUserDataQueryVariables>;
+export const UpdateUserDocument = gql`
+    mutation UpdateUser($nodeId: ID!, $data: UserDataUpdateInput!) {
+  updateUserDataCollection(filter: {nodeId: {eq: $nodeId}}, set: $data, atMost: 1) {
+    records {
+      nodeId
+    }
+  }
+}
+    `;
+export type UpdateUserMutationFn = Apollo.MutationFunction<UpdateUserMutation, UpdateUserMutationVariables>;
+
+/**
+ * __useUpdateUserMutation__
+ *
+ * To run a mutation, you first call `useUpdateUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateUserMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateUserMutation, { data, loading, error }] = useUpdateUserMutation({
+ *   variables: {
+ *      nodeId: // value for 'nodeId'
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateUserMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserMutation, UpdateUserMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateUserMutation, UpdateUserMutationVariables>(UpdateUserDocument, options);
+      }
+export type UpdateUserMutationHookResult = ReturnType<typeof useUpdateUserMutation>;
+export type UpdateUserMutationResult = Apollo.MutationResult<UpdateUserMutation>;
+export type UpdateUserMutationOptions = Apollo.BaseMutationOptions<UpdateUserMutation, UpdateUserMutationVariables>;

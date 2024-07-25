@@ -1,25 +1,13 @@
-'use client';
+import React from 'react';
 
-import {NativeSelect, Stack, useMantineColorScheme} from '@mantine/core';
+import {Stack} from '@mantine/core';
 
-export const AppearanceSettingsForm = () => {
-  const {colorScheme, setColorScheme} = useMantineColorScheme();
+import {ColorSchemeSelect} from '../ColorSchemeSelect';
 
-  return (
-    <Stack px="md" m="auto">
-      <NativeSelect
-        label="テーマ"
-        description="Ctrl+Jでも切り替えることができます"
-        value={colorScheme}
-        data={[
-          {value: 'light', label: 'ライト'},
-          {value: 'dark', label: 'ダーク'},
-          {value: 'auto', label: '自動'},
-        ]}
-        onChange={event =>
-          setColorScheme(event.currentTarget.value as 'light' | 'dark' | 'auto')
-        }
-      />
-    </Stack>
-  );
-};
+interface Props {}
+
+export const AppearanceSettingForm: React.FC<Props> = () => (
+  <Stack px="md" m="auto">
+    <ColorSchemeSelect />
+  </Stack>
+);

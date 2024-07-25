@@ -3,7 +3,15 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.52">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <Grants>5||-9223372036854775808|c|G
+      <Grants>1||-9223372036854775808|c|G
+1||10|c|G
+1||10|C|G
+1||10|T|G
+4||-9223372036854775808|c|G
+4||10|c|G
+4||10|C|G
+4||10|T|G
+5||-9223372036854775808|c|G
 5||10|c|G
 5||16564|c|G
 5||10|C|G
@@ -11,9 +19,9 @@
 5||-9223372036854775808|T|G
 5||10|T|G
 5||16564|T|G</Grants>
-      <IntrospectionStateNumber>3767</IntrospectionStateNumber>
+      <IntrospectionStateNumber>6219</IntrospectionStateNumber>
       <ServerVersion>15.1</ServerVersion>
-      <StartupTime>1721065214</StartupTime>
+      <StartupTime>1721237990</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1514,7 +1522,7 @@ true posixrules
 17039||16448|U|G
 17039||16449|U|G
 17039||17038|U|G</Grants>
-      <IntrospectionStateNumber>3767</IntrospectionStateNumber>
+      <IntrospectionStateNumber>6219</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -5437,8 +5445,8 @@ idle_in_transaction_session_timeout=60000</Config>
 66358||16447|X|G
 66358||16448|X|G
 66358||16449|X|G</Grants>
-      <IntrospectionStateNumber>3767</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-07-15.18:21:17</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>6219</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-07-25.16:58:04</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>749</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -5519,8 +5527,8 @@ idle_in_transaction_session_timeout=60000</Config>
       <Event>ddl_command_end</Event>
       <ObjectId>16947</ObjectId>
       <StateNumber>911</StateNumber>
-      <Tags>SECURITY LABEL
-ALTER TABLE</Tags>
+      <Tags>ALTER TABLE
+SECURITY LABEL</Tags>
       <CallRoutineId>16831</CallRoutineId>
     </trigger>
     <routine id="309" parent="295" name="handle_new_user">
@@ -5592,14 +5600,18 @@ ALTER TABLE</Tags>
     </column>
     <column id="319" parent="312" name="name">
       <DasType>text|0s</DasType>
+      <DefaultExpression>&apos;&apos;::text</DefaultExpression>
+      <NotNull>1</NotNull>
       <Position>8</Position>
-      <StateNumber>1750</StateNumber>
+      <StateNumber>6216</StateNumber>
       <TypeId>25</TypeId>
     </column>
     <column id="320" parent="312" name="email">
       <DasType>text|0s</DasType>
+      <DefaultExpression>&apos;&apos;::text</DefaultExpression>
+      <NotNull>1</NotNull>
       <Position>9</Position>
-      <StateNumber>1750</StateNumber>
+      <StateNumber>6218</StateNumber>
       <TypeId>25</TypeId>
     </column>
     <column id="321" parent="312" name="image">
@@ -5610,7 +5622,7 @@ ALTER TABLE</Tags>
     </column>
     <column id="322" parent="312" name="user_id">
       <DasType>text|0s</DasType>
-      <DefaultExpression>string_random()</DefaultExpression>
+      <DefaultExpression>random_string()</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>11</Position>
       <StateNumber>3741</StateNumber>
@@ -5669,7 +5681,7 @@ ALTER TABLE</Tags>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>42015</ObjectId>
       <StateNumber>3735</StateNumber>
-      <UnderlyingIndexColNames>user_id</UnderlyingIndexColNames>
+      <UnderlyingIndexId>42014</UnderlyingIndexId>
     </key>
     <security-policy id="330" parent="312" name="Allow select for all authenticated users.">
       <ObjectId>25748</ObjectId>

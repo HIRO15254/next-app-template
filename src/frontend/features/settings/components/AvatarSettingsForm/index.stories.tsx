@@ -4,7 +4,15 @@ import {dummyUserData} from "~/frontend/features/auth/utils/dummyUserData";
 
 const meta = {
   title: "Settings/AvatarSettingsForm",
-  component: AvatarSettingsForm
+  component: AvatarSettingsForm,
+  parameters: {
+    actions: {
+      argTypesRegex: '^on.*',
+    },
+    nextjs: {
+      appDirectory: true,
+    },
+  }
 } satisfies Meta<typeof AvatarSettingsForm>;
 
 export default meta;
@@ -13,11 +21,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default = {
   args: {
-    user: {
-      userId: dummyUserData.userId,
-      name: dummyUserData.name ?? "",
-      nodeId: dummyUserData.nodeId,
-      image: dummyUserData.image ?? "",
-    },
+    userData: dummyUserData
   },
 } satisfies Story;

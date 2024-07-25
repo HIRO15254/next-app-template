@@ -25,8 +25,8 @@ export const getLoginUserData = async (): Promise<UserDataType | null> => {
     id: userData.id,
     userId: userData.userId,
     nodeId: userData.nodeId,
-    name: userData.name ?? undefined,
-    email: userData.email ?? undefined,
+    name: userData.name,
+    email: userData.email,
     image: userData.image ?? undefined,
   };
 };

@@ -1,4 +1,3 @@
-// eslint-disable-next-line node/no-unpublished-import
 import {describe} from '@jest/globals';
 
 describe('environment variables', () => {

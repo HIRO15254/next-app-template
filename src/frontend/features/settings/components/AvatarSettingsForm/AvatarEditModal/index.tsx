@@ -18,7 +18,7 @@ type Props = {
   scale: number;
   setScale: (value: number) => void;
   image: File | null;
-  onImageSave: (payload: OnImageSavePayload) => void;
+  onImageSave: (payload: OnImageSavePayload) => Promise<void>;
 };
 
 /**
@@ -34,8 +34,9 @@ export const AvatarEditModal: React.FC<Props> = props => {
       onImageSave({
         canvas: editorRef.current.getImageScaledToCanvas(),
         image: editorRef.current.getImage(),
+      }).then(() => {
+        close();
       });
-      close();
     }
   };
 

@@ -3,10 +3,8 @@
 import React from 'react';
 
 import {useForm, zodResolver} from '@mantine/form';
-import {notifications} from '@mantine/notifications';
 import {z} from 'zod';
 
-import {UserSettingsFormPresentation} from '~/frontend/features/settings/components/UserSettingsForm/presentation';
 import {
   errorNotification,
   successNotification,
@@ -16,14 +14,16 @@ import {
   userIdValidator,
   userNameValidator,
 } from '~/frontend/util/validators';
-import {useUserSettingFormMutation} from '~/gql';
+import {useUpdateUserMutation} from '~/gql';
+
+import {Presentation} from './presentation';
 
 interface Props {
   userData: {
     nodeId: string;
     userId: string;
-    name?: string;
-    email?: string;
+    name: string;
+    email: string;
   };
 }
 
@@ -35,11 +35,10 @@ type UserSettingsFormType = {
 
 /**
  * ユーザー設定を行うフォーム
- * @param props.initialValues 初期値
  */
 export const UserSettingsForm: React.FC<Props> = props => {
   const {userData} = props;
-  const [update, {loading}] = useUserSettingFormMutation();
+  const [update, {loading}] = useUpdateUserMutation();
 
   const userSettingsFormSchema = z.object({
     userId: userIdValidator,
@@ -51,8 +50,8 @@ export const UserSettingsForm: React.FC<Props> = props => {
     mode: 'uncontrolled',
     initialValues: {
       userId: userData.userId,
-      name: userData.name ?? '',
-      email: userData.email ?? '',
+      name: userData.name,
+      email: userData.email,
     },
     validate: zodResolver(userSettingsFormSchema),
   });
@@ -61,11 +60,7 @@ export const UserSettingsForm: React.FC<Props> = props => {
     await update({
       variables: {
         nodeId: userData.nodeId,
-        data: {
-          userId: values.userId,
-          name: values.name,
-          email: values.email,
-        },
+        data: values,
       },
       onCompleted: () => {
         successNotification('ユーザー設定を更新しました');
@@ -77,7 +72,7 @@ export const UserSettingsForm: React.FC<Props> = props => {
   };
 
   return (
-    <UserSettingsFormPresentation
+    <Presentation
       inputProps={{
         userId: form.getInputProps('userId'),
         name: form.getInputProps('name'),

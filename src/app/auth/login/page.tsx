@@ -4,7 +4,7 @@ import {redirect} from 'next/navigation';
 
 import {APPLICATION_TOP_URL} from '~/frontend/const/urls';
 import {LoginPage} from '~/frontend/features/auth/pages/LoginPage';
-import {createClient} from '~/frontend/lib/supabase/server';
+import {getLoginUserData} from '~/frontend/features/auth/utils/getLoginUserData';
 
 interface LoginPageProps {
   searchParams: {[key: string]: string | string[] | undefined};
@@ -19,14 +19,12 @@ export const metadata = {
  */
 const Page = async (props: LoginPageProps) => {
   const {searchParams} = props;
-  const supabase = createClient();
-
-  const {data} = await supabase.auth.getUser();
+  const user = await getLoginUserData();
 
   const callbackUrl =
     searchParams.callbackUrl?.toString() ?? APPLICATION_TOP_URL;
 
-  if (data.user) {
+  if (user) {
     redirect(callbackUrl);
   }
 

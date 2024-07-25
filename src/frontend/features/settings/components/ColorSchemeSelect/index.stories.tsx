@@ -1,17 +1,13 @@
-import {Meta, StoryObj} from '@storybook/react';
-
-import {Presentation} from './presentation';
+import {Meta, StoryObj} from "@storybook/react";
+import {Presentation} from "./presentation";
 
 const meta = {
-  title: 'Auth/LoginButton',
+  title: 'Settings/ColorSchemeSelect',
   component: Presentation,
   parameters: {
     actions: {
       argTypesRegex: '^on.*',
-    },
-    nextjs: {
-      appDirectory: true,
-    },
+    }
   }
 } satisfies Meta<typeof Presentation>;
 
@@ -19,8 +15,8 @@ export default meta;
 
 type Story = StoryObj<typeof Presentation>;
 
-export const Google: Story = {
+export const Default = {
   args: {
-    provider: 'google',
+    value: 'light',
   },
 } satisfies Story;

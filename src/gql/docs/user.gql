@@ -12,3 +12,9 @@ query loginUserData {
         ...UserDataFragment
     }
 }
+
+mutation UpdateUser($nodeId: ID!, $data: UserDataUpdateInput!){
+    updateUserDataCollection(filter: {nodeId: {eq: $nodeId}}, set: $data, atMost: 1) {
+        affectedCount
+    }
+}

@@ -13,7 +13,10 @@ type Props = {
   sending: boolean;
 };
 
-export const UserSettingsFormPresentation: React.FC<Props> = props => {
+/**
+ * @package
+ */
+export const Presentation: React.FC<Props> = props => {
   const {inputProps, onSubmit, sending} = props;
 
   return (

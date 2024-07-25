@@ -2,13 +2,15 @@
 
 import React from 'react';
 
-import {Menu, Anchor, UnstyledButton} from '@mantine/core';
-import {IconLogout, IconSettings} from '@tabler/icons-react';
-import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 
-import {SETTINGS_URL} from '~/frontend/const/urls';
-import {createClient} from '~/frontend/lib/supabase/client';
+import {useLogout} from '~/frontend/features/auth/hooks/useLogout';
+import {
+  errorNotification,
+  successNotification,
+} from '~/frontend/util/notifications';
+
+import {Presentation} from './presentation';
 
 interface Props {
   children: React.ReactNode;
@@ -19,41 +21,21 @@ interface Props {
  */
 export const UserMenu: React.FC<Props> = props => {
   const {children} = props;
-  const supabase = createClient();
   const router = useRouter();
 
-  const logout = async () => {
-    const {error} = await supabase.auth.signOut();
-    if (!error) {
+  const [logout] = useLogout();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      successNotification('ログアウトしました。');
       router.refresh();
+    } catch (error) {
+      if (error instanceof Error) {
+        errorNotification(error);
+      }
     }
   };
 
-  return (
-    <Menu
-      width={260}
-      position="bottom-end"
-      transitionProps={{transition: 'pop-top-right'}}
-      withinPortal
-    >
-      <Menu.Target>
-        <UnstyledButton>{children}</UnstyledButton>
-      </Menu.Target>
-      <Menu.Dropdown>
-        <Menu.Label>アカウント</Menu.Label>
-        <Anchor component={Link} href={SETTINGS_URL} underline="never">
-          <Menu.Item leftSection={<IconSettings size="0.9rem" stroke={1.5} />}>
-            設定
-          </Menu.Item>
-        </Anchor>
-        <Menu.Item
-          color="red"
-          leftSection={<IconLogout size="0.9rem" stroke={1.5} />}
-          onClick={logout}
-        >
-          ログアウト
-        </Menu.Item>
-      </Menu.Dropdown>
-    </Menu>
-  );
+  return <Presentation logout={handleLogout}>{children}</Presentation>;
 };

@@ -5,7 +5,7 @@ module.exports = {
     'plugin:@next/next/recommended',
     'plugin:jest/recommended',
   ],
-  plugins: ['testing-library', 'jest'],
+  plugins: ['testing-library', 'jest', 'unused-imports', 'import-access'],
   overrides: [
     {
       files: ['**/?(*.)+(spec|test).[jt]s?(x)'],
@@ -50,6 +50,8 @@ module.exports = {
         "distinctGroup": false,
         "pathGroupsExcludedImportTypes": ["react"]
       }
-    ]
+    ],
+    'unused-imports/no-unused-imports': 'error',
+    'import-access/jsdoc': "error",
   },
 };

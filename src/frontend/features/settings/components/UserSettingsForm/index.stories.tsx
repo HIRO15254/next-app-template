@@ -1,30 +1,53 @@
 import {Meta, StoryObj} from '@storybook/react';
 
-import {UserSettingsFormPresentation} from './presentation';
-import {action} from "@storybook/addon-actions";
+import {Presentation} from './presentation';
 
 const meta = {
   title: 'Settings/UserSettingsForm',
-  component: UserSettingsFormPresentation,
-} satisfies Meta<typeof UserSettingsFormPresentation>;
+  component: Presentation,
+  parameters: {
+    actions: {
+      argTypesRegex: '^on.*',
+    },
+    nextjs: {
+      appDirectory: true,
+    },
+  }
+} satisfies Meta<typeof Presentation>;
 
 export default meta;
 
-type Story = StoryObj<typeof UserSettingsFormPresentation>;
+type Story = StoryObj<typeof Presentation>;
 
 export const Default = {
   args: {
-    onSubmit: () => {
-      action('handleSubmit')
-    },
+    inputProps: {
+      email: {
+        value: 'email',
+      },
+      userId: {
+        value: 'userId',
+      },
+      name: {
+        value: 'name',
+      },
+    }
   },
 } satisfies Story;
 
 export const Sending = {
   args: {
-    sending: true,
-    onSubmit: () => {
-      action('handleSubmit')
+    inputProps: {
+      email: {
+        value: 'email',
+      },
+      userId: {
+        value: 'userId',
+      },
+      name: {
+        value: 'name',
+      },
     },
+    sending: true,
   },
 } satisfies Story;

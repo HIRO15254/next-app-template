@@ -61,12 +61,14 @@ export const useAvatarSettingModal = (props: Props) => {
               nodeId: user.nodeId,
               imagePath: `${newUrl}?update=${Date.now()}`,
             },
-          });
-          router.refresh();
-          showNotification({
-            color: 'teal',
-            title: '更新成功',
-            message: 'ユーザーアイコンを更新しました',
+            onCompleted: () => {
+              router.refresh();
+              showNotification({
+                color: 'teal',
+                title: '更新成功',
+                message: 'ユーザーアイコンを更新しました',
+              });
+            },
           });
         } catch (e) {
           showNotification({

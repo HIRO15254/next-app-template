@@ -281,10 +281,10 @@ input UUIDFilter {
 }
 
 type UserData implements Node {
-  email: String
+  email: String!
   id: UUID!
   image: String
-  name: String
+  name: String!
 
   """Globally Unique Record Identifier"""
   nodeId: ID!
