@@ -1,8 +1,8 @@
-import {Container, Loader} from '@mantine/core';
+import {Center, Loader} from '@mantine/core';
 
 const Loading = () => (
-  <Container>
+  <Center w="100%" h="100vh">
     <Loader color="blue" size="xl" type="bars" />
-  </Container>
+  </Center>
 );
 export default Loading;

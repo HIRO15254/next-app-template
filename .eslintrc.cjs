@@ -16,6 +16,7 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
+    'n/no-unsupported-features/node-builtins': 'off',
     '@typescript-eslint/no-throw-literal': 'off',
     'react/react-in-jsx-scope': 'off',
     'import/extensions': 'off',

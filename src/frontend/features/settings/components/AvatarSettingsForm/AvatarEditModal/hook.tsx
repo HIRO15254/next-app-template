@@ -8,7 +8,7 @@ import {useRouter} from 'next/navigation';
 import pica from 'pica';
 
 import {uploadFile} from '~/frontend/lib/supabase/uploadFile';
-import {useUpdateUserAvatarMutation} from '~/gql';
+import {useUpdateUserMutation} from '~/gql';
 
 import {AvatarEditModal, type OnImageSavePayload} from './index';
 
@@ -27,7 +27,7 @@ export const useAvatarSettingModal = (props: Props) => {
   const [opened, {open, close}] = useDisclosure(false);
   const [scale, setScale] = React.useState(1.0);
   const [image, setImage] = React.useState<File | null>(null);
-  const [updateLoginUserMutation] = useUpdateUserAvatarMutation();
+  const [update] = useUpdateUserMutation();
   const router = useRouter();
 
   // ファイル選択時にモーダルを開く
@@ -56,10 +56,12 @@ export const useAvatarSettingModal = (props: Props) => {
           const fileName = `${user.userId}.png`;
           const file = new File([blob], fileName, {type: 'image/png'});
           const newUrl = await uploadFile('avatar', fileName, file);
-          await updateLoginUserMutation({
+          await update({
             variables: {
               nodeId: user.nodeId,
-              imagePath: `${newUrl}?update=${Date.now()}`,
+              data: {
+                image: `${newUrl}?update=${Date.now()}`,
+              },
             },
             onCompleted: () => {
               router.refresh();
