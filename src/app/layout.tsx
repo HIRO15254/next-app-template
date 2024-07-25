@@ -31,9 +31,7 @@ export default async function RootLayout({children}: {children: ReactNode}) {
       <body>
         <GqlProvider>
           <StyleProvider>
-            <CustomAppShell userData={userData ?? undefined}>
-              {children}
-            </CustomAppShell>
+            <CustomAppShell userData={userData}>{children}</CustomAppShell>
           </StyleProvider>
         </GqlProvider>
       </body>
