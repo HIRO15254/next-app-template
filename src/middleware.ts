@@ -3,7 +3,8 @@ import {type NextRequest} from 'next/server';
 import {updateSession} from '~/frontend/lib/supabase/middleware';
 
 export async function middleware(request: NextRequest) {
-  return updateSession(request);
+  const ret = await updateSession(request);
+  return ret;
 }
 
 export const config = {

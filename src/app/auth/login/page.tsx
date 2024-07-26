@@ -14,6 +14,7 @@ export const metadata = {
   title: 'ログイン',
 };
 
+export const dynamic = 'force-dynamic';
 /**
  * ログイン用のページ ログイン時のアクセスは禁止
  */
